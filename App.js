@@ -1,12 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import TouchScreen from './src/screens/TouchScreen';
+import Pin from './src/screens/PinScreen';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
 export default function App() {
+  const AppStack = createStackNavigator();
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+      <NavigationContainer>
+        <AppStack.Navigator>
+          <AppStack.Screen name="Touch" component={TouchScreen} options={{ headerShown: false }}/>
+          <AppStack.Screen name="Pin" component={Pin} options={{ headerShown: false }}/>
+        </AppStack.Navigator>
+      </NavigationContainer>
   );
 }
 

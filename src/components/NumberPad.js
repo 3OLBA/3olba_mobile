@@ -1,54 +1,46 @@
-import React from 'react';
-import styled from 'styled-components/native';
+import styled from 'styled-components';
+import {MaterialIcons} from '@expo/vector-icons';
+import Text from './Text';
 
-export default TextStyle = ({...props}) => {
-    return <Text {...props} >{props.children}</Text>
+export default function NumberPad ({onPress}) {
+    const button = [
+        "1","2","3","4","5","6","7","8","9","0",
+        <MaterialIcons name="keyboard-backspace" size={24} />
+    ];
+
+    return (
+        <KeyPad>
+            {
+                button.map((item,index) => {
+                    return (
+                        <Number key={index} onPress={() => onPress(item,index)} delayPressIn={0}>
+                            <Text large heavy >
+                                {item}
+                            </Text>
+                        </Number>
+                    )
+                })
+            }
+        </KeyPad>
+    );
 }
 
-const Text = styled.Text`
-    color : ${(props) => props.color ?? "#DBDBDB"};
-    font-family : "Avenir";
-    margin: ${(props) => props.margin ?? 0};
-    padding: ${(props) => props.padding ?? 0};
-    
-    ${({title,large,medium,small,tiny}) => {
-    switch (true) {
-        case title :
-            return `font-size : 32px;`;
-        case large :
-            return `font-size : 18px;`;
-        case medium :
-            return `font-size : 15px;`;
-        case small :
-            return `font-size : 11px;`;
-        case tiny :
-            return `font-size : 10px;`;
-        default :
-            return `font-size : 13px;`;
-    }}} 
-    
-    ${({light,heavy,bold,black}) => {
-    switch (true) {
-        case light :
-            return `font-weight : 200;`;
-        case heavy :
-            return `font-weight : 700;`;
-        case bold :
-            return `font-weight : 600;`;
-        case black :
-            return `font-weight : 900;`;
-        default :
-            return `font-weight : 400;`;
-    }}} 
-    
-    ${({center,right}) => {
-    switch (true) {
-        case center :
-            return `text-align : center;`;
-        case right :
-            return `font-size : right;`;
-        default :
-            return `font-size : left;`;
-    }}} 
-        
+const KeyPad = styled.View`
+    flex-direction : row;
+    flex-wrap : wrap;
+    align-items : center;
+    justify-content : flex-end;
+    margin : 30px 30px;
 `;
+
+const Number = styled.TouchableOpacity`
+    width : 64px;
+    height : 64px;
+    border-radius : 32px;
+    align-items : center;
+    justify-content : center;
+    margin : 5px 20px;
+    border-width : 1px;
+    border-color : #ffffff20;
+`;
+
