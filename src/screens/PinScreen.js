@@ -7,6 +7,13 @@ import React, {useState,useEffect} from "react";
 export default function PinScreen ({navigation}) {
     const [pinCount,setPinCount] = useState(0);
     const totalPins = 6;
+
+    useEffect(() => {
+        if(pinCount === totalPins){
+            navigation.navigate("Bottom");
+        }
+    },[pinCount])
+
     const renderPress = () => {
         console.log(pinCount);
 
