@@ -22,7 +22,8 @@
     "react-native-safe-area-context": "^4.4.1",
     "react-native-web": "~0.18.7",
     "redux": "^4.2.0",
-    "styled-components": "^5.3.6"
+    "styled-components": "^5.3.6",
+    "expo-updates": "~0.14.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
