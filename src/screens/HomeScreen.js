@@ -9,11 +9,13 @@ export default function HomeScreen() {
         return (
                 <Purshase>
                     <PurshaseInfo>
-                        <Text>{item.product}</Text>
-                        <Text>{item.store}</Text>
-                        <Text>{item.address}</Text>
+                        <Text heavy >{item.beneficiary}</Text>
+                        <Text>{item.bank}</Text>
                     </PurshaseInfo>
-                    <Text>{item.price}</Text>
+                    <PurshaseInfo>
+                        <Text black color="#228B22">{item.amount} {item.currency}</Text>
+                        <Text heavy>{item.date}</Text>
+                    </PurshaseInfo>
                 </Purshase>
             )
     }
@@ -29,7 +31,7 @@ export default function HomeScreen() {
             </Header>
 
             <Text center title black>
-                7,500.00 dh
+                7,500.00 MAD
             </Text>
             <Text center medium color="#727479">
                 Current balance
@@ -84,6 +86,12 @@ const Purshases = styled.FlatList`
 `;
 
 const Purshase = styled.View`
+    flex-direction : row;
+    justify-content : space-between;
+    border-bottom-width : 1px;
+    border-color : #393939
+    padding-bottom : 12px;
+    margin : 12px;
 `;
 
 const PurshaseInfo = styled.View`
