@@ -3,6 +3,7 @@ import Text from '../../components/Text';
 import ChartScreen from './ChartScreen';
 import {FontAwesome5,MaterialIcons , AntDesign} from "@expo/vector-icons";
 import TransactionData from "../../../TransactionsData";
+import HeaderScreen from "../Common/HeaderScreen";
 
 export default function HomeScreen({navigation}) {
     const renderTransactions = ({item}) => {
@@ -24,14 +25,8 @@ export default function HomeScreen({navigation}) {
     }
     return (
         <Container>
-            <Header>
-                <ProfilePhoto source={require("../../../assets/personLogo.png")}/>
-                <Welcome>
-                    <Text heavy medium>Welcome Khalil</Text>
-                    <Text>User</Text>
-                </Welcome>
-                <AntDesign name="logout" size={24} color="#565656" onPress={logout}/>
-            </Header>
+
+            <HeaderScreen/>
 
             <Text center title black>
                 7,500.00 MAD

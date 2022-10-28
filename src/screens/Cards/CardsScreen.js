@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Text from '../../components/Text';
 import myCards from '../../../CardsData';
 import { FontAwesome,Entypo } from '@expo/vector-icons';
+import HeaderScreen from "../Common/HeaderScreen";
 
 export default function CardsScreen() {
     const renderCards = ({ item }) => {
@@ -32,6 +33,7 @@ export default function CardsScreen() {
     return (
         <Container>
             <Text center large heavy margin="16px 0 0 0">My Cards</Text>
+            <HeaderScreen/>
             <Cards data={myCards} renderItem={renderCards}/>
             <StatusBar barStyle="light-content"/>
         </Container>
@@ -45,7 +47,6 @@ const Container = styled.SafeAreaView`
 
 const Cards = styled.FlatList`
     padding : 0 8px;
-    margin-top : 32px;
 `;
 
 const CardContainer = styled.View`

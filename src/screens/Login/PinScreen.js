@@ -11,6 +11,7 @@ export default function PinScreen ({navigation}) {
     useEffect(() => {
         if(pinCount === totalPins){
             navigation.navigate("Bottom");
+            setPinCount(0);
         }
     },[pinCount])
 

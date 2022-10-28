@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import Text from '../../components/Text';
 import NumberPad from '../../components/NumberPad';
 import React, {useState} from 'react';
+import HeaderScreen from "../Common/HeaderScreen";
 
 export default function SendRequestScreen() {
     const [amount,setAmount]   = useState("0");
@@ -18,6 +19,8 @@ export default function SendRequestScreen() {
     return (
         <Container>
             <Text center large heavy margin="16px 0 0 0">Send Request</Text>
+            <HeaderScreen/>
+
             <Amount>
                 <Text center title heavy>{convertToMAD(amount)}</Text>
                 <Text bold color="#727479">Choose amount to send</Text>
@@ -46,7 +49,6 @@ const Container = styled.SafeAreaView`
 `;
 
 const Amount = styled.View`
-    margin-top : 64px;
     align-items : center;
 `;
 

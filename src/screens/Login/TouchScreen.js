@@ -2,20 +2,22 @@ import styled from 'styled-components';
 import {Fontisto,MaterialIcons} from '@expo/vector-icons';
 import Text from '../../components/Text';
 
+
 export default function TouchScreen({navigation}){
 
     return (
         <Container>
-            <Text center heavy title color='#964ff0' margin="32px 0 0 0">
-                Eolba Transfer
-            </Text>
+
+            <StatusBar barStyle="light-content"/>
+
             <Touch onLongPress={() => navigation.navigate("Tabs")} delayPressIn={0}>
                 <Circle bgColor='#1e1e1e'>
                     <Circle bgColor='#5196F405'>
                         <Circle bgColor='#5196f410'>
                             <Circle bgColor='#5196F430'>
                                 <TouchButton>
-                                    <MaterialIcons name="fingerprint" size={64} color="#fffff"/>
+                                    {/*<MaterialIcons name="fingerprint" size={64} color="#fffff"/>*/}
+                                    <Logo source ={require('../../../assets/logo.png')} />
                                 </TouchButton>
                             </Circle>
                         </Circle>
@@ -55,7 +57,6 @@ const Circle = styled.View`
     border-radius : 999px;
 `;
 const TouchButton = styled.View`
-     background-color : #5196f4;
      padding :  8px;
      border-radius : 100px;
 `;
@@ -73,4 +74,10 @@ const StatusBar  = styled.TouchableOpacity`
      flex-direction : row;
      align-items : center;
      justify-content : center;
+`;
+
+const Logo = styled.Image`
+    width : 120px;
+    height : 120px;
+    border-radius : 120px;
 `;
