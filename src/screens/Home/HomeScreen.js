@@ -4,7 +4,7 @@ import ChartScreen from './ChartScreen';
 import {FontAwesome5,MaterialIcons , AntDesign} from "@expo/vector-icons";
 import TransactionData from "../../../TransactionsData";
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}) {
     const renderTransactions = ({item}) => {
         return (
                 <Purshase>
@@ -19,15 +19,18 @@ export default function HomeScreen() {
                 </Purshase>
             )
     }
+    const logout = () => {
+        navigation.navigate("Login");
+    }
     return (
         <Container>
             <Header>
-                <ProfilePhoto source={require("../../../assets/logo.png")}/>
+                <ProfilePhoto source={require("../../../assets/personLogo.png")}/>
                 <Welcome>
                     <Text heavy medium>Welcome Khalil</Text>
                     <Text>User</Text>
                 </Welcome>
-                <FontAwesome5 name="cog" size={24} color="#565656"/>
+                <AntDesign name="logout" size={24} color="#565656" onPress={logout}/>
             </Header>
 
             <Text center title black>

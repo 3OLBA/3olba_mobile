@@ -16,9 +16,9 @@ export default function App() {
     return (
       <NavigationContainer>
         <AppStack.Navigator>
-            <AppStack.Screen name="Bottom" component={BottomTabsScreen} options={{ headerShown: false }}/>
-            <AppStack.Screen name="Touch" component={TouchScreen} options={{ headerShown: false }}/>
+            <AppStack.Screen name="Login" component={TouchScreen} options={{ headerShown: false }}/>
           <AppStack.Screen name="Pin" component={Pin} options={{ headerShown: false }}/>
+            <AppStack.Screen name="Bottom" component={BottomTabsScreen} options={{ headerShown: false }}/>
         </AppStack.Navigator>
       </NavigationContainer>
   );

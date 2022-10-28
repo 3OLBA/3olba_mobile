@@ -36,8 +36,8 @@ export default function BottomTabsScreen() {
 
     return (
         <TabStack.Navigator screenOptions = {screenOptions}>
-            <TabStack.Screen name="Cards" component={Cards} options={{ title : "My Cards" , headerShown: false }}/>
             <TabStack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
+            <TabStack.Screen name="Cards" component={Cards} options={{ title : "My Cards" , headerShown: false }}/>
             <TabStack.Screen name="SendRequest" component={SendRequest} options={{ title : "Send & Request", headerShown: false }}/>
 
         </TabStack.Navigator>
