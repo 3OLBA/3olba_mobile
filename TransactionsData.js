@@ -5,7 +5,7 @@ export default [
         amount : "5,789.00",
         currency : "MAD",
         bank : "CIH",
-        date : "22-10-2022",
+        date : "22-10-2022 12:23",
     },
     {
         id : "7347834839",
@@ -13,7 +13,7 @@ export default [
         amount : "10,000.00",
         currency : "EUR",
         bank : "ETTIJARI",
-        date : "22-12-2022",
+        date : "22-12-2022 01:34",
     },
     {
         id : "748438949",
@@ -21,7 +21,7 @@ export default [
         amount : "8,000.00",
         currency : "MAD",
         bank : "SG",
-        date : "01-10-2022",
+        date : "01-10-2022 17:45",
     },
     {
         id : "847362382",
@@ -29,7 +29,7 @@ export default [
         amount : "7,800.00",
         currency : "MAD",
         bank : "CIH",
-        date : "22-11-2022",
+        date : "22-11-2022 19:50",
     },
     {
         id : "765432456",
@@ -37,7 +37,7 @@ export default [
         amount : "8,000.00",
         currency : "USD",
         bank : "CIH",
-        date : "22-10-2022",
+        date : "22-10-2022 22:19",
     },
     {
         id : "67543254",
@@ -45,7 +45,7 @@ export default [
         amount : "5,789.00",
         currency : "MAD",
         bank : "CIH",
-        date : "22-10-2022",
+        date : "22-10-2022 03:48",
     },
     {
         id : "3245643",
@@ -53,6 +53,6 @@ export default [
         amount : "5,789.00",
         currency : "MAD",
         bank : "CIH",
-        date : "22-10-2022",
+        date : "22-10-2022 23:36",
     }
 ]

@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import Text from '../components/Text';
 import {FontAwesome5,MaterialIcons , AntDesign} from "@expo/vector-icons";
-
+import {LineChart, BarChart, PieChart, ProgressChart, ContributionGraph, StackedBarChart,} from 'react-native-chart-kit';
 import TransactionData from "../../TransactionsData";
+import {Dimensions} from "react-native";
 
 export default function HomeScreen() {
     const renderTransactions = ({item}) => {
@@ -10,11 +11,11 @@ export default function HomeScreen() {
                 <Purshase>
                     <PurshaseInfo>
                         <Text heavy >{item.beneficiary}</Text>
-                        <Text>{item.bank}</Text>
+                        <Text color="#727479">{item.bank}</Text>
                     </PurshaseInfo>
                     <PurshaseInfo>
-                        <Text black color="#228B22">{item.amount} {item.currency}</Text>
-                        <Text heavy>{item.date}</Text>
+                        <Text medium black large color="#228B22">{item.amount} {item.currency}</Text>
+                        <Text heavy color="#727479">{item.date}</Text>
                     </PurshaseInfo>
                 </Purshase>
             )
@@ -24,8 +25,8 @@ export default function HomeScreen() {
             <Header>
                 <ProfilePhoto source={require("../../assets/logo.png")}/>
                 <Welcome>
-                    <Text heavy medium>Welcome,</Text>
-                    <Text>Khalil</Text>
+                    <Text heavy medium>Welcome Khalil</Text>
+                    <Text>User</Text>
                 </Welcome>
                 <FontAwesome5 name="cog" size={24} color="#565656"/>
             </Header>
@@ -36,6 +37,40 @@ export default function HomeScreen() {
             <Text center medium color="#727479">
                 Current balance
             </Text>
+
+            <Chart>
+                <LineChart
+                    data={{
+                        labels: ['May','June','July','Aug','Sept','Oct'],
+                        datasets : [
+                            {
+                                data : [
+                                    Math.random() * 10,
+                                    Math.random() * 10,
+                                    Math.random() * 10,
+                                    Math.random() * 10,
+                                    Math.random() * 10,
+                                    Math.random() * 10,
+                                ],
+                            },
+                        ],
+                    }}
+                    width = {Dimensions.get("window").width}
+                    height = {200}
+                    yAxisLabel = "$"
+                    yAxisSuffix = "k"
+                    chartConfig = {{
+                        backgroundGradientFrom : "#1e1e1e",
+                        backgroundGradientTo : "#1e1e1e",
+                        color : (opacity = 1) => `rgba(81,150,244,${opacity})`,
+                        labelColor : () => `rgba(255,255,255,0.2)`,
+                        strokeWidth : 3,
+                    }}
+                    widthVerticalLines = {false}
+                    widthHorizontalLines = {false}
+                    bezier
+                />
+            </Chart>
 
             <Purshases ListHeaderComponent={
                 <>
@@ -120,3 +155,7 @@ const Search = styled.TextInput`
 `;
 
 const StatusBar = styled.StatusBar``;
+
+const Chart = styled.View`
+    margin : 32px 0;
+`;
