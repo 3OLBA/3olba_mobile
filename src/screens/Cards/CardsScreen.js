@@ -4,7 +4,7 @@ import myCards from '../../../CardsData';
 import { FontAwesome,Entypo } from '@expo/vector-icons';
 import HeaderScreen from "../Common/HeaderScreen";
 
-export default function CardsScreen() {
+export default function CardsScreen({navigation}) {
     const renderCards = ({ item }) => {
         return (
             <CardContainer>
@@ -33,7 +33,7 @@ export default function CardsScreen() {
     return (
         <Container>
             <Text center large heavy margin="16px 0 0 0">My Cards</Text>
-            <HeaderScreen/>
+            <HeaderScreen navigation={navigation}/>
             <Cards data={myCards} renderItem={renderCards}/>
             <StatusBar barStyle="light-content"/>
         </Container>

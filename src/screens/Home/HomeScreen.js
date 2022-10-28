@@ -26,7 +26,7 @@ export default function HomeScreen({navigation}) {
     return (
         <Container>
 
-            <HeaderScreen/>
+            <HeaderScreen navigation={navigation}/>
 
             <Text center title black>
                 7,500.00 MAD

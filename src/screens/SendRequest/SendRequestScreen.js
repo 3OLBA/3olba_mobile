@@ -4,7 +4,7 @@ import NumberPad from '../../components/NumberPad';
 import React, {useState} from 'react';
 import HeaderScreen from "../Common/HeaderScreen";
 
-export default function SendRequestScreen() {
+export default function SendRequestScreen({navigation}) {
     const [amount,setAmount]   = useState("0");
     const pressKey = (item,index) => {
         setAmount((prev) =>{
@@ -19,23 +19,24 @@ export default function SendRequestScreen() {
     return (
         <Container>
             <Text center large heavy margin="16px 0 0 0">Send Request</Text>
-            <HeaderScreen/>
+
+            <HeaderScreen navigation={navigation}/>
 
             <Amount>
                 <Text center title heavy>{convertToMAD(amount)}</Text>
                 <Text bold color="#727479">Choose amount to send</Text>
             </Amount>
 
-            <User>
-                <ProfilePhoto source={require("../../../assets/logo.png")}/>
-                <UserDetails>
-                    <Text>Khalil</Text>
-                    <Text bold color="#727479">Petreon</Text>
-                </UserDetails>
-            </User>
+            {/*<User>*/}
+            {/*    <ProfilePhoto source={require("../../../assets/logo.png")}/>*/}
+            {/*    <UserDetails>*/}
+            {/*        <Text>Khalil</Text>*/}
+            {/*        <Text bold color="#727479">Petreon</Text>*/}
+            {/*    </UserDetails>*/}
+            {/*</User>*/}
 
             <Send>
-                <Text>Send {convertToMAD(amount)} to Khalil</Text>
+                <Text>Send {convertToMAD(amount)}</Text>
             </Send>
             <NumberPad onPress={pressKey}/>
             <StatusBar barStyle="light-content"/>
