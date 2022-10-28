@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {Fontisto,MaterialIcons} from '@expo/vector-icons';
-import Text from '../components/Text';
+import Text from '../../components/Text';
 
 export default function TouchScreen({navigation}){
 

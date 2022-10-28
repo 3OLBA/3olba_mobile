@@ -1,6 +1,6 @@
-import Home from "../HomeScreen";
-import SendRequest from "../SendRequestScreen";
-import Cards from "../CardsScreen";
+import Home from "../Home/HomeScreen";
+import SendRequest from "../SendRequest/SendRequestScreen";
+import Cards from "../Cards/CardsScreen";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {MaterialIcons} from "@expo/vector-icons";
 
@@ -36,9 +36,10 @@ export default function BottomTabsScreen() {
 
     return (
         <TabStack.Navigator screenOptions = {screenOptions}>
+            <TabStack.Screen name="Cards" component={Cards} options={{ title : "My Cards" , headerShown: false }}/>
             <TabStack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
             <TabStack.Screen name="SendRequest" component={SendRequest} options={{ title : "Send & Request", headerShown: false }}/>
-            <TabStack.Screen name="Cards" component={Cards} options={{ title : "My Cards" , headerShown: false }}/>
+
         </TabStack.Navigator>
     );
 }

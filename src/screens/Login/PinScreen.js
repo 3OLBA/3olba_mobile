@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import Text from '../components/Text';
-import NumberPad from '../components/NumberPad';
+import Text from '../../components/Text';
+import NumberPad from '../../components/NumberPad';
 import {Fontisto} from "@expo/vector-icons";
 import React, {useState,useEffect} from "react";
 

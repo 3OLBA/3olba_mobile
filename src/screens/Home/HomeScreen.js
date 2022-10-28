@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import Text from '../components/Text';
+import Text from '../../components/Text';
+import ChartScreen from './ChartScreen';
 import {FontAwesome5,MaterialIcons , AntDesign} from "@expo/vector-icons";
-import {LineChart, BarChart, PieChart, ProgressChart, ContributionGraph, StackedBarChart,} from 'react-native-chart-kit';
-import TransactionData from "../../TransactionsData";
-import {Dimensions} from "react-native";
+import TransactionData from "../../../TransactionsData";
 
 export default function HomeScreen() {
     const renderTransactions = ({item}) => {
@@ -23,7 +22,7 @@ export default function HomeScreen() {
     return (
         <Container>
             <Header>
-                <ProfilePhoto source={require("../../assets/logo.png")}/>
+                <ProfilePhoto source={require("../../../assets/logo.png")}/>
                 <Welcome>
                     <Text heavy medium>Welcome Khalil</Text>
                     <Text>User</Text>
@@ -38,53 +37,27 @@ export default function HomeScreen() {
                 Current balance
             </Text>
 
-            <Chart>
-                <LineChart
-                    data={{
-                        labels: ['May','June','July','Aug','Sept','Oct'],
-                        datasets : [
-                            {
-                                data : [
-                                    Math.random() * 10,
-                                    Math.random() * 10,
-                                    Math.random() * 10,
-                                    Math.random() * 10,
-                                    Math.random() * 10,
-                                    Math.random() * 10,
-                                ],
-                            },
-                        ],
-                    }}
-                    width = {Dimensions.get("window").width}
-                    height = {200}
-                    yAxisLabel = "$"
-                    yAxisSuffix = "k"
-                    chartConfig = {{
-                        backgroundGradientFrom : "#1e1e1e",
-                        backgroundGradientTo : "#1e1e1e",
-                        color : (opacity = 1) => `rgba(81,150,244,${opacity})`,
-                        labelColor : () => `rgba(255,255,255,0.2)`,
-                        strokeWidth : 3,
-                    }}
-                    widthVerticalLines = {false}
-                    widthHorizontalLines = {false}
-                    bezier
-                />
-            </Chart>
+            <ChartScreen/>
 
             <Purshases ListHeaderComponent={
                 <>
                     <TransactionsHeader>
                         <Text>Last Transactions</Text>
-                        <MaterialIcons name="sort" size={24} color="#5196f4" />
-                    </TransactionsHeader>
-                    <SearchContainer>
+                        {/*<MaterialIcons name="sort" size={24} color="#5196f4" />*/}
+                        <Search placeHolder="Search transaction" />
                         <AntDesign name="search1" size={18} color="#5196f4" />
                         <Search placeHolder="Search transaction" />
-                    </SearchContainer>
+                    </TransactionsHeader>
+                    {/*<SearchContainer>*/}
+                        {/*<AntDesign name="search1" size={18} color="#5196f4" />*/}
+                        {/*<Search placeHolder="Search transaction" />*/}
+                    {/*</SearchContainer>*/}
                 </>
             }
-                       data={TransactionData} renderItem={renderTransactions} showVerticalScrollIndicator={false}
+            />
+            <Purshases data={TransactionData}
+                       renderItem={renderTransactions}
+                       showVerticalScrollIndicator={false}
             />
 
 
@@ -136,6 +109,7 @@ const TransactionsHeader = styled.View`
     flex-direction : row;
     align-items : center;
     justify-content : space-between;
+    padding-bottom : 90px;
 `;
 
 const SearchContainer = styled.View`

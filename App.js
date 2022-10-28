@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
-import TouchScreen from './src/screens/TouchScreen';
-import Pin from './src/screens/PinScreen';
-import Home from './src/screens/HomeScreen';
-import SendRequest from './src/screens/SendRequestScreen';
-import Cards from './src/screens/CardsScreen';
+import TouchScreen from './src/screens/Login/TouchScreen';
+import Pin from './src/screens/Login/PinScreen';
+import Home from './src/screens/Home/HomeScreen';
+import SendRequest from './src/screens/SendRequest/SendRequestScreen';
+import Cards from './src/screens/Cards/CardsScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
