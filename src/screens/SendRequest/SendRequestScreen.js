@@ -3,10 +3,16 @@ import Text from '../../components/Text';
 import NumberPad from '../../components/NumberPad';
 import React, {useState} from 'react';
 import HeaderScreen from "../Common/HeaderScreen";
+import { AntDesign , FontAwesome,Ionicons } from '@expo/vector-icons';
 
 export default function SendRequestScreen({navigation}) {
-    const screenName = "Send Request";
+    const screenName = "Transfer";
+    const currentAmount = 750000;
     const [amount,setAmount]   = useState("0");
+    const [beneficiary,setBeneficiary]   = useState({});
+    const user = {"name":"Khalil","amount":1000,"iban":"234 567 123456789 89"};
+
+
     const pressKey = (item,index) => {
         setAmount((prev) =>{
             return index !== 10 ? prev + item : prev.slice(0,prev.length - 1);
@@ -23,22 +29,37 @@ export default function SendRequestScreen({navigation}) {
             <HeaderScreen navigation={navigation} screenName={screenName}/>
 
             <Amount>
-                <Text center title heavy>{convertToMAD(amount)}</Text>
-                <Text bold color="#727479">Choose amount to send</Text>
+                <Text center title heavy>7,500.00 MAD</Text>
+                <Text bold color="#727479">Current balance</Text>
             </Amount>
 
-            {/*<User>*/}
-            {/*    <ProfilePhoto source={require("../../../assets/logo.png")}/>*/}
-            {/*    <UserDetails>*/}
-            {/*        <Text>Khalil</Text>*/}
-            {/*        <Text bold color="#727479">Petreon</Text>*/}
-            {/*    </UserDetails>*/}
-            {/*</User>*/}
+            <User>
+                <ProfileLogo>
+                    <AntDesign name="user" size={35} color="white" />
+                </ProfileLogo>
+                <UserDetails>
+                    <Text bold heavy>Name : {user.name} </Text>
+                    <Text bold heavy>Amount : {user.amount} </Text>
+                    <Text bold heavy color="#727479">IBAN : {user.iban} </Text>
+                </UserDetails>
+            </User>
 
-            <Send>
-                <Text>Send {convertToMAD(amount)}</Text>
-            </Send>
-            <NumberPad onPress={pressKey}/>
+            <ButtonsTransfer>
+                <BeneficiaryButton>
+                    <Ionicons name="add-circle-outline" size={20} color="white" />
+                    <SendButtonText>
+                        <Text bold heavy>Beneficiary</Text>
+                    </SendButtonText>
+                </BeneficiaryButton>
+                <SendButton>
+                    <FontAwesome name="send-o" size={20} color="white" />
+                    <SendButtonText>
+                        <Text bold heavy>Send </Text>
+                    </SendButtonText>
+                </SendButton>
+            </ButtonsTransfer>
+
+            {/*<NumberPad onPress={pressKey}/>*/}
             <StatusBar barStyle="light-content"/>
         </Container>
     );
@@ -57,6 +78,10 @@ const User = styled.View`
     margin : 32px 16px;
     flex-direction : row;
     align-items : center;
+    padding : 16px 32px;
+    align-items : center;
+    border-radius : 12px;
+    background-color : #3d3d3d;
 `;
 
 const UserDetails = styled.View`
@@ -64,19 +89,42 @@ const UserDetails = styled.View`
     margin : 0px 16px;
 `;
 
-const ProfilePhoto = styled.Image`
+const ProfileLogo = styled.View`
     width : 60px;
     height : 60px;
     border-radius : 60px;
+    justify-content : center;
+    align-items : center;
 `;
 
-const Send = styled.TouchableOpacity`
+const BeneficiaryButton = styled.TouchableOpacity`
     margin : 16px;
-    background-color : #5196f4;
+    background-color : #3d3d3d;
     padding : 16px 32px;
     align-items : center;
     border-radius : 12px;
+    flex-direction : row;
+`;
+const SendButtonText = styled.View`
+    margin-left: 10px;
+`;
+const BeneficiaryButtonText = styled.View`
+    margin-left: 10px;
+`;
+const SendButton = styled.TouchableOpacity`
+    flex-direction : row;
+    margin : 16px;
+    background-color : #3d3d3d;
+    padding : 16px 32px;
+    align-items : center;
+    border-radius : 12px;
+    justify-content : center;
 `;
 
+const ButtonsTransfer = styled.View`
+    flex-direction : row;
+    align-items : center;
+    justify-content : center;
+`;
 
 const StatusBar = styled.StatusBar``;
