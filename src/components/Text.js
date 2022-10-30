@@ -11,10 +11,14 @@ const Text = styled.Text`
     margin: ${(props) => props.margin ?? 0};
     padding: ${(props) => props.padding ?? 0};
     
-    ${({title,large,medium,small,tiny}) => {
+    ${({title,xxlarge,xlarge,large,medium,small,tiny}) => {
     switch (true) {
         case title :
             return `font-size : 32px;`;
+        case xxlarge :
+            return `font-size : 25px;`;
+        case xlarge :
+            return `font-size : 21px;`;
         case large :
             return `font-size : 18px;`;
         case medium :

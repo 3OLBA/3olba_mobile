@@ -2,7 +2,8 @@ import Home from "../Home/HomeScreen";
 import SendRequest from "../SendRequest/SendRequestScreen";
 import Cards from "../Cards/CardsScreen";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import {MaterialIcons} from "@expo/vector-icons";
+import {MaterialIcons,Entypo} from "@expo/vector-icons";
+import WalletScreen from "../Wallet/WalletScreen";
 
 export default function BottomTabsScreen() {
     const TabStack = createBottomTabNavigator();
@@ -19,13 +20,21 @@ export default function BottomTabsScreen() {
                 case "Home" :
                     icon = "home";
                     break;
+                case "Wallet" :
+                    icon = "wallet";
+                    break;
                 case "SendRequest" :
                     icon = "send";
                     break;
                 default :
                     icon = "dashboard";
             }
-            return <MaterialIcons name={icon} size={size} color={color}/>
+            if(icon === "wallet"){
+                return <Entypo name={icon} size={size} color={color} />
+            }
+            else{
+                return <MaterialIcons name={icon} size={size} color={color}/>
+            }
         },
         tabBarStyle: {
             backgroundColor: "#1e1e1e",
@@ -37,8 +46,9 @@ export default function BottomTabsScreen() {
     return (
         <TabStack.Navigator screenOptions = {screenOptions}>
             <TabStack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
-            <TabStack.Screen name="Cards" component={Cards} options={{ title : "My Cards" , headerShown: false }}/>
-            <TabStack.Screen name="SendRequest" component={SendRequest} options={{ title : "Send & Request", headerShown: false }}/>
+            <TabStack.Screen name="Cards" component={Cards} options={{ title : "Cards" , headerShown: false }}/>
+            <TabStack.Screen name="Wallet" component={WalletScreen} options={{ title : "Wallet" , headerShown: false }}/>
+            <TabStack.Screen name="SendRequest" component={SendRequest} options={{ title : "Transfer", headerShown: false }}/>
 
         </TabStack.Navigator>
     );
