@@ -1,5 +1,5 @@
 import Home from "../Home/HomeScreen";
-import SendRequest from "../SendRequest/SendRequestScreen";
+import TransferScreen from "../SendRequest/TransferScreen";
 import Cards from "../Cards/CardsScreen";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {MaterialIcons,Entypo} from "@expo/vector-icons";
@@ -23,7 +23,7 @@ export default function BottomTabsScreen() {
                 case "Wallet" :
                     icon = "wallet";
                     break;
-                case "SendRequest" :
+                case "Transfer" :
                     icon = "send";
                     break;
                 default :
@@ -48,7 +48,7 @@ export default function BottomTabsScreen() {
             <TabStack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
             <TabStack.Screen name="Cards" component={Cards} options={{ title : "Cards" , headerShown: false }}/>
             <TabStack.Screen name="Wallet" component={WalletScreen} options={{ title : "Wallet" , headerShown: false }}/>
-            <TabStack.Screen name="SendRequest" component={SendRequest} options={{ title : "Transfer", headerShown: false }}/>
+            <TabStack.Screen name="Transfer" component={TransferScreen} options={{ title : "Transfer", headerShown: false }}/>
 
         </TabStack.Navigator>
     );

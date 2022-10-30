@@ -4,13 +4,16 @@ import NumberPad from '../../components/NumberPad';
 import React, {useState} from 'react';
 import HeaderScreen from "../Common/HeaderScreen";
 import { AntDesign , FontAwesome,Ionicons } from '@expo/vector-icons';
+// import { ALERT_TYPE, Dialog, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
+// import {Button} from "react-native";
+// import View from "react-native-web/dist/vendor/react-native/Animated/components/AnimatedView";
 
-export default function SendRequestScreen({navigation}) {
+export default function TransferScreen({navigation}) {
     const screenName = "Transfer";
     const currentAmount = 750000;
     const [amount,setAmount]   = useState("0");
     const [beneficiary,setBeneficiary]   = useState({});
-    const user = {"name":"Khalil","amount":1000,"iban":"234 567 123456789 89"};
+    const user = {"name":"Khalil","amount":100000,"currency":"MAD","iban":"234 567 123456789 89"};
 
 
     const pressKey = (item,index) => {
@@ -39,7 +42,7 @@ export default function SendRequestScreen({navigation}) {
                 </ProfileLogo>
                 <UserDetails>
                     <Text bold heavy>Name : {user.name} </Text>
-                    <Text bold heavy>Amount : {user.amount} </Text>
+                    <Text bold heavy>Amount : {convertToMAD(user.amount)}</Text>
                     <Text bold heavy color="#727479">IBAN : {user.iban} </Text>
                 </UserDetails>
             </User>
@@ -61,6 +64,33 @@ export default function SendRequestScreen({navigation}) {
 
             {/*<NumberPad onPress={pressKey}/>*/}
             <StatusBar barStyle="light-content"/>
+            {/*<AlertNotificationRoot>*/}
+            {/*    <View>*/}
+            {/*        // dialog box*/}
+            {/*        <Button*/}
+            {/*            title={'dialog box'}*/}
+            {/*            onPress={() =>*/}
+            {/*                Dialog.show({*/}
+            {/*                    type: ALERT_TYPE.SUCCESS,*/}
+            {/*                    title: 'Success',*/}
+            {/*                    textBody: 'Congrats! this is dialog box success',*/}
+            {/*                    button: 'close',*/}
+            {/*                })*/}
+            {/*            }*/}
+            {/*        />*/}
+            {/*        // toast notification*/}
+            {/*        <Button*/}
+            {/*            title={'toast notification'}*/}
+            {/*            onPress={() =>*/}
+            {/*                Toast.show({*/}
+            {/*                    type: ALERT_TYPE.SUCCESS,*/}
+            {/*                    title: 'Success',*/}
+            {/*                    textBody: 'Congrats! this is toast notification success',*/}
+            {/*                })*/}
+            {/*            }*/}
+            {/*        />*/}
+            {/*    </View>*/}
+            {/*</AlertNotificationRoot>;*/}
         </Container>
     );
 }
