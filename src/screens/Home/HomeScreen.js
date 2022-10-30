@@ -6,6 +6,7 @@ import TransactionData from "../../../TransactionsData";
 import HeaderScreen from "../Common/HeaderScreen";
 
 export default function HomeScreen({navigation}) {
+    const screenName = "Home";
     const renderTransactions = ({item}) => {
         return (
                 <Purshase>
@@ -26,7 +27,7 @@ export default function HomeScreen({navigation}) {
     return (
         <Container>
 
-            <HeaderScreen navigation={navigation}/>
+            <HeaderScreen navigation={navigation} screenName={screenName}/>
 
             <Text center title black>
                 7,500.00 MAD

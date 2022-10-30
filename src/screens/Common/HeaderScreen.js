@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import Text from '../../components/Text';
 import {AntDesign} from "@expo/vector-icons";
 
-export default function HeaderScreen({navigation}) {
+export default function HeaderScreen({navigation,screenName}) {
     const logout = () => {
         navigation.navigate("Login");
     }
@@ -13,7 +13,7 @@ export default function HeaderScreen({navigation}) {
                 <ProfilePhoto source={require("../../../assets/personLogo.png")}/>
                 <Welcome>
                     <Text heavy medium>Welcome Khalil</Text>
-                    <Text>User</Text>
+                    <Text>{screenName}</Text>
                 </Welcome>
                 <AntDesign name="logout" size={24} color="#565656" onPress={logout}/>
             </Header>

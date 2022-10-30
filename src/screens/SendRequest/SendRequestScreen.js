@@ -5,6 +5,7 @@ import React, {useState} from 'react';
 import HeaderScreen from "../Common/HeaderScreen";
 
 export default function SendRequestScreen({navigation}) {
+    const screenName = "Send Request";
     const [amount,setAmount]   = useState("0");
     const pressKey = (item,index) => {
         setAmount((prev) =>{
@@ -18,9 +19,8 @@ export default function SendRequestScreen({navigation}) {
     }
     return (
         <Container>
-            <Text center large heavy margin="16px 0 0 0">Send Request</Text>
 
-            <HeaderScreen navigation={navigation}/>
+            <HeaderScreen navigation={navigation} screenName={screenName}/>
 
             <Amount>
                 <Text center title heavy>{convertToMAD(amount)}</Text>
