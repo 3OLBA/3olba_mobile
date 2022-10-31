@@ -57,9 +57,9 @@ export default function PinScreen ({navigation}) {
 
             <NumberPad onPress={pressKey}/>
 
-            <UseTouch onPress ={() => navigation.navigate("Touch")} delayPressIn={0}>
-                <Fontisto name="locked" size={16} color="#964ff0"/>
-                <Text bold margin="0 0 0 8px" color="#964ff0">Use Touch ID</Text>
+            <UseTouch onPress ={() => navigation.navigate("Login")} delayPressIn={0}>
+                <Fontisto name="locked" size={16} color="#9c9c9f"/>
+                <Text bold margin="0 0 0 8px" color="#9c9c9f">Use Touch ID</Text>
             </UseTouch>
 
         </Container>
@@ -68,7 +68,7 @@ export default function PinScreen ({navigation}) {
 
 const Container = styled.SafeAreaView`
     flex : 1;
-    background-color: #1e1e1e;
+    background-color: #1c3f60;
 `;
 
 const PinAccess  = styled.View`

@@ -11,7 +11,7 @@ export default function TouchScreen({navigation}){
             <StatusBar barStyle="light-content"/>
 
             <Touch onLongPress={() => navigation.navigate("Tabs")} delayPressIn={0}>
-                <Circle bgColor='#1e1e1e'>
+                <Circle bgColor='#1c3f60'>
                     <Circle bgColor='#5196F405'>
                         <Circle bgColor='#5196f410'>
                             <Circle bgColor='#5196F430'>
@@ -30,8 +30,8 @@ export default function TouchScreen({navigation}){
             </Text>
 
             <PinAccess onPress={() => navigation.navigate("Pin")} delayPressIn={0}>
-                <Fontisto name="locked" color="#964ff0" size={16} />
-                <Text margin='0 0 0 10px' color="#964ff0">
+                <Fontisto name="locked" color="#9c9c9c" size={16} />
+                <Text margin='0 0 0 10px' color="#9c9c9c">
                     Enter your pin
                 </Text>
             </PinAccess>
@@ -43,7 +43,7 @@ export default function TouchScreen({navigation}){
 
 const Container = styled.SafeAreaView`
     flex : 1;
-    background-color: #1e1e1e;
+    background-color: #1c3f60;
 `;
 
 const Touch = styled.TouchableOpacity`
