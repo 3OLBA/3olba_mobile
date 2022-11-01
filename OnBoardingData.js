@@ -2,7 +2,7 @@ export default [
     {
         id : "1",
         title : "Quick & Easy Transfer",
-        description : "You can transfer your money\n Between 2 different banks in 2min",
+        description : "You can transfer your money\n Between 2 different banks in 2 min",
         image : require("./assets/onBoarding/money-transfer.png"),
     },
     {
@@ -13,7 +13,7 @@ export default [
     },
     {
         id : "3",
-        title : "Secure",
+        title : "100% Secure",
         description : "We provide a highly level of security\n To protect you and your data",
         image : require("./assets/onBoarding/shield.png"),
     },
