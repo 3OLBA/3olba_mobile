@@ -58,8 +58,8 @@ export default function PinScreen ({navigation}) {
             <NumberPad onPress={pressKey}/>
 
             <UseTouch onPress ={() => navigation.navigate("Login")} delayPressIn={0}>
-                <Fontisto name="locked" size={16} color="#9c9c9f"/>
-                <Text bold margin="0 0 0 8px" color="#9c9c9f">Use Touch ID</Text>
+                <Fontisto name="locked" size={16} color="white"/>
+                <Text bold margin="0 0 0 8px" color="white">Use Touch ID</Text>
             </UseTouch>
 
         </Container>

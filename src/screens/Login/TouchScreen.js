@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {Fontisto,MaterialIcons} from '@expo/vector-icons';
+import {Fontisto,AntDesign} from '@expo/vector-icons';
 import Text from '../../components/Text';
 
 
@@ -25,14 +25,14 @@ export default function TouchScreen({navigation}){
                 </Circle>
             </Touch>
 
-            <Text center bold margin="16px 0 0 0" color="#9c9c9c">
-                Touch ID sensor for access to{"\n"} your Eolba account.
+            <Text center medium bold margin="16px 0 0 0" color="white">
+                The new solution to transfer your money.
             </Text>
 
             <PinAccess onPress={() => navigation.navigate("Pin")} delayPressIn={0}>
-                <Fontisto name="locked" color="#9c9c9c" size={16} />
-                <Text margin='0 0 0 10px' color="#9c9c9c">
-                    Enter your pin
+                <AntDesign name="login" size={16} color="white" />
+                <Text margin='0 0 0 10px' color="white">
+                    Get started
                 </Text>
             </PinAccess>
 
