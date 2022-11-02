@@ -5,6 +5,7 @@ import onBoardingData from '../../../OnBoardingData';
 import OnBoardingItems from './OnBoardingItemsScreen';
 import styled from "styled-components";
 import Paginator from "./Paginator";
+import NextButton from "./NextButton";
 
 export default function OnBoardingScreen() {
     const [currentIndex , setCurrentIndex] = useState(0);
@@ -21,7 +22,7 @@ export default function OnBoardingScreen() {
 
     return (
         <Container>
-            <SubContainer >
+            <SubContainer>
                 <FlatList data={onBoardingData}
                           renderItem={({item}) => <OnBoardingItems item={item}/> }
                           horizontal
@@ -36,6 +37,7 @@ export default function OnBoardingScreen() {
                           ref={slideRef}
                 />
             </SubContainer>
+            <NextButton percentage={(currentIndex + 1) * (100 / onBoardingData.length)}/>
             <Paginator data={onBoardingData} scrollX={scrollX} />
         </Container>
     );

@@ -1,6 +1,5 @@
 import {StyleSheet, View, useWindowDimensions, Image} from 'react-native';
-import React, {useCallback, useEffect, useState} from "react";
-import styled from "styled-components";
+import React from "react";
 import Text from "../../components/Text";
 
 
