@@ -10,7 +10,7 @@ export default function TouchScreen({navigation}){
 
             <StatusBar barStyle="light-content"/>
 
-            <Touch onLongPress={() => navigation.navigate("Tabs")} delayPressIn={0}>
+            <Touch onLongPress={() => navigation.navigate("OnBoarding")} delayPressIn={0}>
                 <Circle bgColor='#1c3f60'>
                     <Circle bgColor='#5196F405'>
                         <Circle bgColor='#5196f410'>
