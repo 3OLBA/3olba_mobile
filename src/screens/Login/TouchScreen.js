@@ -25,16 +25,23 @@ export default function TouchScreen({navigation}){
                 </Circle>
             </Touch>
 
-            <Text center medium bold margin="16px 0 0 0" color="white">
+            <Text center medium bold margin="20px 0 0 0" color="white">
                 The new solution to transfer your money.
             </Text>
+            <BottomButtonChoice>
+                <PinAccess onPress={() => navigation.navigate("Pin")} delayPressIn={0}>
+                    <Text center medium bold color="white">
+                        Already client
+                    </Text>
+                </PinAccess>
 
-            <PinAccess onPress={() => navigation.navigate("Pin")} delayPressIn={0}>
-                <AntDesign name="login" size={16} color="white" />
-                <Text margin='0 0 0 10px' color="white">
-                    Get started
-                </Text>
-            </PinAccess>
+                <AlreadyClient onPress={() => navigation.navigate("OnBoarding")} delayPressIn={0}>
+                    <AntDesign name="login" size={16} color="white" />
+                    <Text center medium bold margin='0 0 0 10px' color="white">
+                        Get started
+                    </Text>
+                </AlreadyClient>
+            </BottomButtonChoice>
 
             <StatusBar barStyle="light-content"/>
         </Container>
@@ -62,10 +69,31 @@ const TouchButton = styled.View`
 `;
 const PinAccess  = styled.TouchableOpacity`
      margin-top : 16px ;
+     margin-left : 40px ;
      padding :  16px;
      flex-direction : row;
      align-items : center;
      justify-content : center;
+     border-radius : 10px;
+     border-width : 1px;
+     border-color : white;
+`;
+const AlreadyClient  = styled.TouchableOpacity`
+     margin-top : 16px ;
+     margin-right : 40px ;
+     padding :  16px;
+     flex-direction : row;
+     align-items : center;
+     justify-content : center;
+     border-radius : 10px;
+     border-width : 1px;
+     border-color : white;
+`;
+
+const BottomButtonChoice  = styled.TouchableOpacity`
+     flex-direction : row;
+     justify-content : space-between;
+     margin-top : 20px;
 `;
 
 const StatusBar  = styled.TouchableOpacity`

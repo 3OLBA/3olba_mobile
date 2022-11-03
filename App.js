@@ -42,8 +42,9 @@ export default function App() {
     return (
             <NavigationContainer onReady={onLayoutRootView}>
                 <AppStack.Navigator>
-                    <AppStack.Screen name="Login" component={OnBoardingScreen} options={{ headerShown: false }}/>
+                    <AppStack.Screen name="Login" component={TouchScreen} options={{ headerShown: false }}/>
                     <AppStack.Screen name="Pin" component={Pin} options={{ headerShown: false }}/>
+                    <AppStack.Screen name="OnBoarding" component={OnBoardingScreen} options={{ headerShown: false }}/>
                     <AppStack.Screen name="Bottom" component={BottomTabsScreen} options={{ headerShown: false }}/>
                 </AppStack.Navigator>
             </NavigationContainer>

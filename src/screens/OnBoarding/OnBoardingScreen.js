@@ -7,13 +7,9 @@ import styled from "styled-components";
 import Paginator from "./Paginator";
 import NextButton from "./NextButton";
 
-export default function OnBoardingScreen() {
+export default function OnBoardingScreen({navigation}) {
     const [currentIndex , setCurrentIndex] = useState(0);
-
-    // let lastIndex = false;
-
     const [lastIndex , setLastIndex] = useState(false);
-
 
     const scrollX = useRef(new Animated.Value(0)).current;
 
@@ -29,6 +25,12 @@ export default function OnBoardingScreen() {
         if(currentIndex < onBoardingData.length - 1){
             slideRef.current.scrollToIndex({index : currentIndex + 1});
         }
+        if(lastIndex){
+            navigation.navigate("Pin");
+        }
+    }
+    const scrollToLogin = () => {
+        navigation.navigate("Pin");
     }
 
     useEffect(() => {
