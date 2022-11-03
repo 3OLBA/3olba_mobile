@@ -21,7 +21,7 @@ export default function onBoardingItemsScreen({item}) {
 const styles = StyleSheet.create({
     container :{
         flex : 1,
-        backgroundColor : "#ffffff",
+        backgroundColor : "#1c3f60",
     },
     imageContainer : {
         width : 300,
@@ -39,12 +39,12 @@ const styles = StyleSheet.create({
     title :{
         fontWeight : '800',
         fontSize : 28,
-        color: "#493d8a",
+        color: "#ffffff",
         textAlign : "center"
     },
     description :{
         fontWeight : '300',
-        color: "#62656b",
+        color: "#bcbec1",
         textAlign : "center",
         paddingHorizontal : 64
     }

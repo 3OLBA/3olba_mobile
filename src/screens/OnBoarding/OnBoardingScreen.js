@@ -67,7 +67,7 @@ export default function OnBoardingScreen({navigation}) {
 
 const Container = styled.SafeAreaView`
     flex : 3;
-    background-color: #ffffff;
+    background-color: #1c3f60;
 `;
 const SubContainer = styled.View`
     flex : 3;

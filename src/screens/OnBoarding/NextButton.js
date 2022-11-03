@@ -67,7 +67,7 @@ export default function NextButton({percentage,scrollTo,lastIndex}) {
             </Svg>
             <TouchableOpacity onPress={scrollTo} style={lastIndex ? styles.buttonForChecked : styles.buttonForArrow}>
                 {!lastIndex &&
-                    <AntDesign name="arrowright" size={32} color="white" />
+                    <AntDesign name="arrowright" size={32} color="#493d8a" />
                 }
                 {lastIndex &&
                     <AntDesign name="checkcircle" size={80} color="green" />
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     },
     buttonForArrow : {
         position : "absolute",
-        backgroundColor: "#493d8a",
+        backgroundColor: "#ffffff",
         borderRadius : 80,
         padding : 20,
     },
