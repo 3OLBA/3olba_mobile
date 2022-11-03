@@ -10,6 +10,11 @@ import NextButton from "./NextButton";
 export default function OnBoardingScreen() {
     const [currentIndex , setCurrentIndex] = useState(0);
 
+    // let lastIndex = false;
+
+    const [lastIndex , setLastIndex] = useState(false);
+
+
     const scrollX = useRef(new Animated.Value(0)).current;
 
     const viewableItemsChanged = useRef(({ viewableItems }) => {
@@ -25,6 +30,15 @@ export default function OnBoardingScreen() {
             slideRef.current.scrollToIndex({index : currentIndex + 1});
         }
     }
+
+    useEffect(() => {
+        if(currentIndex === onBoardingData.length - 1){
+            setLastIndex(true);
+        }
+        else{
+            setLastIndex(false);
+        }
+    })
 
     return (
         <Container>
@@ -43,7 +57,7 @@ export default function OnBoardingScreen() {
                           ref={slideRef}
                 />
             </SubContainer>
-            <NextButton scrollTo={scrollNext} percentage={(currentIndex + 1) * (100 / onBoardingData.length)}/>
+            <NextButton scrollTo={scrollNext} lastIndex={lastIndex} percentage={(currentIndex + 1) * (100 / onBoardingData.length)}/>
             <Paginator data={onBoardingData} scrollX={scrollX} />
         </Container>
     );

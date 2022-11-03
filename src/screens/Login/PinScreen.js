@@ -16,8 +16,6 @@ export default function PinScreen ({navigation}) {
     },[pinCount])
 
     const renderPress = () => {
-        console.log(pinCount);
-
          const pins =  [];
          for (let x = 1 ; x <= totalPins ; x++){
              pins.push(

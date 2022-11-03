@@ -2,8 +2,10 @@ import {StyleSheet, View, Animated, Text, TouchableOpacity,} from 'react-native'
 import React, {useCallback, useEffect, useState,useRef} from "react";
 import Svg,{G,Circle} from "react-native-svg";
 import {AntDesign} from "@expo/vector-icons";
+import Image from "react-native-web/dist/vendor/react-native/Animated/components/AnimatedImage";
+import onBoardingData from "../../../OnBoardingData";
 
-export default function NextButton({percentage,scrollTo}) {
+export default function NextButton({percentage,scrollTo,lastIndex}) {
     const size = 128;
     const strokeWidth = 2;
     const center = size / 2;
@@ -38,6 +40,9 @@ export default function NextButton({percentage,scrollTo}) {
         };
     },[])
 
+    console.log("lastIndex",lastIndex);
+    console.log("scrollTo",scrollTo);
+
     return (
         <View style={styles.container}>
             <Svg width={size} height={size}>
@@ -51,7 +56,7 @@ export default function NextButton({percentage,scrollTo}) {
                     />
                     <Circle
                         ref={progressRef}
-                        stroke="#493d8a"
+                        stroke={lastIndex ? "green" : "#493d8a"}
                         cx={center}
                         cy={center}
                         r={redius}
@@ -60,8 +65,13 @@ export default function NextButton({percentage,scrollTo}) {
                     />
                 </G>
             </Svg>
-            <TouchableOpacity onPress={scrollTo} style={styles.button}>
-                <AntDesign name="arrowright" size={32} color="white" />
+            <TouchableOpacity onPress={scrollTo} style={lastIndex ? styles.buttonForChecked : styles.buttonForArrow}>
+                {!lastIndex &&
+                    <AntDesign name="arrowright" size={32} color="white" />
+                }
+                {lastIndex &&
+                    <AntDesign name="checkcircle" size={80} color="green" />
+                }
              </TouchableOpacity>
         </View>
     );
@@ -73,10 +83,18 @@ const styles = StyleSheet.create({
         alignItems : "center",
         justifyContent : "center",
     },
-    button : {
+    buttonForArrow : {
         position : "absolute",
         backgroundColor: "#493d8a",
-        borderRadius : 100,
-        padding : 20
+        borderRadius : 80,
+        padding : 20,
+    },
+    buttonForChecked : {
+        position : "absolute",
+        padding : 20,
+    },
+    image :{
+        width : 40,
+        height : 40,
     }
 })
