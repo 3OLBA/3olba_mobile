@@ -1,10 +1,9 @@
-import {StyleSheet, View, useWindowDimensions, Animated, Text, TouchableOpacity,} from 'react-native';
+import {StyleSheet, View, Animated, Text, TouchableOpacity,} from 'react-native';
 import React, {useCallback, useEffect, useState,useRef} from "react";
 import Svg,{G,Circle} from "react-native-svg";
 import {AntDesign} from "@expo/vector-icons";
 
-export default function NextButton({percentage}) {
-    const { width } = useWindowDimensions();
+export default function NextButton({percentage,scrollTo}) {
     const size = 128;
     const strokeWidth = 2;
     const center = size / 2;
@@ -28,14 +27,12 @@ export default function NextButton({percentage}) {
     useEffect(() => {
         progressAnimation.addListener((value) => {
             const strokeDashoffset = circumference - circumference * value.value / 100;
-
             if(progressRef?.current){
                 progressRef.current.setNativeProps({
                     strokeDashoffset,
                 })
             }
-        }
-        ,[percentage]);
+        },[percentage]);
     })
 
     return (
@@ -50,6 +47,7 @@ export default function NextButton({percentage}) {
                         strokeWidth={strokeWidth}
                     />
                     <Circle
+                        ref={progressRef}
                         stroke="#493d8a"
                         cx={center}
                         cy={center}
@@ -59,7 +57,7 @@ export default function NextButton({percentage}) {
                     />
                 </G>
             </Svg>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity onPress={scrollTo} style={styles.button}>
                 <AntDesign name="arrowright" size={32} color="white" />
              </TouchableOpacity>
         </View>
@@ -70,7 +68,7 @@ const styles = StyleSheet.create({
     container :{
         flex : 1,
         alignItems : "center",
-        justifyContent : "center"
+        justifyContent : "center",
     },
     button : {
         position : "absolute",

@@ -10,7 +10,7 @@ export default function onBoardingItemsScreen({item}) {
             <View style={styles.imageContainer}>
                 <Image source={item.image} style={[styles.image,{width,resizeMode :'contain'}]}/>
             </View>
-            <View style={{flex : 0.3}}>
+            <View style={styles.textContainer}>
                 <Text style={styles.title}>{item.title}</Text>
                 <Text style={styles.description}>{item.description}</Text>
             </View>
@@ -24,15 +24,17 @@ const styles = StyleSheet.create({
         backgroundColor : "#ffffff",
     },
     imageContainer : {
-        width : 350,
-        height : 350,
-        marginTop : 50,
+        width : 300,
+        height : 300,
+        marginTop : 40,
+    },
+    textContainer : {
+        flex : 0.3,
+         marginTop : 30
     },
     image :{
         flex : 0.7,
         justifyContent : "center",
-        width : 200,
-        height : 200,
     },
     title :{
         fontWeight : '800',

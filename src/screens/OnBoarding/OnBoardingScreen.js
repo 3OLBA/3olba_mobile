@@ -20,6 +20,12 @@ export default function OnBoardingScreen() {
 
     const slideRef = useRef(null);
 
+    const scrollNext = () => {
+        if(currentIndex < onBoardingData.length - 1){
+            slideRef.current.scrollToIndex({index : currentIndex + 1});
+        }
+    }
+
     return (
         <Container>
             <SubContainer>
@@ -37,7 +43,7 @@ export default function OnBoardingScreen() {
                           ref={slideRef}
                 />
             </SubContainer>
-            <NextButton percentage={(currentIndex + 1) * (100 / onBoardingData.length)}/>
+            <NextButton scrollTo={scrollNext} percentage={(currentIndex + 1) * (100 / onBoardingData.length)}/>
             <Paginator data={onBoardingData} scrollX={scrollX} />
         </Container>
     );
@@ -48,5 +54,5 @@ const Container = styled.SafeAreaView`
     background-color: #ffffff;
 `;
 const SubContainer = styled.View`
-    flex : 3
+    flex : 3;
 `;
