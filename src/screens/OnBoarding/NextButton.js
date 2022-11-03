@@ -33,7 +33,10 @@ export default function NextButton({percentage,scrollTo}) {
                 })
             }
         },[percentage]);
-    })
+        return () => {
+            progressAnimation.removeAllListeners();
+        };
+    },[])
 
     return (
         <View style={styles.container}>
