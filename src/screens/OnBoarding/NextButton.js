@@ -2,8 +2,6 @@ import {StyleSheet, View, Animated, Text, TouchableOpacity,} from 'react-native'
 import React, {useCallback, useEffect, useState,useRef} from "react";
 import Svg,{G,Circle} from "react-native-svg";
 import {AntDesign} from "@expo/vector-icons";
-import Image from "react-native-web/dist/vendor/react-native/Animated/components/AnimatedImage";
-import onBoardingData from "../../../OnBoardingData";
 
 export default function NextButton({percentage,scrollTo,lastIndex}) {
     const size = 128;
@@ -40,9 +38,6 @@ export default function NextButton({percentage,scrollTo,lastIndex}) {
         };
     },[])
 
-    console.log("lastIndex",lastIndex);
-    console.log("scrollTo",scrollTo);
-
     return (
         <View style={styles.container}>
             <Svg width={size} height={size}>
@@ -56,7 +51,7 @@ export default function NextButton({percentage,scrollTo,lastIndex}) {
                     />
                     <Circle
                         ref={progressRef}
-                        stroke={lastIndex ? "green" : "#493d8a"}
+                        stroke={"green"}
                         cx={center}
                         cy={center}
                         r={redius}
