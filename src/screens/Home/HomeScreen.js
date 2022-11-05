@@ -22,7 +22,7 @@ export default function HomeScreen({navigation}) {
             )
     }
     const logout = () => {
-        navigation.navigate("Login");
+        navigation.navigate("Start");
     }
     return (
         <Container>

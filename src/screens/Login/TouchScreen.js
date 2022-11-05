@@ -29,7 +29,7 @@ export default function TouchScreen({navigation}){
                 The new solution to transfer your money.
             </Text>
             <BottomButtonChoice>
-                <PinAccess onPress={() => navigation.navigate("Pin")} delayPressIn={0}>
+                <PinAccess onPress={() => navigation.navigate("Login")} delayPressIn={0}>
                     <Text center medium bold color="white">
                         Already client
                     </Text>

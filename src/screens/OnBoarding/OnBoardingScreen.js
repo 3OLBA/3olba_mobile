@@ -26,11 +26,11 @@ export default function OnBoardingScreen({navigation}) {
             slideRef.current.scrollToIndex({index : currentIndex + 1});
         }
         if(lastIndex){
-            navigation.navigate("Pin");
+            navigation.navigate("Login");
         }
     }
     const scrollToLogin = () => {
-        navigation.navigate("Pin");
+        navigation.navigate("Login");
     }
 
     useEffect(() => {

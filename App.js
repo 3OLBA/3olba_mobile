@@ -8,6 +8,7 @@ import BottomTabsScreen from "./src/screens/BottomTabs/BottomTabsScreen";
 import React, {useCallback, useEffect, useState} from "react";
 import * as SplashScreen from "expo-splash-screen";
 import OnBoardingScreen from "./src/screens/OnBoarding/OnBoardingScreen";
+import {LoginScreen} from "./src/screens/Login/LoginScreen";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -42,8 +43,8 @@ export default function App() {
     return (
             <NavigationContainer onReady={onLayoutRootView}>
                 <AppStack.Navigator>
-                    <AppStack.Screen name="Login" component={TouchScreen} options={{ headerShown: false }}/>
-                    <AppStack.Screen name="Pin" component={Pin} options={{ headerShown: false }}/>
+                    <AppStack.Screen name="Start" component={TouchScreen} options={{ headerShown: false }}/>
+                    <AppStack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
                     <AppStack.Screen name="OnBoarding" component={OnBoardingScreen} options={{ headerShown: false }}/>
                     <AppStack.Screen name="Bottom" component={BottomTabsScreen} options={{ headerShown: false }}/>
                 </AppStack.Navigator>
