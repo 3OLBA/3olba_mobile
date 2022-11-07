@@ -10,7 +10,7 @@ export default function TouchScreen({navigation}){
 
             <StatusBar barStyle="light-content"/>
 
-            <Touch onLongPress={() => navigation.navigate("Login")} delayPressIn={0}>
+            <Touch onPress={() => navigation.navigate("Login")} >
                 <Logo source ={require('../../../assets/logo2.png')} />
             </Touch>
 
