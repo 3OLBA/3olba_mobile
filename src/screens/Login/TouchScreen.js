@@ -1,20 +1,23 @@
 import styled from 'styled-components';
 import {Fontisto,AntDesign} from '@expo/vector-icons';
 import Text from '../../components/Text';
+import {View,StyleSheet} from "react-native";
 
 
 export default function TouchScreen({navigation}){
 
     return (
         <Container>
+            <View style={style.header}>
+                <StatusBar barStyle="light-content"/>
 
-            <StatusBar barStyle="light-content"/>
+                <Touch onPress={() => navigation.navigate("Login")} >
+                    <Logo source ={require('../../../assets/splash.png')} />
+                </Touch>
+            </View>
 
-            <Touch onPress={() => navigation.navigate("Login")} >
-                <Logo source ={require('../../../assets/logo2.png')} />
-            </Touch>
-
-            <Text center medium bold margin="20px 0 0 0" color="white">
+            <View style={style.footer}>
+                <Text center medium bold margin="20px 0 0 0" color="#1c3f60">
                 The new solution to transfer your money.
             </Text>
             <BottomButtonChoice>
@@ -33,9 +36,26 @@ export default function TouchScreen({navigation}){
             </BottomButtonChoice>
 
             <StatusBar barStyle="light-content"/>
+            </View>
+
         </Container>
     );
 }
+
+const style = StyleSheet.create({
+     header : {
+         flex : 1,
+         alignItems : "center",
+         justifyContent : "center",
+    },
+     footer :{
+         backgroundColor: "#fff",
+         borderTopLeftRadius  : 30,
+         borderTopRightRadius : 30,
+         borderBottomLeftRadius : 30,
+         borderBottomRightRadius : 30,
+},
+})
 
 const Container = styled.SafeAreaView`
     flex : 1;
@@ -57,6 +77,7 @@ const TouchButton = styled.View`
      border-radius : 100px;
 `;
 const PinAccess  = styled.TouchableOpacity`
+    background-color: #1c3f60;
      margin-top : 16px ;
      margin-left : 40px ;
      padding :  16px;
@@ -68,6 +89,7 @@ const PinAccess  = styled.TouchableOpacity`
      border-color : white;
 `;
 const AlreadyClient  = styled.TouchableOpacity`
+    background-color: #1c3f60;
      margin-top : 16px ;
      margin-right : 40px ;
      padding :  16px;

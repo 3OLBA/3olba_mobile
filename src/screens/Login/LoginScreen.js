@@ -12,12 +12,12 @@ export const LoginScreen = () => {
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
                 <Image style={styles.image}
-                       source={require("../../../assets/logo.png")}
+                       source={require("../../../assets/paper-plane.png")}
                        resizeMode="stretch"
                 />
             </View>
             <View style={styles.footer}>
-                <Text style={[styles.text_footer,{marginBottom:30}]} center title black color="black">Stay Connected</Text>
+                <Text style={[styles.text_footer,{marginBottom:30}]} center title black color="black">Welcome</Text>
                 <Text style={styles.text_footer} xlarge color="black">Email</Text>
                 <View style={styles.action}>
                     <FontAwesome name="user-o" color="#05375a" size={20}/>
@@ -53,6 +53,8 @@ const styles = StyleSheet.create({
         backgroundColor : "white",
         borderTopLeftRadius  : 30,
         borderTopRightRadius : 30,
+        borderBottomRightRadius : 30,
+        borderBottomLeftRadius : 30,
         paddingVertical : 50,
         paddingHorizontal : 30,
     },
