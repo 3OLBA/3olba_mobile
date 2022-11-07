@@ -10,19 +10,8 @@ export default function TouchScreen({navigation}){
 
             <StatusBar barStyle="light-content"/>
 
-            <Touch onLongPress={() => navigation.navigate("OnBoarding")} delayPressIn={0}>
-                <Circle bgColor='#1c3f60'>
-                    <Circle bgColor='#5196F405'>
-                        <Circle bgColor='#5196f410'>
-                            <Circle bgColor='#5196F430'>
-                                <TouchButton>
-                                    {/*<MaterialIcons name="fingerprint" size={64} color="#fffff"/>*/}
-                                    <Logo source ={require('../../../assets/logo.png')} />
-                                </TouchButton>
-                            </Circle>
-                        </Circle>
-                    </Circle>
-                </Circle>
+            <Touch onLongPress={() => navigation.navigate("Login")} delayPressIn={0}>
+                <Logo source ={require('../../../assets/logo2.png')} />
             </Touch>
 
             <Text center medium bold margin="20px 0 0 0" color="white">
@@ -105,7 +94,6 @@ const StatusBar  = styled.TouchableOpacity`
 `;
 
 const Logo = styled.Image`
-    width : 120px;
-    height : 120px;
-    border-radius : 120px;
+    width : 400px;
+    height : 400px;
 `;

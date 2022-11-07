@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, StyleSheet, Image, SafeAreaView, TextInput} from 'react-native';
+import {View, StyleSheet, Image, SafeAreaView, TextInput, TouchableOpacity, Platform} from 'react-native';
 import Text from '../../components/Text';
-import { MaterialIcons } from '@expo/vector-icons';
+import {Feather, FontAwesome, MaterialIcons} from '@expo/vector-icons';
+import {LinearGradient} from "react-native-svg";
 
 
 export const LoginScreen = () => {
@@ -9,19 +10,25 @@ export const LoginScreen = () => {
     const [password, setPassword] = React.useState(null);
     return (
         <SafeAreaView style={styles.container}>
-            <View style={styles.containerImage}>
-                <Image style={styles.image} source={require("../../../assets/login.png")}/>
+            <View style={styles.header}>
+                <Image style={styles.image}
+                       source={require("../../../assets/logo.png")}
+                       resizeMode="stretch"
+                />
             </View>
-            <View style={styles.containerText}>
-                <Text center large bold>Login : </Text>
-                <View style={styles.containerLogin}>
-                    <TextInput
-                        style={styles.input}
-                        placeholder={"You email"}
-                    />
-                    <TextInput
-                        style={styles.input}
-                    />
+            <View style={styles.footer}>
+                <Text style={[styles.text_footer,{marginBottom:30}]} center title black color="black">Stay Connected</Text>
+                <Text style={styles.text_footer} xlarge color="black">Email</Text>
+                <View style={styles.action}>
+                    <FontAwesome name="user-o" color="#05375a" size={20}/>
+                    <TextInput style={styles.textInput} placeholder="Your email or username" autoCapitalize="none"/>
+                    <Feather name="check-circle" color="green" size={20}/>
+                </View>
+                <Text style={[styles.text_footer,{marginTop:30}]} xlarge color="black">Password</Text>
+                <View style={styles.action}>
+                    <FontAwesome name="lock" color="#05375a" size={20}/>
+                    <TextInput style={styles.textInput} placeholder="Your password" autoCapitalize="none"/>
+                    <Feather name="eye-off" color="grey" size={20}/>
                 </View>
             </View>
 
@@ -34,38 +41,51 @@ const styles = StyleSheet.create({
         flex : 1,
         backgroundColor : '#1c3f60',
     },
-    input: {
-        width : 300,
-        height: 40,
-        margin: 12,
-        borderWidth: 1,
-        borderColor : "white",
-        padding: 10,
-    },
-    containerText : {
+    header : {
         flex : 1,
-        alignItems : "left",
         justifyContent : "center",
-        marginLeft : 10,
-        paddingBottom : 100,
-    },
-    containerLogin : {
-        marginTop : 10,
-        paddingTop : 30,
-        borderRadius : 10,
-        borderWidth : 1,
-        borderColor : "white",
-        flex : "row",
-        justifyContent: "center",
         alignItems : "center",
-        width : 350,
+        paddingHorizontal : 20,
+        paddingVertical : 50,
     },
-    containerImage : {
+    footer: {
+        flex : 3,
+        backgroundColor : "white",
+        borderTopLeftRadius  : 30,
+        borderTopRightRadius : 30,
+        paddingVertical : 50,
+        paddingHorizontal : 30,
+    },
+    text_header : {
+        color : "#fff",
+        fontSize : 30,
+    },
+    text_footer : {
+        color : "#05375a",
+        fontSize : 18,
+    },
+    image:{
+        height : 170,
+        width : 170
+    },
+    action : {
+        flexDirection : "row",
+        marginTop : 20,
+        borderBottomWidth : 1,
+        borderBottomColor : "#f2f2f2",
+        paddingBottom : 5,
+    },
+    textInput : {
+        flex : 1,
+        marginTop : Platform.OS === 'ios' ? 0 : -12,
+        paddingLeft : 10,
+        color : "#05375a",
+    },
+    button:{
         alignItems : "center",
-        justifyContent : "center"
-    },
-    image :{
-        width : 200,
-        height : 200,
+        marginTop : 50,
+
     }
+
+
 })
