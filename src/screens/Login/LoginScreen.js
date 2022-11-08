@@ -52,7 +52,7 @@ export const LoginScreen = ({navigation}) => {
                 <View style={styles.buttons}>
                     <LinearGradient colors={["#b0b4b3","#4b4949"]}
                                     style={styles.signIn} onPress={() => console.log("gggg")}>
-                        <Text style={[styles.textSign,{color:"#fff"}]}>
+                        <Text style={[styles.textSign,{color:"#fff"}]} onPress={() => navigation.navigate("Start")}>
                             Back
                         </Text>
                     </LinearGradient>
