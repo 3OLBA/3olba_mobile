@@ -1,13 +1,29 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {View, StyleSheet, Image, SafeAreaView, TextInput, TouchableOpacity, Platform} from 'react-native';
 import Text from '../../components/Text';
 import {Feather, FontAwesome, MaterialIcons} from '@expo/vector-icons';
-import {LinearGradient} from "react-native-svg";
+import {LinearGradient} from "expo-linear-gradient";
 
+export const LoginScreen = ({navigation}) => {
+    const [login, setLogin] = useState("You email or username");
+    const [password, setPassword] = useState(null);
+    const [eyeOn, setEyeOn] = useState(false);
+    const [isText, setIsText] = useState(false);
+    const [loginUser,setLoginUser] = useState({
+        email : "",
+        password : "",
+    })
 
-export const LoginScreen = () => {
-    const [login, setLogin] = React.useState("You email or username");
-    const [password, setPassword] = React.useState(null);
+    const showAndHidePassword = () => {
+        if(!eyeOn) setEyeOn(true);
+        else if(eyeOn) setEyeOn(false);
+    }
+
+    const showAndHideCheckText = (text) => {
+        if(text.length >= 8) setIsText(true);
+        else if(text.length < 8) setIsText(false);
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
@@ -17,18 +33,37 @@ export const LoginScreen = () => {
                 />
             </View>
             <View style={styles.footer}>
-                <Text style={[styles.text_footer,{marginBottom:30}]} center title black color="black">Welcome</Text>
+                <Text style={[styles.text_footer,{marginBottom:30}]} center title black color="black">Welcome in 3OLBA</Text>
                 <Text style={styles.text_footer} xlarge color="black">Email</Text>
                 <View style={styles.action}>
-                    <FontAwesome name="user-o" color="#05375a" size={20}/>
-                    <TextInput style={styles.textInput} placeholder="Your email or username" autoCapitalize="none"/>
-                    <Feather name="check-circle" color="green" size={20}/>
+                    <FontAwesome name="user-o" color="#05375a" size={25}/>
+                    <TextInput style={styles.textInput}
+                               onChangeText={input => showAndHideCheckText(input)}
+                               placeholder="Your email or username"
+                               autoCapitalize="none"/>
+                    <Feather name="check-circle" color={!isText ? "#4e4c4c" : "#1bc707"} size={22}/>
                 </View>
                 <Text style={[styles.text_footer,{marginTop:30}]} xlarge color="black">Password</Text>
                 <View style={styles.action}>
                     <FontAwesome name="lock" color="#05375a" size={20}/>
-                    <TextInput style={styles.textInput} placeholder="Your password" autoCapitalize="none"/>
-                    <Feather name="eye-off" color="grey" size={20}/>
+                    <TextInput style={styles.textInput} secureTextEntry={!eyeOn} placeholder="Your password" autoCapitalize="none"/>
+                    <Feather name={!eyeOn ? "eye-off" : "eye"} color="grey" size={22} onPress={() => showAndHidePassword()}/>
+                </View>
+                <View style={styles.buttons}>
+                    <LinearGradient colors={["#b0b4b3","#4b4949"]}
+                                    style={styles.signIn} onPress={() => console.log("gggg")}>
+                        <Text style={[styles.textSign,{color:"#fff"}]}>
+                            Back
+                        </Text>
+                    </LinearGradient>
+
+                    <LinearGradient colors={["#1c3f60","#5085b4"]}
+                        style={styles.signIn}>
+                        <Text style={[styles.textSign,{color:"#fff"}]}>
+                            Sign In
+                        </Text>
+                    </LinearGradient>
+
                 </View>
             </View>
 
@@ -83,10 +118,23 @@ const styles = StyleSheet.create({
         paddingLeft : 10,
         color : "#05375a",
     },
-    button:{
+    buttons:{
+        flexDirection : "row",
+        justifyContent : "space-around",
         alignItems : "center",
         marginTop : 50,
 
+    },
+    signIn:{
+        width : '40%',
+        height : 50,
+        justifyContent : "center",
+        alignItems : "center",
+        borderRadius : 10,
+    },
+    textSign : {
+        fontSize : 18,
+        fontWeight : 'bold',
     }
 
 

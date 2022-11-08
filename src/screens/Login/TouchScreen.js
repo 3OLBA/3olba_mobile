@@ -12,7 +12,7 @@ export default function TouchScreen({navigation}){
                 <StatusBar barStyle="light-content"/>
 
                 <Touch onPress={() => navigation.navigate("Login")} >
-                    <Logo source ={require('../../../assets/splash.png')} />
+                    <Logo source ={require('../../../assets/splash1.png')} />
                 </Touch>
             </View>
 
