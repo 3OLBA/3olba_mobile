@@ -5,20 +5,10 @@ import {Feather, FontAwesome, MaterialIcons,AntDesign} from '@expo/vector-icons'
 import {LinearGradient} from "expo-linear-gradient";
 import { SocialIcon } from 'react-native-elements'
 
-export const LoginScreen = ({navigation}) => {
+export const ForgetPasswordScreen = ({navigation}) => {
     const [login, setLogin] = useState("You email or username");
-    const [password, setPassword] = useState(null);
     const [eyeOn, setEyeOn] = useState(false);
     const [isText, setIsText] = useState(false);
-    const [loginUser,setLoginUser] = useState({
-        email : "",
-        password : "",
-    })
-
-    const showAndHidePassword = () => {
-        if(!eyeOn) setEyeOn(true);
-        else if(eyeOn) setEyeOn(false);
-    }
 
     const showAndHideCheckText = (text) => {
         if(text.length >= 8) setIsText(true);
@@ -29,12 +19,12 @@ export const LoginScreen = ({navigation}) => {
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
                 <Image style={styles.image}
-                       source={require("../../../assets/paper-plane.png")}
+                       source={require("../../../assets/forgetPassword.png")}
                        resizeMode="stretch"
                 />
             </View>
             <View style={styles.footer}>
-
+                {/*<Text style={[styles.text_footer,{marginBottom:30}]} center title black color="black">Welcome in 3OLBA</Text>*/}
                 <Text style={styles.text_footer} xlarge color="black">Email</Text>
                 <View style={styles.action}>
                     <FontAwesome name="user-o" color="#05375a" size={25}/>
@@ -44,24 +34,9 @@ export const LoginScreen = ({navigation}) => {
                                autoCapitalize="none"/>
                     <Feather name="check-circle" color={!isText ? "#4e4c4c" : "#1bc707"} size={22}/>
                 </View>
-
-                <Text style={[styles.text_footer,{marginTop:30}]} xlarge color="black">Password</Text>
-                <View style={styles.action}>
-                    <FontAwesome name="lock" color="#05375a" size={20}/>
-                    <TextInput style={styles.textInput} secureTextEntry={!eyeOn} placeholder="Your password" autoCapitalize="none"/>
-                    <Feather name={!eyeOn ? "eye-off" : "eye"} color="grey" size={22} onPress={() => showAndHidePassword()}/>
-                </View>
-                <View style={styles.createAccount}>
-                    <TouchableOpacity onPress={() => navigation.navigate("CreateAccount")}>
-                        <Text center medium black  color="#1c3f60">
-                            Create new account ?
-                        </Text>
-                    </TouchableOpacity>
-                </View>
-
                 <View style={styles.buttons}>
                     <TouchableOpacity style={[styles.signIn,{borderWidth: 1,
-                        borderColor : "#1c3f60"}]} onPress={() => navigation.navigate("Start")}>
+                        borderColor : "#1c3f60"}]} onPress={() => navigation.navigate("Login")}>
                         <Text style={[styles.textSign,{color : "#1c3f60"}]}>
                             Back
                         </Text>
@@ -70,28 +45,15 @@ export const LoginScreen = ({navigation}) => {
                     <LinearGradient colors={["#1c3f60","#5085b4"]}
                         style={styles.signIn}>
                         <Text style={[styles.textSign,{color:"#fff"}]}>
-                            Sign In
+                            Send
                         </Text>
                     </LinearGradient>
-                </View>
-
-                <Text center medium black margin="20px 0 0 0" color="#1c3f60">
-                    Connect with
-                </Text>
-                <View style={styles.buttonsGA}>
-                    <View style={styles.signInGA} >
-                        <SocialIcon light raised={true} type='google'/>
-                    </View>
-
-                    <View style={styles.signInGA}>
-                        <SocialIcon light raised={true} type='apple'/>
-                    </View>
 
                 </View>
 
-                <TouchableOpacity onPress={() => navigation.navigate("ForgetPassword")}>
+                <TouchableOpacity onPress={() => navigation.navigate("Start")}>
                     <Text center medium black margin="40px 0 0 0" color="#1c3f60">
-                        Forget password ?
+                        Need Support ?
                     </Text>
                 </TouchableOpacity>
 
@@ -142,10 +104,6 @@ const styles = StyleSheet.create({
         borderBottomColor : "#f2f2f2",
         paddingBottom : 5,
     },
-    createAccount : {
-        flexDirection : "row",
-        marginTop : 10,
-    },
     textInput : {
         flex : 1,
         marginTop : Platform.OS === 'ios' ? 0 : -12,
@@ -179,6 +137,8 @@ const styles = StyleSheet.create({
         justifyContent : "center",
         alignItems : "center",
         borderRadius : 10,
+        borderWidth : 1,
+        borderColor : "#1c3f60",
     },
     textSign : {
         fontSize : 18,

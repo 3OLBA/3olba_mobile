@@ -9,6 +9,8 @@ import React, {useCallback, useEffect, useState} from "react";
 import * as SplashScreen from "expo-splash-screen";
 import OnBoardingScreen from "./src/screens/OnBoarding/OnBoardingScreen";
 import {LoginScreen} from "./src/screens/Login/LoginScreen";
+import {ForgetPasswordScreen} from "./src/screens/Login/ForgetPasswordScreen";
+import {CreateAccountScreen} from "./src/screens/Login/CreateAccountScreen";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -45,6 +47,8 @@ export default function App() {
                 <AppStack.Navigator>
                     <AppStack.Screen name="Start" component={TouchScreen} options={{ headerShown: false }}/>
                     <AppStack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
+                    <AppStack.Screen name="ForgetPassword" component={ForgetPasswordScreen} options={{ headerShown: false }}/>
+                    <AppStack.Screen name="CreateAccount" component={CreateAccountScreen} options={{ headerShown: false }}/>
                     <AppStack.Screen name="OnBoarding" component={OnBoardingScreen} options={{ headerShown: false }}/>
                     <AppStack.Screen name="Bottom" component={BottomTabsScreen} options={{ headerShown: false }}/>
                 </AppStack.Navigator>

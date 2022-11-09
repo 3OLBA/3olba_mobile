@@ -3,17 +3,15 @@ import {View, StyleSheet, Image, SafeAreaView, TextInput, TouchableOpacity, Plat
 import Text from '../../components/Text';
 import {Feather, FontAwesome, MaterialIcons,AntDesign} from '@expo/vector-icons';
 import {LinearGradient} from "expo-linear-gradient";
-import { SocialIcon } from 'react-native-elements'
+import {BackModalScreen} from './Modal/BackModalScreen';
+import {SupportScreen} from "./CommunComposants/SupportScreen";
 
-export const LoginScreen = ({navigation}) => {
+
+export const CreateAccountScreen = ({navigation}) => {
     const [login, setLogin] = useState("You email or username");
-    const [password, setPassword] = useState(null);
     const [eyeOn, setEyeOn] = useState(false);
     const [isText, setIsText] = useState(false);
-    const [loginUser,setLoginUser] = useState({
-        email : "",
-        password : "",
-    })
+    const [modalVisible, setModalVisible] = useState(false);
 
     const showAndHidePassword = () => {
         if(!eyeOn) setEyeOn(true);
@@ -25,17 +23,39 @@ export const LoginScreen = ({navigation}) => {
         else if(text.length < 8) setIsText(false);
     }
 
+    const showModalAndLeave = () => {
+        if(modalVisible){
+            setModalVisible(false);
+            navigation.navigate("Login");
+        }
+        else if(!modalVisible){
+            setModalVisible(true);
+        }
+    }
+    const hideModalAndStay = () => {
+        setModalVisible(false);
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.header}>
                 <Image style={styles.image}
-                       source={require("../../../assets/paper-plane.png")}
+                       source={require("../../../assets/SignUp.png")}
                        resizeMode="stretch"
                 />
             </View>
             <View style={styles.footer}>
+                <Text style={styles.text_footer} xlarge color="black">Phone number</Text>
+                <View style={styles.action}>
+                    <FontAwesome name="phone" color="#05375a" size={25}/>
+                    <TextInput style={styles.textInput}
+                               onChangeText={input => showAndHideCheckText(input)}
+                               placeholder="Your email or username"
+                               autoCapitalize="none"/>
+                    <Feather name="check-circle" color={!isText ? "#4e4c4c" : "#1bc707"} size={22}/>
+                </View>
 
-                <Text style={styles.text_footer} xlarge color="black">Email</Text>
+                <Text style={[styles.text_footer,{marginTop:10}]} xlarge color="black">Email</Text>
                 <View style={styles.action}>
                     <FontAwesome name="user-o" color="#05375a" size={25}/>
                     <TextInput style={styles.textInput}
@@ -45,23 +65,21 @@ export const LoginScreen = ({navigation}) => {
                     <Feather name="check-circle" color={!isText ? "#4e4c4c" : "#1bc707"} size={22}/>
                 </View>
 
-                <Text style={[styles.text_footer,{marginTop:30}]} xlarge color="black">Password</Text>
+                <Text style={[styles.text_footer,{marginTop:10}]} xlarge color="black">Password</Text>
                 <View style={styles.action}>
                     <FontAwesome name="lock" color="#05375a" size={20}/>
                     <TextInput style={styles.textInput} secureTextEntry={!eyeOn} placeholder="Your password" autoCapitalize="none"/>
                     <Feather name={!eyeOn ? "eye-off" : "eye"} color="grey" size={22} onPress={() => showAndHidePassword()}/>
                 </View>
-                <View style={styles.createAccount}>
-                    <TouchableOpacity onPress={() => navigation.navigate("CreateAccount")}>
-                        <Text center medium black  color="#1c3f60">
-                            Create new account ?
-                        </Text>
-                    </TouchableOpacity>
+                <Text style={[styles.text_footer,{marginTop:10}]} xlarge color="black">Repeat password</Text>
+                <View style={styles.action}>
+                    <FontAwesome name="lock" color="#05375a" size={20}/>
+                    <TextInput style={styles.textInput} secureTextEntry={!eyeOn} placeholder="Repeat your password" autoCapitalize="none"/>
+                    <Feather name={!eyeOn ? "eye-off" : "eye"} color="grey" size={22} onPress={() => showAndHidePassword()}/>
                 </View>
-
                 <View style={styles.buttons}>
                     <TouchableOpacity style={[styles.signIn,{borderWidth: 1,
-                        borderColor : "#1c3f60"}]} onPress={() => navigation.navigate("Start")}>
+                        borderColor : "#1c3f60"}]} onPress={() => showModalAndLeave()}>
                         <Text style={[styles.textSign,{color : "#1c3f60"}]}>
                             Back
                         </Text>
@@ -70,31 +88,18 @@ export const LoginScreen = ({navigation}) => {
                     <LinearGradient colors={["#1c3f60","#5085b4"]}
                         style={styles.signIn}>
                         <Text style={[styles.textSign,{color:"#fff"}]}>
-                            Sign In
+                            Create
                         </Text>
                     </LinearGradient>
-                </View>
-
-                <Text center medium black margin="20px 0 0 0" color="#1c3f60">
-                    Connect with
-                </Text>
-                <View style={styles.buttonsGA}>
-                    <View style={styles.signInGA} >
-                        <SocialIcon light raised={true} type='google'/>
-                    </View>
-
-                    <View style={styles.signInGA}>
-                        <SocialIcon light raised={true} type='apple'/>
-                    </View>
 
                 </View>
 
-                <TouchableOpacity onPress={() => navigation.navigate("ForgetPassword")}>
-                    <Text center medium black margin="40px 0 0 0" color="#1c3f60">
-                        Forget password ?
-                    </Text>
-                </TouchableOpacity>
+                <SupportScreen/>
 
+                <BackModalScreen navigation={navigation}
+                                 modalVisible={modalVisible}
+                                 hideModalAndStay={hideModalAndStay}
+                                 showModalAndLeave={showModalAndLeave}/>
             </View>
 
         </SafeAreaView>
@@ -123,13 +128,9 @@ const styles = StyleSheet.create({
         paddingVertical : 50,
         paddingHorizontal : 30,
     },
-    text_header : {
-        color : "#fff",
-        fontSize : 30,
-    },
     text_footer : {
         color : "#05375a",
-        fontSize : 18,
+        fontSize : 17,
     },
     image:{
         height : 170,
@@ -141,10 +142,6 @@ const styles = StyleSheet.create({
         borderBottomWidth : 1,
         borderBottomColor : "#f2f2f2",
         paddingBottom : 5,
-    },
-    createAccount : {
-        flexDirection : "row",
-        marginTop : 10,
     },
     textInput : {
         flex : 1,
@@ -179,6 +176,8 @@ const styles = StyleSheet.create({
         justifyContent : "center",
         alignItems : "center",
         borderRadius : 10,
+        borderWidth : 1,
+        borderColor : "#1c3f60",
     },
     textSign : {
         fontSize : 18,
@@ -186,6 +185,12 @@ const styles = StyleSheet.create({
     },
     logo : {
         paddingLeft : 10,
+    },
+    support : {
+        flexDirection :"row",
+        justifyContent : "center",
+        alignItems : "center",
+        marginTop:20,
     },
 
 
