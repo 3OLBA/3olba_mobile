@@ -15,7 +15,7 @@ export default function WalletScreen({navigation}) {
 
     return (
         <Container>
-            <HeaderScreen screenName={screenName}/>
+            <HeaderScreen screenName={screenName} navigation={navigation}/>
 
             <CustomPrice>
                 <Title>

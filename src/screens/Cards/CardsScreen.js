@@ -13,7 +13,7 @@ export default function CardsScreen({navigation}) {
 
     return (
         <Container>
-            <HeaderScreen screenName={screenName}/>
+            <HeaderScreen screenName={screenName} navigation={navigation}/>
             <Cards data={myCards} renderItem={renderCards}/>
             <StatusBar barStyle="light-content"/>
         </Container>

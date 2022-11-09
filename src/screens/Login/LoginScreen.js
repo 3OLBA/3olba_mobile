@@ -67,12 +67,12 @@ export const LoginScreen = ({navigation}) => {
                         </Text>
                     </TouchableOpacity>
 
-                    <LinearGradient colors={["#1c3f60","#5085b4"]}
-                        style={styles.signIn}>
+                    <TouchableOpacity colors={["#1c3f60","#5085b4"]}
+                        style={[styles.signIn,{backgroundColor:"#1c3f60"}]} onPress={() => navigation.navigate("Bottom")}>
                         <Text style={[styles.textSign,{color:"#fff"}]}>
                             Sign In
                         </Text>
-                    </LinearGradient>
+                    </TouchableOpacity>
                 </View>
 
                 <Text center medium black margin="20px 0 0 0" color="#1c3f60">

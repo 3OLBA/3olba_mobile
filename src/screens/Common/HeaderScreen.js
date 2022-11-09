@@ -4,7 +4,7 @@ import {AntDesign} from "@expo/vector-icons";
 
 export default function HeaderScreen({navigation,screenName}) {
     const logout = () => {
-        navigation.navigate("Pin");
+        navigation.navigate("Login");
     }
     return (
         <Container>
