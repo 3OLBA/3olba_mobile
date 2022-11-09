@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import {Fontisto,AntDesign} from '@expo/vector-icons';
 import Text from '../../components/Text';
 import {View,StyleSheet} from "react-native";

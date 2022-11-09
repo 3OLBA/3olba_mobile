@@ -1,6 +1,6 @@
 import Text from "../../components/Text";
 import {Entypo, FontAwesome5} from "@expo/vector-icons";
-import styled from "styled-components";
+import styled from "styled-components/native";
 
 export default function RenderCardScreen({item}) {
 

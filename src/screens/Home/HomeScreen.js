@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import Text from '../../components/Text';
 import ChartScreen from './ChartScreen';
 import {FontAwesome5,MaterialIcons , AntDesign} from "@expo/vector-icons";

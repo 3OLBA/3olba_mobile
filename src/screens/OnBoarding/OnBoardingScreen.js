@@ -3,7 +3,7 @@ import React, {useCallback, useEffect, useState , useRef} from "react";
 import Text from "../../components/Text";
 import onBoardingData from '../../../OnBoardingData';
 import OnBoardingItems from './OnBoardingItemsScreen';
-import styled from "styled-components";
+import styled from "styled-components/native";
 import Paginator from "./Paginator";
 import NextButton from "./NextButton";
 

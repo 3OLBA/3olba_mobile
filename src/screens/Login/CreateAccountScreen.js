@@ -1,19 +1,23 @@
 import React,{useState} from 'react';
-import {View, StyleSheet, Image, SafeAreaView, TextInput, TouchableOpacity, Platform} from 'react-native';
+import {View, StyleSheet, Image, SafeAreaView, TextInput, TouchableOpacity, Platform, KeyboardType} from 'react-native';
 import Text from '../../components/Text';
 import {Feather, FontAwesome, MaterialIcons,AntDesign} from '@expo/vector-icons';
 import {LinearGradient} from "expo-linear-gradient";
 import {BackModalScreen} from './Modal/BackModalScreen';
 import {SupportScreen} from "./CommunComposants/SupportScreen";
+import {errorSignUp, USERDETAILS} from '../Common/commonValue';
 
 
 export const CreateAccountScreen = ({navigation}) => {
     const [userSignUp, setUserSignUp] = useState({
-        username : "",
+        email : "",
         password : "",
         repeartPassword : "",
         phoneNumber :"",
     });
+    const [phoneNumberError,setPhoneNUmberError] = useState(false);
+    const [emailError,setEmailError] = useState(false);
+    const [passwordError,setPasswordError] = useState(false);
     const [eyeOn, setEyeOn] = useState(false);
     const [isText, setIsText] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
@@ -23,15 +27,21 @@ export const CreateAccountScreen = ({navigation}) => {
         else if(eyeOn) setEyeOn(false);
     }
 
-    const phoneNumber = (text) => {
-        if(text.length >= 8) setIsText(true);
-        else if(text.length < 8) setIsText(false);
-        setUserSignUp({...userSignUp,phoneNumber: text});
-    }
-    const password = (text) => {
-        if(text.length >= 8) setIsText(true);
-        else if(text.length < 8) setIsText(false);
-        setUserSignUp({...userSignUp,password: text});
+    const handleSignUp = (fieldName,text) => {
+        switch (fieldName){
+            case USERDETAILS.PHONE_NUMBER :
+                setUserSignUp({...userSignUp,phoneNumber: text});
+                break;
+            case USERDETAILS.EMAIL :
+                setUserSignUp({...userSignUp,email: text});
+                break;
+            case USERDETAILS.PASSWORD :
+                setUserSignUp({...userSignUp,password: text});
+                break;
+            case USERDETAILS.REPEAT_PASSWORD :
+                setUserSignUp({...userSignUp,repeartPassword: text});
+                break;
+        }
     }
 
     const showModalAndLeave = () => {
@@ -53,7 +63,30 @@ export const CreateAccountScreen = ({navigation}) => {
     }
     const submit = () => {
         console.log("user",userSignUp);
+        if(!validePhoneNumber(userSignUp.phoneNumber)){
+            setPhoneNUmberError(true);
+        }
+        if(validePhoneNumber(userSignUp.phoneNumber)){
+            setPhoneNUmberError(false);
+        }
+        if(!valideEmail(userSignUp.email)){
+            setEmailError(true);
+        }
+        if(valideEmail(userSignUp.email)){
+            setEmailError(false);
+        }
     }
+
+    const validePhoneNumber = (phoneNumber) => {
+        const regex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
+        console.log(regex.test(phoneNumber));
+        return regex.test(phoneNumber);
+    }
+    const valideEmail = (email) => {
+        console.log(email.includes("@"))
+        return email.includes("@");
+    }
+
 
     return (
         <SafeAreaView style={styles.container}>
@@ -68,34 +101,50 @@ export const CreateAccountScreen = ({navigation}) => {
                 <View style={styles.action}>
                     <FontAwesome name="phone" color="#05375a" size={25}/>
                     <TextInput style={styles.textInput}
-                               onChangeText={input => phoneNumber(input)}
+                               onChangeText={value => handleSignUp(USERDETAILS.PHONE_NUMBER,value)}
                                placeholder="Your email or username"
-                               autoCapitalize="none"/>
+                               autoCapitalize="none"
+                               keyboardType="phone-pad"
+                    />
                     <Feather name="check-circle" color={!isText ? "#4e4c4c" : "#1bc707"} size={22}/>
                 </View>
+                { phoneNumberError && <Text color="#A81919FF">{errorSignUp.phoneNumberIncorrect}</Text>}
 
                 <Text style={[styles.text_footer,{marginTop:10}]} xlarge color="black">Email</Text>
                 <View style={styles.action}>
                     <FontAwesome name="user-o" color="#05375a" size={25}/>
                     <TextInput style={styles.textInput}
-                               onChangeText={input => password(input)}
+                               onChangeText={value => handleSignUp(USERDETAILS.EMAIL,value)}
                                placeholder="Your email or username"
                                autoCapitalize="none"/>
                     <Feather name="check-circle" color={!isText ? "#4e4c4c" : "#1bc707"} size={22}/>
                 </View>
+                { emailError && <Text color="#A81919FF">{errorSignUp.emailIncorrect}</Text>}
 
                 <Text style={[styles.text_footer,{marginTop:10}]} xlarge color="black">Password</Text>
                 <View style={styles.action}>
                     <FontAwesome name="lock" color="#05375a" size={20}/>
-                    <TextInput style={styles.textInput} secureTextEntry={!eyeOn} placeholder="Your password" autoCapitalize="none"/>
+                    <TextInput style={styles.textInput}
+                               secureTextEntry={!eyeOn}
+                               onChangeText={value => handleSignUp(USERDETAILS.PASSWORD,value)}
+                               placeholder="Your password"
+                               autoCapitalize="none"/>
                     <Feather name={!eyeOn ? "eye-off" : "eye"} color="grey" size={22} onPress={() => showAndHidePassword()}/>
                 </View>
+                { passwordError && <Text color="#A81919FF">{errorSignUp.phoneNumberIncorrect}</Text>}
+
                 <Text style={[styles.text_footer,{marginTop:10}]} xlarge color="black">Repeat password</Text>
                 <View style={styles.action}>
                     <FontAwesome name="lock" color="#05375a" size={20}/>
-                    <TextInput style={styles.textInput} secureTextEntry={!eyeOn} placeholder="Repeat your password" autoCapitalize="none"/>
+                    <TextInput style={styles.textInput}
+                               secureTextEntry={!eyeOn}
+                               onChangeText={value => handleSignUp(USERDETAILS.REPEAT_PASSWORD,value)}
+                               placeholder="Repeat your password"
+                               autoCapitalize="none"/>
                     <Feather name={!eyeOn ? "eye-off" : "eye"} color="grey" size={22} onPress={() => showAndHidePassword()}/>
                 </View>
+                { passwordError && <Text color="#A81919FF">{errorSignUp.passwordNotMatch}</Text>}
+
                 <View style={styles.buttons}>
                     <TouchableOpacity style={[styles.signIn,{borderWidth: 1,
                         borderColor : "#1c3f60"}]} onPress={() => showModalAndLeave()}>
@@ -172,7 +221,7 @@ const styles = StyleSheet.create({
         flexDirection : "row",
         justifyContent : "space-around",
         alignItems : "center",
-        marginTop : 50,
+        marginTop : 30,
     },
     buttonsGA:{
         flexDirection : "row",

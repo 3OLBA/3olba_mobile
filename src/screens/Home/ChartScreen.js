@@ -1,6 +1,6 @@
 import {Dimensions} from 'react-native';
 import {LineChart} from 'react-native-chart-kit';
-import styled from "styled-components";
+import styled from "styled-components/native";
 
 export default function ChartScreen() {
     return (

@@ -1,5 +1,5 @@
 import Text from "../../components/Text";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import { Entypo } from '@expo/vector-icons';
 
 export default function RenderCoinScreen({item}) {

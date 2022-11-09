@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import Text from '../../components/Text';
 import NumberPad from '../../components/NumberPad';
 import React, {useState} from 'react';

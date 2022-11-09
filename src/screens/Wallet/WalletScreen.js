@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import coinsData from '../../../CoinsData';
 import HeaderScreen from "../Common/HeaderScreen";
 import Coin from "./RenderCoinScreen";

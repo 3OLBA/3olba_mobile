@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import myCards from '../../../CardsData';
 import HeaderScreen from "../Common/HeaderScreen";
 import RenderCardScreen from "./RenderCardScreen";
