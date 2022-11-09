@@ -79,13 +79,13 @@ export const LoginScreen = ({navigation}) => {
                     Connect with
                 </Text>
                 <View style={styles.buttonsGA}>
-                    <View style={styles.signInGA} >
+                    <TouchableOpacity style={styles.signInGA} >
                         <SocialIcon light raised={true} type='google'/>
-                    </View>
+                    </TouchableOpacity>
 
-                    <View style={styles.signInGA}>
+                    <TouchableOpacity style={styles.signInGA}>
                         <SocialIcon light raised={true} type='apple'/>
-                    </View>
+                    </TouchableOpacity>
 
                 </View>
 

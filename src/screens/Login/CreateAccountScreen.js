@@ -8,7 +8,12 @@ import {SupportScreen} from "./CommunComposants/SupportScreen";
 
 
 export const CreateAccountScreen = ({navigation}) => {
-    const [login, setLogin] = useState("You email or username");
+    const [userSignUp, setUserSignUp] = useState({
+        username : "",
+        password : "",
+        repeartPassword : "",
+        phoneNumber :"",
+    });
     const [eyeOn, setEyeOn] = useState(false);
     const [isText, setIsText] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
@@ -18,9 +23,15 @@ export const CreateAccountScreen = ({navigation}) => {
         else if(eyeOn) setEyeOn(false);
     }
 
-    const showAndHideCheckText = (text) => {
+    const phoneNumber = (text) => {
         if(text.length >= 8) setIsText(true);
         else if(text.length < 8) setIsText(false);
+        setUserSignUp({...userSignUp,phoneNumber: text});
+    }
+    const password = (text) => {
+        if(text.length >= 8) setIsText(true);
+        else if(text.length < 8) setIsText(false);
+        setUserSignUp({...userSignUp,password: text});
     }
 
     const showModalAndLeave = () => {
@@ -29,11 +40,19 @@ export const CreateAccountScreen = ({navigation}) => {
             navigation.navigate("Login");
         }
         else if(!modalVisible){
-            setModalVisible(true);
+            if(userSignUp.phoneNumber.length === 0 && userSignUp.password.length === 0 &&
+            userSignUp.repeartPassword.length === 0 && userSignUp.username.length === 0) {
+                navigation.navigate("Login");
+            } else {
+                setModalVisible(true);
+            }
         }
     }
     const hideModalAndStay = () => {
         setModalVisible(false);
+    }
+    const submit = () => {
+        console.log("user",userSignUp);
     }
 
     return (
@@ -49,7 +68,7 @@ export const CreateAccountScreen = ({navigation}) => {
                 <View style={styles.action}>
                     <FontAwesome name="phone" color="#05375a" size={25}/>
                     <TextInput style={styles.textInput}
-                               onChangeText={input => showAndHideCheckText(input)}
+                               onChangeText={input => phoneNumber(input)}
                                placeholder="Your email or username"
                                autoCapitalize="none"/>
                     <Feather name="check-circle" color={!isText ? "#4e4c4c" : "#1bc707"} size={22}/>
@@ -59,7 +78,7 @@ export const CreateAccountScreen = ({navigation}) => {
                 <View style={styles.action}>
                     <FontAwesome name="user-o" color="#05375a" size={25}/>
                     <TextInput style={styles.textInput}
-                               onChangeText={input => showAndHideCheckText(input)}
+                               onChangeText={input => password(input)}
                                placeholder="Your email or username"
                                autoCapitalize="none"/>
                     <Feather name="check-circle" color={!isText ? "#4e4c4c" : "#1bc707"} size={22}/>
@@ -87,8 +106,8 @@ export const CreateAccountScreen = ({navigation}) => {
 
                     <LinearGradient colors={["#1c3f60","#5085b4"]}
                         style={styles.signIn}>
-                        <Text style={[styles.textSign,{color:"#fff"}]}>
-                            Create
+                        <Text style={[styles.textSign,{color:"#fff"}]} onPress={()=> submit()}>
+                            Submit
                         </Text>
                     </LinearGradient>
 
