@@ -4,6 +4,7 @@ import Text from '../../components/Text';
 import {Feather, FontAwesome, MaterialIcons,AntDesign} from '@expo/vector-icons';
 import {LinearGradient} from "expo-linear-gradient";
 import { SocialIcon } from 'react-native-elements'
+import {SupportScreen} from "./CommunComposants/SupportScreen";
 
 export const ForgetPasswordScreen = ({navigation}) => {
     const [login, setLogin] = useState("You email or username");
@@ -51,11 +52,7 @@ export const ForgetPasswordScreen = ({navigation}) => {
 
                 </View>
 
-                <TouchableOpacity onPress={() => navigation.navigate("Start")}>
-                    <Text center medium black margin="40px 0 0 0" color="#1c3f60">
-                        Need Support ?
-                    </Text>
-                </TouchableOpacity>
+                <SupportScreen/>
 
             </View>
 
