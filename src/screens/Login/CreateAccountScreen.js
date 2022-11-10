@@ -50,8 +50,8 @@ export const CreateAccountScreen = ({navigation}) => {
             navigation.navigate("Login");
         }
         else if(!modalVisible){
-            if(userSignUp.phoneNumber?.length === 0 && userSignUp.password?.length === 0 &&
-            userSignUp.repeartPassword?.length === 0 && userSignUp.username?.length === 0) {
+            if( userSignUp.phoneNumber?.length === 0 && userSignUp.password?.length === 0 &&
+            userSignUp.repeartPassword?.length === 0 && userSignUp.email?.length === 0) {
                 navigation.navigate("Login");
             } else {
                 setModalVisible(true);
@@ -162,7 +162,7 @@ export const CreateAccountScreen = ({navigation}) => {
 
                 </View>
 
-                <SupportScreen/>
+                <SupportScreen navigation={navigation}/>
 
                 <BackModalScreen navigation={navigation}
                                  modalVisible={modalVisible}

@@ -52,7 +52,7 @@ export const ForgetPasswordScreen = ({navigation}) => {
 
                 </View>
 
-                <SupportScreen/>
+                <SupportScreen navigation={navigation}/>
 
             </View>
 
