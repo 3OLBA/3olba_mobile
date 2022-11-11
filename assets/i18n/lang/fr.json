@@ -33,7 +33,7 @@
             },
             "Description" : {
                 "QuickEasy" : "Vous pouvez transférer votre argent\n Entre 2 banques différentes en 2 min",
-                "CancelTransfer" : "Vous avez la possibilité d'annuler votre transfert à tout moment\n Et nous vous remboursons",
+                "CancelTransfer" : "Vous avez la possibilité d'annuler votre transfert\n à tout moment Et nous vous remboursons",
                 "Secure" : "Nous fournissons un haut niveau de sécurité\n Pour vous protéger, vous et vos données",
                 "Privacy" : "Nous ne détenons pas vos données\n Nous les chiffrons"
             }
