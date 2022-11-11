@@ -1,10 +1,15 @@
+import React from 'react';
 import styled from 'styled-components/native';
 import {Fontisto,AntDesign} from '@expo/vector-icons';
 import Text from '../../components/Text';
-import {View,StyleSheet} from "react-native";
+import {View, StyleSheet, TouchableOpacity} from "react-native";
+import {useTranslation} from "react-i18next";
+import {BackScreen} from "../Common/BackScreen";
 
 
 export default function TouchScreen({navigation}){
+    const {t} = useTranslation();
+
 
     return (
         <Container>
@@ -18,22 +23,24 @@ export default function TouchScreen({navigation}){
 
             <View style={style.footer}>
                 <Text center medium bold margin="20px 0 0 0" color="#1c3f60">
-                The new solution to transfer your money.
-            </Text>
-            <BottomButtonChoice>
+                    {t("Commun.title")}
+                </Text>
+            <TouchableOpacity style={style.buttons}>
                 <PinAccess onPress={() => navigation.navigate("Login")} delayPressIn={0}>
                     <Text center medium bold color="white">
-                        Already client
+                        {t("StartScreen.AlreadyClient")}
                     </Text>
                 </PinAccess>
 
                 <AlreadyClient onPress={() => navigation.navigate("OnBoarding")} delayPressIn={0}>
                     <AntDesign name="login" size={16} color="white" />
                     <Text center medium bold margin='0 0 0 10px' color="white">
-                        Get started
+                        {t("StartScreen.GetStarted")}
                     </Text>
                 </AlreadyClient>
-            </BottomButtonChoice>
+            </TouchableOpacity>
+
+                <BackScreen location="Language" navigation={navigation}/>
 
             <StatusBar barStyle="light-content"/>
             </View>
@@ -55,6 +62,11 @@ const style = StyleSheet.create({
          borderBottomLeftRadius : 30,
          borderBottomRightRadius : 30,
 },
+    buttons :{
+        flexDirection : "row",
+        justifyContent : "space-around",
+        marginTop : 20,
+    }
 })
 
 const Container = styled.SafeAreaView`
@@ -103,7 +115,7 @@ const AlreadyClient  = styled.TouchableOpacity`
 
 const BottomButtonChoice  = styled.TouchableOpacity`
      flex-direction : row;
-     justify-content : space-between;
+     justify-content : space-round;
      margin-top : 20px;
 `;
 

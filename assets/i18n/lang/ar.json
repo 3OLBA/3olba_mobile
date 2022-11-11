@@ -1,0 +1,24 @@
+{
+    "translation": {
+        "Commun":{
+            "title": "الحل الجديد لتحويل أموالك",
+            "Back": "عودة"
+        },
+        "LoginScreen": {
+            "Email": "صندوق بريد",
+            "Password": "كلمة السر",
+            "CreateNewAccount": "انشاء حساب جديد",
+            "SignIn": "الاتصال",
+            "ConnectWith": "متصل مع",
+            "ForgetPassword": "هل نسيت كلمة السر؟"
+        },
+        "StartScreen": {
+            "AlreadyClient":"زبون مسبق",
+            "GetStarted":"البدء"
+        },
+        "LanguageScreen": {
+            "ChooseLangauge": "اختر لغتك",
+            "Choose": "اختار"
+        }
+    }
+}

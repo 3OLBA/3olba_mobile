@@ -1,0 +1,24 @@
+{
+    "translation": {
+        "Commun":{
+            "title": "ⵜⴰⴱⵔⴰⵜ ⵜⴰⵏⴰⵙⵜ ⴴⵔ ⴰⴷⵔⵉⵎ",
+            "Back": "ⴰⵍⵍⴰⵙ"
+        },
+        "LoginScreen": {
+            "Email": "ⵜⴰⴱⵔⴰⵜ",
+            "Password": "كلمة السر",
+            "CreateNewAccount": "انشاء حساب جديد",
+            "SignIn": "الاتصال",
+            "ConnectWith": "متصل مع",
+            "ForgetPassword": "هل نسيت كلمة السر؟"
+        },
+        "StartScreen": {
+            "AlreadyClient":"ⴰⵎⴷⴰⵏ",
+            "GetStarted":"ⵓⴼⵓⵖ"
+        },
+        "LanguageScreen": {
+            "ChooseLangauge": "ⴱⴷⵓ",
+            "Choose": "ⴱⴷⵓ"
+        }
+    }
+}

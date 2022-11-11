@@ -1,7 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
 import TouchScreen from './src/screens/Login/TouchScreen';
-import OnBoarding from './src/screens/OnBoarding/OnBoardingScreen';
-import Pin from './src/screens/Login/PinScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import BottomTabsScreen from "./src/screens/BottomTabs/BottomTabsScreen";
@@ -11,6 +8,7 @@ import OnBoardingScreen from "./src/screens/OnBoarding/OnBoardingScreen";
 import {LoginScreen} from "./src/screens/Login/LoginScreen";
 import {ForgetPasswordScreen} from "./src/screens/Login/ForgetPasswordScreen";
 import {CreateAccountScreen} from "./src/screens/Login/CreateAccountScreen";
+import LanguageScreen from "./src/screens/Login/LanguageScreen";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -45,6 +43,7 @@ export default function App() {
     return (
             <NavigationContainer onReady={onLayoutRootView}>
                 <AppStack.Navigator>
+                    <AppStack.Screen name="Language" component={LanguageScreen} options={{ headerShown: false }}/>
                     <AppStack.Screen name="Start" component={TouchScreen} options={{ headerShown: false }}/>
                     <AppStack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
                     <AppStack.Screen name="ForgetPassword" component={ForgetPasswordScreen} options={{ headerShown: false }}/>

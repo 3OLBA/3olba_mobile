@@ -1,0 +1,25 @@
+{
+    "translation" : {
+        "Commun":{
+            "title" : "The new solution to transfer your money",
+            "Back":"Back"
+        },
+        "LoginScreen": {
+            "Email":"Email",
+            "Password":"Password",
+            "CreateNewAccount":"Create new account ?",
+            "SignIn":"Sign In",
+            "ConnectWith":"Connect with",
+            "ForgetPassword":"Forget password ?"
+        },
+        "StartScreen": {
+            "AlreadyClient":"Already client",
+            "GetStarted":"Get start"
+        },
+        "LanguageScreen" : {
+            "ChooseLangauge" : "Choose your language ",
+            "Submit" : "Submit",
+            "Choose" : "Choose"
+        }
+    },
+}

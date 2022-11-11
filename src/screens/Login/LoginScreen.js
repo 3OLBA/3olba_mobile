@@ -1,11 +1,14 @@
-import React,{useState} from 'react';
-import {View, StyleSheet, Image, SafeAreaView, TextInput, TouchableOpacity, Platform} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {View, StyleSheet, Image, SafeAreaView, TextInput, TouchableOpacity, Platform, I18nManager,Picker} from 'react-native';
 import Text from '../../components/Text';
-import {Feather, FontAwesome, MaterialIcons,AntDesign} from '@expo/vector-icons';
-import {LinearGradient} from "expo-linear-gradient";
-import { SocialIcon } from 'react-native-elements'
+import {Feather, FontAwesome} from '@expo/vector-icons';
+import { SocialIcon } from 'react-native-elements';
+import {useTranslation} from 'react-i18next';
+require("../../../assets/i18n/Settings/i18n");
+import {RetrieveData} from "../../components/StoreData";
 
 export const LoginScreen = ({navigation}) => {
+    const {t} = useTranslation();
     const [login, setLogin] = useState("You email or username");
     const [password, setPassword] = useState(null);
     const [eyeOn, setEyeOn] = useState(false);
@@ -14,6 +17,7 @@ export const LoginScreen = ({navigation}) => {
         email : "",
         password : "",
     })
+
 
     const showAndHidePassword = () => {
         if(!eyeOn) setEyeOn(true);
@@ -35,7 +39,7 @@ export const LoginScreen = ({navigation}) => {
             </View>
             <View style={styles.footer}>
 
-                <Text style={styles.text_footer} xlarge color="black">Email</Text>
+                <Text style={styles.text_footer} xlarge color="black">{t('LoginScreen.Email')}</Text>
                 <View style={styles.action}>
                     <FontAwesome name="user-o" color="#05375a" size={25}/>
                     <TextInput style={styles.textInput}
@@ -45,7 +49,7 @@ export const LoginScreen = ({navigation}) => {
                     <Feather name="check-circle" color={!isText ? "#4e4c4c" : "#1bc707"} size={22}/>
                 </View>
 
-                <Text style={[styles.text_footer,{marginTop:30}]} xlarge color="black">Password</Text>
+                <Text style={[styles.text_footer,{marginTop:30}]} xlarge color="black">{t('LoginScreen.Password')}</Text>
                 <View style={styles.action}>
                     <FontAwesome name="lock" color="#05375a" size={20}/>
                     <TextInput style={styles.textInput} secureTextEntry={!eyeOn} placeholder="Your password" autoCapitalize="none"/>
@@ -54,7 +58,7 @@ export const LoginScreen = ({navigation}) => {
                 <View style={styles.createAccount}>
                     <TouchableOpacity onPress={() => navigation.navigate("CreateAccount")}>
                         <Text center medium black  color="#1c3f60">
-                            Create new account ?
+                            {t('LoginScreen.CreateNewAccount')}
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -63,20 +67,20 @@ export const LoginScreen = ({navigation}) => {
                     <TouchableOpacity style={[styles.signIn,{borderWidth: 1,
                         borderColor : "#1c3f60"}]} onPress={() => navigation.navigate("Start")}>
                         <Text style={[styles.textSign,{color : "#1c3f60"}]}>
-                            Back
+                            {t('LoginScreen.Back')}
                         </Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity colors={["#1c3f60","#5085b4"]}
                         style={[styles.signIn,{backgroundColor:"#1c3f60"}]} onPress={() => navigation.navigate("Bottom")}>
                         <Text style={[styles.textSign,{color:"#fff"}]}>
-                            Sign In
+                            {t('LoginScreen.SignIn')}
                         </Text>
                     </TouchableOpacity>
                 </View>
 
                 <Text center medium black margin="20px 0 0 0" color="#1c3f60">
-                    Connect with
+                    {t('LoginScreen.ConnectWith')}
                 </Text>
                 <View style={styles.buttonsGA}>
                     <TouchableOpacity style={styles.signInGA} >
@@ -89,9 +93,9 @@ export const LoginScreen = ({navigation}) => {
 
                 </View>
 
-                <TouchableOpacity onPress={() => navigation.navigate("ForgetPassword")}>
+                <TouchableOpacity onPress={() => changeLanguage('fr')}>
                     <Text center medium black margin="40px 0 0 0" color="#1c3f60">
-                        Forget password ?
+                        {t('LoginScreen.ForgetPassword')}
                     </Text>
                 </TouchableOpacity>
 

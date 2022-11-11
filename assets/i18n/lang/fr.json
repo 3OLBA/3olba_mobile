@@ -1,0 +1,25 @@
+{
+    "translation" : {
+        "Commun" : {
+            "title" : "La nouvelle solution pour transférer votre argent",
+            "Back":"Retour"
+        },
+        "LanguageScreen" : {
+            "ChooseLangauge" : "Choisissez votre langue",
+            "Submit" : "Soumettre",
+            "Choose" : "Choisir"
+        },
+        "StartScreen": {
+            "AlreadyClient":"Déjà client",
+            "GetStarted":"Démarrer"
+        },
+        "LoginScreen": {
+            "Email":"Boîte mail",
+            "Password":"Mot de passe",
+            "CreateNewAccount":"Créer un nouveau compte",
+            "SignIn":"Connecter",
+            "ConnectWith":"Connecter avec",
+            "ForgetPassword":"Oublier le mot de passe ?"
+        }
+    }
+}
