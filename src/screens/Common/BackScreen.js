@@ -10,7 +10,7 @@ export const BackScreen = ({navigation,location}) => {
     return (
         <TouchableOpacity onPress={() => navigation.navigate(location)} style={styles.support}>
             <AntDesign name="back" size={20} color="#1c3f60"/>
-            <Text center medium black color="#1c3f60">
+            <Text center medium black color="#1c3f60" margin='0 0 0 10px'>
                 {t("Commun.ChangeLanguage")}
             </Text>
         </TouchableOpacity>
