@@ -93,7 +93,7 @@ export const LoginScreen = ({navigation}) => {
 
                 </View>
 
-                <TouchableOpacity onPress={() => changeLanguage('fr')}>
+                <TouchableOpacity onPress={() => navigation.navigate('ForgetPassword')}>
                     <Text center medium black margin="40px 0 0 0" color="#1c3f60">
                         {t('LoginScreen.ForgetPassword')}
                     </Text>

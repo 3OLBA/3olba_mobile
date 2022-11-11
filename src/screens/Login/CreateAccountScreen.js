@@ -4,7 +4,7 @@ import Text from '../../components/Text';
 import {Feather, FontAwesome, MaterialIcons,AntDesign} from '@expo/vector-icons';
 import {LinearGradient} from "expo-linear-gradient";
 import {BackModalScreen} from './Modal/BackModalScreen';
-import {SupportScreen} from "./CommunComposants/SupportScreen";
+import {SupportScreen} from "../Common/SupportScreen";
 import {errorSignUp, USERDETAILS} from '../Common/commonValue';
 import {useTranslation} from "react-i18next";
 

@@ -6,7 +6,8 @@
             "Submit" : "Submit",
             "Email": "ⵜⴰⴱⵔⴰⵜ",
             "Password": "كلمة السر",
-            "phoneNumber": "Phone number"
+            "phoneNumber": "Phone number",
+            "Support" : "Support"
         },
         "LoginScreen": {
             "CreateNewAccount": "انشاء حساب جديد",

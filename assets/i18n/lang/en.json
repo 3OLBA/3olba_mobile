@@ -6,7 +6,8 @@
             "Email":"Email",
             "Password":"Password",
             "phoneNumber": "Phone number",
-            "Submit" : "Submit"
+            "Submit" : "Submit",
+            "Support" : "Support"
         },
         "LoginScreen": {
             "CreateNewAccount":"Create new account ?",

@@ -6,7 +6,8 @@
             "Email":"Boîte e-mail",
             "Password":"Mot de passe",
             "phoneNumber": "Numéro de téléphone",
-            "Submit" : "Soumettre"
+            "Submit" : "Soumettre",
+            "Support" : "Aider"
         },
         "LanguageScreen" : {
             "ChooseLangauge" : "Choisissez votre langue",

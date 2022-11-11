@@ -4,7 +4,7 @@ import Text from '../../components/Text';
 import {Feather, FontAwesome, MaterialIcons,AntDesign} from '@expo/vector-icons';
 import {LinearGradient} from "expo-linear-gradient";
 import { SocialIcon } from 'react-native-elements'
-import {SupportScreen} from "./CommunComposants/SupportScreen";
+import {SupportScreen} from "../Common/SupportScreen";
 import {useTranslation} from "react-i18next";
 
 export const ForgetPasswordScreen = ({navigation}) => {
@@ -44,7 +44,6 @@ export const ForgetPasswordScreen = ({navigation}) => {
                         borderColor : "#1c3f60"}]} onPress={() => navigation.navigate("Login")}>
                         <Text style={[styles.textSign,{color : "#1c3f60"}]}>
                             {t("Commun.Back")}
-
                         </Text>
                     </TouchableOpacity>
 
