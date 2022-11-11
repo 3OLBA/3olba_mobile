@@ -39,7 +39,7 @@ export const LoginScreen = ({navigation}) => {
             </View>
             <View style={styles.footer}>
 
-                <Text style={styles.text_footer} xlarge color="black">{t('LoginScreen.Email')}</Text>
+                <Text style={styles.text_footer} xlarge color="black">{t('Commun.Email')}</Text>
                 <View style={styles.action}>
                     <FontAwesome name="user-o" color="#05375a" size={25}/>
                     <TextInput style={styles.textInput}
@@ -49,7 +49,7 @@ export const LoginScreen = ({navigation}) => {
                     <Feather name="check-circle" color={!isText ? "#4e4c4c" : "#1bc707"} size={22}/>
                 </View>
 
-                <Text style={[styles.text_footer,{marginTop:30}]} xlarge color="black">{t('LoginScreen.Password')}</Text>
+                <Text style={[styles.text_footer,{marginTop:30}]} xlarge color="black">{t('Commun.Password')}</Text>
                 <View style={styles.action}>
                     <FontAwesome name="lock" color="#05375a" size={20}/>
                     <TextInput style={styles.textInput} secureTextEntry={!eyeOn} placeholder="Your password" autoCapitalize="none"/>
@@ -67,7 +67,7 @@ export const LoginScreen = ({navigation}) => {
                     <TouchableOpacity style={[styles.signIn,{borderWidth: 1,
                         borderColor : "#1c3f60"}]} onPress={() => navigation.navigate("Start")}>
                         <Text style={[styles.textSign,{color : "#1c3f60"}]}>
-                            {t('LoginScreen.Back')}
+                            {t("Commun.Back")}
                         </Text>
                     </TouchableOpacity>
 

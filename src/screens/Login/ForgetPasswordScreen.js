@@ -5,11 +5,14 @@ import {Feather, FontAwesome, MaterialIcons,AntDesign} from '@expo/vector-icons'
 import {LinearGradient} from "expo-linear-gradient";
 import { SocialIcon } from 'react-native-elements'
 import {SupportScreen} from "./CommunComposants/SupportScreen";
+import {useTranslation} from "react-i18next";
 
 export const ForgetPasswordScreen = ({navigation}) => {
     const [login, setLogin] = useState("You email or username");
     const [eyeOn, setEyeOn] = useState(false);
     const [isText, setIsText] = useState(false);
+    const {t} = useTranslation();
+
 
     const showAndHideCheckText = (text) => {
         if(text.length >= 8) setIsText(true);
@@ -26,7 +29,8 @@ export const ForgetPasswordScreen = ({navigation}) => {
             </View>
             <View style={styles.footer}>
                 {/*<Text style={[styles.text_footer,{marginBottom:30}]} center title black color="black">Welcome in 3OLBA</Text>*/}
-                <Text style={styles.text_footer} xlarge color="black">Email</Text>
+                <Text style={styles.text_footer} xlarge color="black">{t("Commun.Email")}
+                </Text>
                 <View style={styles.action}>
                     <FontAwesome name="user-o" color="#05375a" size={25}/>
                     <TextInput style={styles.textInput}
@@ -39,14 +43,15 @@ export const ForgetPasswordScreen = ({navigation}) => {
                     <TouchableOpacity style={[styles.signIn,{borderWidth: 1,
                         borderColor : "#1c3f60"}]} onPress={() => navigation.navigate("Login")}>
                         <Text style={[styles.textSign,{color : "#1c3f60"}]}>
-                            Back
+                            {t("Commun.Back")}
+
                         </Text>
                     </TouchableOpacity>
 
                     <LinearGradient colors={["#1c3f60","#5085b4"]}
                         style={styles.signIn}>
                         <Text style={[styles.textSign,{color:"#fff"}]}>
-                            Send
+                            {t("Commun.Submit")}
                         </Text>
                     </LinearGradient>
 

@@ -2,11 +2,13 @@
     "translation": {
         "Commun":{
             "title": "الحل الجديد لتحويل أموالك",
-            "Back": "عودة"
-        },
-        "LoginScreen": {
+            "Back": "عودة",
             "Email": "صندوق بريد",
             "Password": "كلمة السر",
+            "phoneNumber": "رقم الهاتف",
+            "Submit" : "نفذ"
+        },
+        "LoginScreen": {
             "CreateNewAccount": "انشاء حساب جديد",
             "SignIn": "الاتصال",
             "ConnectWith": "متصل مع",

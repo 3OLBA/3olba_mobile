@@ -6,6 +6,7 @@ import {LinearGradient} from "expo-linear-gradient";
 import {BackModalScreen} from './Modal/BackModalScreen';
 import {SupportScreen} from "./CommunComposants/SupportScreen";
 import {errorSignUp, USERDETAILS} from '../Common/commonValue';
+import {useTranslation} from "react-i18next";
 
 
 export const CreateAccountScreen = ({navigation}) => {
@@ -21,6 +22,8 @@ export const CreateAccountScreen = ({navigation}) => {
     const [eyeOn, setEyeOn] = useState(false);
     const [isText, setIsText] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
+    const {t} = useTranslation();
+
 
     const showAndHidePassword = () => {
         if(!eyeOn) setEyeOn(true);
@@ -97,7 +100,8 @@ export const CreateAccountScreen = ({navigation}) => {
                 />
             </View>
             <View style={styles.footer}>
-                <Text style={styles.text_footer} xlarge color="black">Phone number</Text>
+                <Text style={styles.text_footer} xlarge color="black">{t("Commun.phoneNumber")}
+                </Text>
                 <View style={styles.action}>
                     <FontAwesome name="phone" color="#05375a" size={25}/>
                     <TextInput style={styles.textInput}
@@ -110,7 +114,7 @@ export const CreateAccountScreen = ({navigation}) => {
                 </View>
                 { phoneNumberError && <Text color="#A81919FF">{errorSignUp.phoneNumberIncorrect}</Text>}
 
-                <Text style={[styles.text_footer,{marginTop:10}]} xlarge color="black">Email</Text>
+                <Text style={[styles.text_footer,{marginTop:10}]} xlarge color="black">{t('Commun.Email')}</Text>
                 <View style={styles.action}>
                     <FontAwesome name="user-o" color="#05375a" size={25}/>
                     <TextInput style={styles.textInput}
@@ -121,7 +125,7 @@ export const CreateAccountScreen = ({navigation}) => {
                 </View>
                 { emailError && <Text color="#A81919FF">{errorSignUp.emailIncorrect}</Text>}
 
-                <Text style={[styles.text_footer,{marginTop:10}]} xlarge color="black">Password</Text>
+                <Text style={[styles.text_footer,{marginTop:10}]} xlarge color="black">{t('Commun.Password')}</Text>
                 <View style={styles.action}>
                     <FontAwesome name="lock" color="#05375a" size={20}/>
                     <TextInput style={styles.textInput}
@@ -133,7 +137,7 @@ export const CreateAccountScreen = ({navigation}) => {
                 </View>
                 { passwordError && <Text color="#A81919FF">{errorSignUp.phoneNumberIncorrect}</Text>}
 
-                <Text style={[styles.text_footer,{marginTop:10}]} xlarge color="black">Repeat password</Text>
+                <Text style={[styles.text_footer,{marginTop:10}]} xlarge color="black">{t('Commun.Password')}</Text>
                 <View style={styles.action}>
                     <FontAwesome name="lock" color="#05375a" size={20}/>
                     <TextInput style={styles.textInput}
@@ -149,14 +153,14 @@ export const CreateAccountScreen = ({navigation}) => {
                     <TouchableOpacity style={[styles.signIn,{borderWidth: 1,
                         borderColor : "#1c3f60"}]} onPress={() => showModalAndLeave()}>
                         <Text style={[styles.textSign,{color : "#1c3f60"}]}>
-                            Back
+                            {t('Commun.Back')}
                         </Text>
                     </TouchableOpacity>
 
                     <LinearGradient colors={["#1c3f60","#5085b4"]}
                         style={styles.signIn}>
                         <Text style={[styles.textSign,{color:"#fff"}]} onPress={()=> submit()}>
-                            Submit
+                            {t('Commun.Submit')}
                         </Text>
                     </LinearGradient>
 

@@ -2,11 +2,13 @@
     "translation": {
         "Commun":{
             "title": "ⵜⴰⴱⵔⴰⵜ ⵜⴰⵏⴰⵙⵜ ⴴⵔ ⴰⴷⵔⵉⵎ",
-            "Back": "ⴰⵍⵍⴰⵙ"
-        },
-        "LoginScreen": {
+            "Back": "ⴰⵍⵍⴰⵙ",
+            "Submit" : "Submit",
             "Email": "ⵜⴰⴱⵔⴰⵜ",
             "Password": "كلمة السر",
+            "phoneNumber": "Phone number"
+        },
+        "LoginScreen": {
             "CreateNewAccount": "انشاء حساب جديد",
             "SignIn": "الاتصال",
             "ConnectWith": "متصل مع",
