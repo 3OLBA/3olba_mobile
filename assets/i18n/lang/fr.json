@@ -7,7 +7,8 @@
             "Password":"Mot de passe",
             "phoneNumber": "Numéro de téléphone",
             "Submit" : "Soumettre",
-            "Support" : "Aider"
+            "Support" : "Aider",
+            "ChangeLanguage" : "Changer de langue"
         },
         "LanguageScreen" : {
             "ChooseLangauge" : "Choisissez votre langue",

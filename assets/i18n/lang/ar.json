@@ -7,7 +7,8 @@
             "Password": "كلمة السر",
             "phoneNumber": "رقم الهاتف",
             "Submit" : "نفذ",
-            "Support" : "مساعد"
+            "Support" : "مساعد",
+            "ChangeLanguage" : "تغيير اللغة"
         },
         "LoginScreen": {
             "CreateNewAccount": "انشاء حساب جديد",

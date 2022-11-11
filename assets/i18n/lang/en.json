@@ -7,7 +7,8 @@
             "Password":"Password",
             "phoneNumber": "Phone number",
             "Submit" : "Submit",
-            "Support" : "Support"
+            "Support" : "Support",
+            "ChangeLanguage" : "Change language"
         },
         "LoginScreen": {
             "CreateNewAccount":"Create new account ?",
