@@ -1,17 +1,20 @@
 import {StyleSheet, View, useWindowDimensions, Image} from 'react-native';
 import React from "react";
 import Text from "../../components/Text";
+import {useTranslation} from "react-i18next";
 
 
 export default function onBoardingItemsScreen({item}) {
     const { width } = useWindowDimensions();
+    const {t} = useTranslation();
+
     return (
         <View style={[styles.container,{width}]}>
             <View style={styles.imageContainer}>
                 <Image source={item.image} style={[styles.image,{width,resizeMode :'contain'}]}/>
                 <View style={styles.textContainer}>
-                    <Text style={styles.title}>{item.title}</Text>
-                    <Text style={styles.description}>{item.description}</Text>
+                    <Text style={styles.title}>{t(item.title)}</Text>
+                    <Text style={styles.description}>{t(item.description)}</Text>
                 </View>
             </View>
 

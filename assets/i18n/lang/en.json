@@ -28,6 +28,20 @@
         "LanguageScreen" : {
             "ChooseLangauge" : "Choose your language ",
             "Choose" : "Choose"
+        },
+        "OnBoarding" : {
+            "Title": {
+                "QuickEasy" : "Quick & Easy Transfer",
+                "CancelTransfer" : "Cancel Transfer",
+                "Secure" : "100% Secure",
+                "Privacy" : "Privacy"
+            },
+            "Description" : {
+                "QuickEasy" : "You can transfer your money\n Between 2 different banks in 2 min",
+                "CancelTransfer" : "You have the possibility to cancel your transfer anytime\n And we return your money back",
+                "Secure" : "We provide a highly level of security\n To protect you and your data",
+                "Privacy" : "We don't hold your data\n We encrypt it"
+            }
         }
     }
 }

@@ -23,6 +23,20 @@
             "SignIn":"Connecter",
             "ConnectWith":"Connecter avec",
             "ForgetPassword":"Oublier le mot de passe ?"
+        },
+        "OnBoarding" : {
+            "Title": {
+                "QuickEasy" : "Transfert rapide et facile",
+                "CancelTransfer" : "Annuler le transfert",
+                "Secure" : "100% sécurisé",
+                "Privacy" : "Solitude"
+            },
+            "Description" : {
+                "QuickEasy" : "Vous pouvez transférer votre argent\n Entre 2 banques différentes en 2 min",
+                "CancelTransfer" : "Vous avez la possibilité d'annuler votre transfert à tout moment\n Et nous vous remboursons",
+                "Secure" : "Nous fournissons un haut niveau de sécurité\n Pour vous protéger, vous et vos données",
+                "Privacy" : "Nous ne détenons pas vos données\n Nous les chiffrons"
+            }
         }
     }
 }
