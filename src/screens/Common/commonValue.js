@@ -11,3 +11,8 @@ export const errorSignUp = {
     emailIncorrect : "Your email is incorrect !",
     passwordNotMatch : "Repeat password and password doesn't match !"
 }
+
+export const BANKSDETAILS = {
+    RIB: "Rib",
+    TYPE: "Type",
+}
