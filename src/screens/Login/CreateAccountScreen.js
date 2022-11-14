@@ -7,6 +7,7 @@ import {BackModalScreen} from './Modal/BackModalScreen';
 import {SupportScreen} from "../Common/SupportScreen";
 import {errorSignUp, USERDETAILS} from '../Common/commonValue';
 import {useTranslation} from "react-i18next";
+import {addOrModifyUser} from "../../actions/userSignUpAction";
 
 
 export const CreateAccountScreen = ({navigation}) => {
@@ -77,6 +78,11 @@ export const CreateAccountScreen = ({navigation}) => {
         }
         if(valideEmail(userSignUp.email)){
             setEmailError(false);
+        }
+        if(!emailError && !passwordError){
+            let result = addOrModifyUser(userSignUp)
+            console.log("result" ,result)
+            // if(addOrModifyUser(userSignUp)) navigation.navigate("Login");
         }
     }
 

@@ -1,5 +1,5 @@
 export function addOrModifyCard(card){
-    fetch('http://172.20.10.5:9445/card',{method :'POST', body:JSON.stringify(card)})
+    fetch('http://192.168.11.104:9445/card',{method :'POST', body:JSON.stringify(card)})
         .then((response) => response.json())
         .then((responseJson) => {
             return (
@@ -12,7 +12,7 @@ export function addOrModifyCard(card){
 }
 
 export function deleteCard(rib){
-    fetch('http://172.20.10.5:9445/card',{method :'DELETE', body:{rib:rib}})
+    fetch('http://192.168.11.104:9445/card',{method :'DELETE', body:{rib:rib}})
         .then((response) => response.json())
         .then((responseJson) => {
             return (
