@@ -4,9 +4,11 @@ import Cards from "../Cards/CardsScreen";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {MaterialIcons,Entypo} from "@expo/vector-icons";
 import WalletScreen from "../Wallet/WalletScreen";
+import {useTranslation} from "react-i18next";
 
 export default function BottomTabsScreen() {
     const TabStack = createBottomTabNavigator();
+    const {t} = useTranslation();
 
     const screenOptions = ({route}) => ({
         tabBarIcon: ({focused}) => {
@@ -45,10 +47,10 @@ export default function BottomTabsScreen() {
 
     return (
         <TabStack.Navigator screenOptions = {screenOptions}>
-            <TabStack.Screen name="Home" component={Home} options={{ headerShown: false }}/>
-            <TabStack.Screen name="Cards" component={Cards} options={{ title : "Cards" , headerShown: false }}/>
-            <TabStack.Screen name="Wallet" component={WalletScreen} options={{ title : "Wallet" , headerShown: false }}/>
-            <TabStack.Screen name="Transfer" component={TransferScreen} options={{ title : "Transfer", headerShown: false }}/>
+            <TabStack.Screen name="Home" component={Home} options={{ title : t("Home.Home"), headerShown: false }}/>
+            <TabStack.Screen name="Cards" component={Cards} options={{ title : t("Cards.Cards") , headerShown: false }}/>
+            <TabStack.Screen name="Wallet" component={WalletScreen} options={{ title : t("Wallet.Wallet"), headerShown: false }}/>
+            <TabStack.Screen name="Transfer" component={TransferScreen} options={{ title : t("Transfer.Transfer"), headerShown: false }}/>
 
         </TabStack.Navigator>
     );
