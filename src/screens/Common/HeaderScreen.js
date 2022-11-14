@@ -1,8 +1,10 @@
 import styled from 'styled-components/native';
 import Text from '../../components/Text';
 import {AntDesign} from "@expo/vector-icons";
+import {useTranslation} from "react-i18next";
 
 export default function HeaderScreen({navigation,screenName}) {
+    const {t} = useTranslation();
     const logout = () => {
         navigation.navigate("Login");
     }
@@ -12,7 +14,7 @@ export default function HeaderScreen({navigation,screenName}) {
             <Header>
                 <ProfilePhoto source={require("../../../assets/personLogo.png")}/>
                 <Welcome>
-                    <Text heavy medium>Welcome Khalil</Text>
+                    <Text heavy medium>{t("Commun.Welcome")} Khalil</Text>
                     <Text>{screenName}</Text>
                 </Welcome>
                 <AntDesign name="logout" size={24} color="#565656" onPress={logout}/>

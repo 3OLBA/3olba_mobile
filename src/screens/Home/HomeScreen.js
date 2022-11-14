@@ -4,9 +4,11 @@ import ChartScreen from './ChartScreen';
 import {FontAwesome5,MaterialIcons , AntDesign} from "@expo/vector-icons";
 import TransactionData from "../../../TransactionsData";
 import HeaderScreen from "../Common/HeaderScreen";
+import {useTranslation} from "react-i18next";
 
 export default function HomeScreen({navigation}) {
-    const screenName = "Home";
+    const {t} = useTranslation();
+    const screenName = t("Home.Home");
     const renderTransactions = ({item}) => {
         return (
                 <Purshase>
@@ -30,10 +32,10 @@ export default function HomeScreen({navigation}) {
             <HeaderScreen navigation={navigation} screenName={screenName}/>
 
             <Text center title black>
-                7,500.00 MAD
+                7,500.00 {t("Commun.MAD")}
             </Text>
             <Text center medium color="#727479">
-                Current balance
+                {t("Commun.CurrentBalance")}
             </Text>
 
             <ChartScreen/>
@@ -41,7 +43,7 @@ export default function HomeScreen({navigation}) {
             <Purshases ListHeaderComponent={
                 <>
                     <TransactionsHeader>
-                        <Text>Last Transactions</Text>
+                        <Text>{t("Home.LastTransactions")}</Text>
                         {/*<MaterialIcons name="sort" size={24} color="#5196f4" />*/}
                         <Search placeHolder="Search transaction" />
                         <AntDesign name="search1" size={18} color="#5196f4" />

@@ -8,7 +8,11 @@
             "phoneNumber": "Numéro de téléphone",
             "Submit" : "Soumettre",
             "Support" : "Aider",
-            "ChangeLanguage" : "changer la langue"
+            "ChangeLanguage" : "changer la langue",
+            "CurrentBalance": "Solde actuel",
+            "MAD": "Dh",
+            "Cancel": "Annuler",
+            "Add" : "Ajouter"
         },
         "LanguageScreen" : {
             "ChooseLangauge" : "Choisissez votre langue",
@@ -37,6 +41,28 @@
                 "Secure" : "Nous fournissons un haut niveau de sécurité\n Pour vous protéger, vous et vos données",
                 "Privacy" : "Nous ne détenons pas vos données\n Nous les chiffrons"
             }
+        },
+        "Home": {
+            "Home" : "Accueil",
+            "LastTransactions": "Dernières transactions"
+        },
+        "Cards": {
+            "Cards" : "Cartes",
+            "MyCards" : "Mes cartes",
+            "ListOfCards" : "Liste des cartes",
+            "AddCard": "Ajouter carte"
+        },
+        "Wallet": {
+            "Wallet" : "Portefeuille",
+            "ListOfCoins" : "Liste des pièces"
+        },
+        "Transfer": {
+            "Transfer"  : "Transfert",
+            "Name" : "Nom",
+            "Amount" : "Montant",
+            "IBAN" : "IBAN",
+            "Beneficiary" : "Bénéficiaire",
+            "Send" : "Envoyer"
         }
     }
 }

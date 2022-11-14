@@ -2,9 +2,30 @@ import styled from 'styled-components/native';
 import myCards from '../../../CardsData';
 import HeaderScreen from "../Common/HeaderScreen";
 import RenderCardScreen from "./RenderCardScreen";
+import {useTranslation} from "react-i18next";
+import Text from "../../components/Text";
+import {TouchableOpacity,View,StyleSheet} from 'react-native';
+import {Ionicons} from "@expo/vector-icons";
+import React,{useState} from 'react';
+import {BackModalScreen} from "../Login/Modal/BackModalScreen";
+import {AddCarte} from "../Login/Modal/AddCarte";
 
 export default function CardsScreen({navigation}) {
-    const screenName = "My Cards";
+    const {t} = useTranslation();
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const showModalAndLeave = () => {
+        if(modalVisible){
+            setModalVisible(false);
+            navigation.navigate("Cards");
+        }
+        else if(!modalVisible){
+            setModalVisible(true);
+        }
+    }
+    const hideModalAndStay = () => {
+        setModalVisible(false);
+    }
     const renderCards = ({ item }) => {
         return (
             <RenderCardScreen item={item}/>
@@ -13,12 +34,40 @@ export default function CardsScreen({navigation}) {
 
     return (
         <Container>
-            <HeaderScreen screenName={screenName} navigation={navigation}/>
+            <HeaderScreen screenName={t("Cards.MyCards")} navigation={navigation}/>
+            <View style={styles.HeaderList}>
+                <Text center xlarge heavy>{t("Cards.ListOfCards")}</Text>
+                <TouchableOpacity style={styles.ButtonAdd} onPress={() => setModalVisible(true)}>
+                    <Ionicons name="ios-add-circle" size={24} color="white" />
+                </TouchableOpacity>
+            </View>
             <Cards data={myCards} renderItem={renderCards}/>
+
+            <AddCarte navigation={navigation}
+                             modalVisible={modalVisible}
+                             hideModalAndStay={hideModalAndStay}
+                             showModalAndLeave={showModalAndLeave}/>
+
             <StatusBar barStyle="light-content"/>
         </Container>
     );
 }
+
+const styles = StyleSheet.create({
+    HeaderList :  {
+        flexDirection : "row",
+        justifyContent : "space-between",
+        alignItems : "center",
+        marginLeft : 20,
+        marginRight :20,
+        marginBottom : 15,
+    },
+    ButtonAdd:{
+        backgroundColor : "#3d3d3d",
+        borderRadius : 6,
+        padding : 10,
+    }
+})
 
 const Container = styled.SafeAreaView`
     flex : 1;

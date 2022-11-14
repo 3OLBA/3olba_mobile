@@ -4,12 +4,14 @@ import NumberPad from '../../components/NumberPad';
 import React, {useState} from 'react';
 import HeaderScreen from "../Common/HeaderScreen";
 import { AntDesign , FontAwesome,Ionicons } from '@expo/vector-icons';
+import {useTranslation} from "react-i18next";
 // import { ALERT_TYPE, Dialog, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
 // import {Button} from "react-native";
 // import View from "react-native-web/dist/vendor/react-native/Animated/components/AnimatedView";
 
 export default function TransferScreen({navigation}) {
-    const screenName = "Transfer";
+    const {t} = useTranslation();
+    const screenName = t("Transfer.Transfer");
     const currentAmount = 750000;
     const [amount,setAmount]   = useState("0");
     const [beneficiary,setBeneficiary]   = useState({});
@@ -32,8 +34,8 @@ export default function TransferScreen({navigation}) {
             <HeaderScreen navigation={navigation} screenName={screenName}/>
 
             <Amount>
-                <Text center title heavy>7,500.00 MAD</Text>
-                <Text bold color="#727479">Current balance</Text>
+                <Text center title heavy>7,500.00 {t("Commun.MAD")}</Text>
+                <Text bold color="#727479">{t("Commun.CurrentBalance")}</Text>
             </Amount>
 
             <User>
@@ -41,9 +43,9 @@ export default function TransferScreen({navigation}) {
                     <AntDesign name="user" size={35} color="white" />
                 </ProfileLogo>
                 <UserDetails>
-                    <Text bold heavy>Name : {user.name} </Text>
-                    <Text bold heavy>Amount : {convertToMAD(user.amount)}</Text>
-                    <Text bold heavy color="#727479">IBAN : {user.iban} </Text>
+                    <Text bold heavy>{t("Transfer.Name")} : {user.name} </Text>
+                    <Text bold heavy>{t("Transfer.Amount")} : {convertToMAD(user.amount)}</Text>
+                    <Text bold heavy color="#727479">{t("Transfer.IBAN")} : {user.iban} </Text>
                 </UserDetails>
             </User>
 
@@ -51,13 +53,13 @@ export default function TransferScreen({navigation}) {
                 <BeneficiaryButton>
                     <Ionicons name="add-circle-outline" size={20} color="white" />
                     <SendButtonText>
-                        <Text bold heavy>Beneficiary</Text>
+                        <Text bold heavy>{t("Transfer.Beneficiary")}</Text>
                     </SendButtonText>
                 </BeneficiaryButton>
                 <SendButton>
                     <FontAwesome name="send-o" size={20} color="white" />
                     <SendButtonText>
-                        <Text bold heavy>Send </Text>
+                        <Text bold heavy>{t("Transfer.Send")} </Text>
                     </SendButtonText>
                 </SendButton>
             </ButtonsTransfer>

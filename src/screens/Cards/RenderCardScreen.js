@@ -11,7 +11,7 @@ export default function RenderCardScreen({item}) {
                     <CardLogo source={item.logo} resizeMode="contain"/>
                 </CardLogoContainer>
                 <CardDetails>
-                    <Text medium black large >{item.iban}</Text>
+                    <Text medium black large>{item.iban}</Text>
                     <Text heavy color="#727479">{item.bank}</Text>
                     <Text heavy color="#727479">{item.date}</Text>
                 </CardDetails>

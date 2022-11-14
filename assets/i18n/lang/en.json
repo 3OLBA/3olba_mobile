@@ -8,7 +8,12 @@
             "phoneNumber": "Phone number",
             "Submit" : "Submit",
             "Support" : "Support",
-            "ChangeLanguage" : "Change language"
+            "ChangeLanguage" : "Change language",
+            "Welcome" : "Welcome",
+            "CurrentBalance": "Current balance",
+            "MAD": "MAD",
+            "Cancel": "Cancel",
+            "Add" : "Add"
         },
         "LoginScreen": {
             "CreateNewAccount":"Create new account ?",
@@ -42,6 +47,28 @@
                 "Secure" : "We provide a highly level of security\n To protect you and your data",
                 "Privacy" : "We don't hold your data\n We encrypt it"
             }
+        },
+        "Home": {
+            "Home" : "Home",
+            "LastTransactions": "Last Transactions"
+        },
+        "Cards": {
+            "Cards" : "Cards",
+            "MyCards" : "My Cards",
+            "ListOfCards" : "List of cards",
+            "AddCard": "Add Card"
+        },
+        "Wallet": {
+            "Wallet" : "Wallet",
+            "ListOfCoins" : "List of coins"
+        },
+        "Transfer": {
+            "Transfer"  : "Transfer",
+            "Name" : "Name",
+            "Amount" : "Amount",
+            "IBAN" : "IBAN",
+            "Beneficiary" : "Beneficiary",
+            "Send" : "Send"
         }
     }
 }

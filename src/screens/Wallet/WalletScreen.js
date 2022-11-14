@@ -4,9 +4,11 @@ import HeaderScreen from "../Common/HeaderScreen";
 import Coin from "./RenderCoinScreen";
 import Text from "../../components/Text";
 import { Ionicons } from '@expo/vector-icons';
+import {useTranslation} from "react-i18next";
 
 export default function WalletScreen({navigation}) {
-    const screenName = "Wallet";
+    const {t} = useTranslation();
+    const screenName = t("Wallet.Wallet");
     const renderCoins = ({ item }) => {
         return (
             <Coin item={item}/>
@@ -19,7 +21,7 @@ export default function WalletScreen({navigation}) {
 
             <CustomPrice>
                 <Title>
-                    <Text center xlarge heavy>List of coins </Text>
+                    <Text center xlarge heavy>{t("Wallet.ListOfCoins")} </Text>
                 </Title>
                 <AddPrice>
                     <Ionicons name="ios-add-circle" size={24} color="white" />
@@ -51,11 +53,13 @@ const CustomPrice = styled.View`
     flex-direction : row;
     justify-content : space-between;
     align-items : center;
+    margin-left : 10px;
+    margin-right : 10px;
 `;
 
 const AddPrice = styled.TouchableOpacity`
     background-color : #3d3d3d;
-    padding : 8px 16px;
+    padding : 10px;
     border-radius : 6px; 
     margin-left : 10px;
     margin-right : 10px;

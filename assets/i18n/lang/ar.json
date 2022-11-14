@@ -8,7 +8,11 @@
             "phoneNumber": "رقم الهاتف",
             "Submit" : "نفذ",
             "Support" : "مساعد",
-            "ChangeLanguage" : "تغيير اللغة"
+            "ChangeLanguage" : "تغيير اللغة",
+            "CurrentBalance": "الرصيد الحالي",
+            "MAD": "درهم",
+            "Cancel": "إلغاء",
+            "Add" : "إضافة"
         },
         "LoginScreen": {
             "CreateNewAccount": "انشاء حساب جديد",
@@ -37,6 +41,28 @@
                 "Secure" : "نحن نقدم مستوى عاليًا من الأمان لحمايتك وحماية بياناتك",
                 "Privacy" : "لا نحتفظ ببياناتك نقوم بتشفيرها"
             }
+        },
+        "Home": {
+            "Home" : "الرئيسية",
+            "LastTransactions": "آخر المعاملات"
+        },
+        "Cards": {
+            "Cards" : "البطاقات",
+            "MyCards" : "بطاقاتي",
+            "ListOfCards" : "قائمةالبطاقات",
+            "AddCard": "إضافة بطاقة"
+        },
+        "Wallet": {
+            "Wallet" : "محفظة",
+            "ListOfCoins" : "قائمة القطع النقدية"
+        },
+        "Transfer": {
+            "Transfer"  : "تحويل",
+            "Name" : "اسم",
+            "Amount" : "مبلغ",
+            "IBAN" : "رقم الحساب",
+            "Beneficiary" : "المستفيد",
+            "Send" : "إرسال"
         }
     }
 }

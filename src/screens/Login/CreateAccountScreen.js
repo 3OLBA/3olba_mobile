@@ -100,8 +100,7 @@ export const CreateAccountScreen = ({navigation}) => {
                 />
             </View>
             <View style={styles.footer}>
-                <Text style={styles.text_footer} xlarge color="black">{t("Commun.phoneNumber")}
-                </Text>
+                <Text style={styles.text_footer} xlarge color="black">{t("Commun.phoneNumber")}</Text>
                 <View style={styles.action}>
                     <FontAwesome name="phone" color="#05375a" size={25}/>
                     <TextInput style={styles.textInput}
