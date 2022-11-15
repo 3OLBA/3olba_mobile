@@ -23,7 +23,7 @@
             "createdYourAccount" : "لقد نجحت في إنشاء حسابك"
         },
         "StartScreen": {
-            "AlreadyClient":"زبون مسبق",
+            "AlreadyClient":"مستخدم",
             "GetStarted":"البدء"
         },
         "LanguageScreen": {
