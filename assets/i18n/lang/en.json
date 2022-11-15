@@ -13,13 +13,15 @@
             "CurrentBalance": "Current balance",
             "MAD": "MAD",
             "Cancel": "Cancel",
-            "Add" : "Add"
+            "Add" : "Add",
+            "Continue":"Continue"
         },
         "LoginScreen": {
             "CreateNewAccount":"Create new account ?",
             "SignIn":"Sign In",
             "ConnectWith":"Connect with",
-            "ForgetPassword":"Forget password ?"
+            "ForgetPassword":"Forget password ?",
+            "createdYourAccount" : "You have successfully created your account"
         },
         "SignUpScreen": {
             "SignUp":"Sign Up",

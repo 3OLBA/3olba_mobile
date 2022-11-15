@@ -12,7 +12,8 @@
             "CurrentBalance": "Solde actuel",
             "MAD": "Dh",
             "Cancel": "Annuler",
-            "Add" : "Ajouter"
+            "Add" : "Ajouter",
+            "Continue":"Continuer"
         },
         "LanguageScreen" : {
             "ChooseLangauge" : "Choisissez votre langue",
@@ -26,7 +27,8 @@
             "CreateNewAccount":"Créer un nouveau compte",
             "SignIn":"Connecter",
             "ConnectWith":"Connecter avec",
-            "ForgetPassword":"Oublier le mot de passe ?"
+            "ForgetPassword":"Oublier le mot de passe ?",
+            "createdYourAccount" : "Vous avez créé votre compte avec succès"
         },
         "OnBoarding" : {
             "Title": {

@@ -7,7 +7,8 @@ import {BackModalScreen} from './Modal/BackModalScreen';
 import {SupportScreen} from "../Common/SupportScreen";
 import {errorSignUp, USERDETAILS} from '../Common/commonValue';
 import {useTranslation} from "react-i18next";
-import {addOrModifyUser} from "../../actions/userSignUpAction";
+import {addOrModifyUse} from "../../actions/userSignUpAction";
+import {SubmitModal} from "./Modal/SubmitModal";
 
 
 export const CreateAccountScreen = ({navigation}) => {
@@ -17,13 +18,15 @@ export const CreateAccountScreen = ({navigation}) => {
         repeartPassword : "",
         phoneNumber :"",
     });
-    const [phoneNumberError,setPhoneNUmberError] = useState(false);
+    const [phoneNumberError,setPhoneNumberError] = useState(false);
     const [emailError,setEmailError] = useState(false);
     const [passwordError,setPasswordError] = useState(false);
     const [eyeOn, setEyeOn] = useState(false);
     const [isText, setIsText] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
+    const [success, setSuccess] = useState(false);
     const {t} = useTranslation();
+    const [showModalSubmit,setShowModalSubmit] = useState(false);
 
 
     const showAndHidePassword = () => {
@@ -65,35 +68,34 @@ export const CreateAccountScreen = ({navigation}) => {
     const hideModalAndStay = () => {
         setModalVisible(false);
     }
+
     const submit = () => {
         console.log("user",userSignUp);
-        if(!validePhoneNumber(userSignUp.phoneNumber)){
-            setPhoneNUmberError(true);
-        }
-        if(validePhoneNumber(userSignUp.phoneNumber)){
-            setPhoneNUmberError(false);
-        }
-        if(!valideEmail(userSignUp.email)){
-            setEmailError(true);
-        }
-        if(valideEmail(userSignUp.email)){
-            setEmailError(false);
-        }
-        if(!emailError && !passwordError){
-            let result = addOrModifyUser(userSignUp)
-            console.log("result" ,result)
-            // if(addOrModifyUser(userSignUp)) navigation.navigate("Login");
+        let isPhoneNumber = validPhoneNumber(userSignUp.phoneNumber);
+        let isValidEmail = validEmail(userSignUp.email);
+        setPhoneNumberError(validPhoneNumber);
+        setEmailError(validEmail);
+        console.log("isValidEmail =>",isValidEmail);
+        console.log("isValidPhoneNumber =>",isPhoneNumber);
+        if(isValidEmail && isPhoneNumber){
+            addOrModifyUse(userSignUp).then(data => {
+                console.log("result",data?.success)
+                setSuccess(data?.success);
+            });
         }
     }
 
-    const validePhoneNumber = (phoneNumber) => {
+    const hideModalSubmitAndLeave = () => {
+        setSuccess(false);
+        navigation.navigate("VerifyAccount")
+    }
+
+    const validPhoneNumber = (phoneNumber) => {
         const regex = /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/i;
-        console.log(regex.test(phoneNumber));
         return regex.test(phoneNumber);
     }
-    const valideEmail = (email) => {
-        console.log(email.includes("@"))
-        return email.includes("@");
+    const validEmail = (email) => {
+        return email?.toString().includes("@");
     }
 
 
@@ -162,21 +164,23 @@ export const CreateAccountScreen = ({navigation}) => {
                         </Text>
                     </TouchableOpacity>
 
-                    <LinearGradient colors={["#1c3f60","#5085b4"]}
-                        style={styles.signIn}>
-                        <Text style={[styles.textSign,{color:"#fff"}]} onPress={()=> submit()}>
+                    <TouchableOpacity style={[styles.signIn,{backgroundColor : "#1c3f60"}]} onPress={()=> submit()}>
+                        <Text style={[styles.textSign,{color:"#fff"}]}>
                             {t('Commun.Submit')}
                         </Text>
-                    </LinearGradient>
+                    </TouchableOpacity>
 
                 </View>
 
                 <SupportScreen navigation={navigation}/>
 
-                <BackModalScreen navigation={navigation}
-                                 modalVisible={modalVisible}
+                <BackModalScreen modalVisible={modalVisible}
                                  hideModalAndStay={hideModalAndStay}
                                  showModalAndLeave={showModalAndLeave}/>
+
+                <SubmitModal success = {success}
+                              hideModalSubmitAndLeave = {hideModalSubmitAndLeave}
+                />
             </View>
 
         </SafeAreaView>

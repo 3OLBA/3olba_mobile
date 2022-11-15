@@ -12,13 +12,15 @@
             "CurrentBalance": "الرصيد الحالي",
             "MAD": "درهم",
             "Cancel": "إلغاء",
-            "Add" : "إضافة"
+            "Add" : "إضافة",
+            "Continue":"استمر"
         },
         "LoginScreen": {
             "CreateNewAccount": "انشاء حساب جديد",
             "SignIn": "الاتصال",
             "ConnectWith": "متصل مع",
-            "ForgetPassword": "هل نسيت كلمة السر؟"
+            "ForgetPassword": "هل نسيت كلمة السر؟",
+            "createdYourAccount" : "لقد نجحت في إنشاء حسابك"
         },
         "StartScreen": {
             "AlreadyClient":"زبون مسبق",

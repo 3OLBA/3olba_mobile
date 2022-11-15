@@ -9,6 +9,7 @@ import {LoginScreen} from "./src/screens/Login/LoginScreen";
 import {ForgetPasswordScreen} from "./src/screens/Login/ForgetPasswordScreen";
 import {CreateAccountScreen} from "./src/screens/Login/CreateAccountScreen";
 import LanguageScreen from "./src/screens/Login/LanguageScreen";
+import {VerifyAccountScreen} from "./src/screens/Login/VerifyAccountScreen";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -47,6 +48,7 @@ export default function App() {
                     <AppStack.Screen name="Start" component={TouchScreen} options={{ headerShown: false }}/>
                     <AppStack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
                     <AppStack.Screen name="ForgetPassword" component={ForgetPasswordScreen} options={{ headerShown: false }}/>
+                    <AppStack.Screen name="VerifyAccount" component={VerifyAccountScreen} options={{ headerShown: false }}/>
                     <AppStack.Screen name="CreateAccount" component={CreateAccountScreen} options={{ headerShown: false }}/>
                     <AppStack.Screen name="OnBoarding" component={OnBoardingScreen} options={{ headerShown: false }}/>
                     <AppStack.Screen name="Bottom" component={BottomTabsScreen} options={{ headerShown: false }}/>
