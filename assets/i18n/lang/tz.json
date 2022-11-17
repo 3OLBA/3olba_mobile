@@ -21,7 +21,8 @@
             "SignIn": "الاتصال",
             "ConnectWith": "متصل مع",
             "ForgetPassword": "هل نسيت كلمة السر؟",
-            "createdYourAccount" : "You have successfully created your account"
+            "createdYourAccountSuccessfully" : "You have successfully created your account",
+            "createdYourAccountUnsuccessfully" : "Creation of your account failed, try again please"
         },
         "StartScreen": {
             "AlreadyClient":"ⴰⵎⴷⴰⵏ",

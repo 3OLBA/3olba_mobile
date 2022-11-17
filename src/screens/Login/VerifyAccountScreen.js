@@ -32,20 +32,21 @@ export const VerifyAccountScreen = ({route,navigation}) => {
         console.log("code : " +code)
         userVerification(email, code).then(response => {
             console.log(response);
+            setShowModalVerification(true);
             if(response?.success){
                 setCodeCorrect(true);
-                setShowModalVerification(true);
             }
             else{
-                setCodeCorrect(true);
+                setCodeCorrect(false);
             }
         });
     }
 
     const hideModalVerificationAndLeave = () => {
-        if(showModalVerification){
+        if(codeCorrect){
             navigation.navigate("Bottom");
         }
+        setCodeCorrect(false);
         setShowModalVerification(false);
     }
 

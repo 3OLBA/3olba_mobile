@@ -21,7 +21,8 @@
             "SignIn": "الاتصال",
             "ConnectWith": "متصل مع",
             "ForgetPassword": "هل نسيت كلمة السر؟",
-            "createdYourAccount" : "لقد نجحت في إنشاء حسابك"
+            "createdYourAccountSuccessfully" : "لقد نجحت في إنشاء حسابك",
+            "createdYourAccountUnsuccessfully" : "يرجى التحقق من المعلومات الخاصة بك"
         },
         "StartScreen": {
             "AlreadyClient":"مستخدم",

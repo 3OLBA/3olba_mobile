@@ -23,7 +23,7 @@
             "ConnectWith":"Connect with",
             "ForgetPassword":"Forget password ?",
             "createdYourAccountSuccessfully" : "You have successfully created your account",
-            "createdYourAccountUnsuccessfully" : "Creation of your account failed, try again please"
+            "createdYourAccountUnsuccessfully" : "Please check your information"
         },
         "SignUpScreen": {
             "SignUp":"Sign Up",
@@ -77,7 +77,7 @@
         "VerificationScreen": {
             "Verification": "Your verification code",
             "VerifyYourAccountSuccess" : "You have successfully verify your account",
-            "VerifyYourAccountUnseccess" : "You have entered an incorrect code"
+            "VerifyYourAccountUnsuccess" : "You have entered an incorrect code"
         }
     }
 }

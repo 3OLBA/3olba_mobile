@@ -29,7 +29,8 @@
             "SignIn":"Connecter",
             "ConnectWith":"Connecter avec",
             "ForgetPassword":"Oublier le mot de passe ?",
-            "createdYourAccount" : "Vous avez créé votre compte avec succès"
+            "createdYourAccountSuccessfully" : "Vous avez créé votre compte avec succès",
+            "createdYourAccountUnsuccessfully" : "Merci de revérifier vos informations"
         },
         "OnBoarding" : {
             "Title": {

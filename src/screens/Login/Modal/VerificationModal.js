@@ -12,7 +12,7 @@ export const VerificationModal = ({success,showModalVerification,hideModalVerifi
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
                         <Text style={success ? styles.modalTextSuccess : styles.modalTextUnsuccess}>
-                            { success ? t("LoginScreen.VerifyYourAccountSuccess") : t("LoginScreen.VerifyYourAccountUnseccess")}</Text>
+                            { success ? t("VerificationScreen.VerifyYourAccountSuccess") : t("VerificationScreen.VerifyYourAccountUnsuccess")}</Text>
                         <View style={styles.buttons}>
 
                             <TouchableOpacity style={[styles.buttonCancel]}
