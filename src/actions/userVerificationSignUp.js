@@ -8,7 +8,7 @@ export async function userVerification(email,code) {
             Accept: 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(user)
+        body: JSON.stringify({email:email,code:code})
     };
     const response = await fetch(BASEURL+'/user/verification', requestOptions)
         .catch((error) => {

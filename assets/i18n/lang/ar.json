@@ -68,7 +68,9 @@
             "Send" : "إرسال"
         },
         "VerificationScreen": {
-            "Verification": "رمز التحقق"
+            "Verification": "رمز التحقق",
+            "VerifyYourAccountSuccess" : "التحقق من حسابك تم بنجاح",
+            "VerifyYourAccountUnsuccess" : "لقد أدخلت رمز غير صحيح"
         }
     }
 }

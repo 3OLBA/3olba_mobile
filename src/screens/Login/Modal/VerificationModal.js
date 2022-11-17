@@ -2,21 +2,21 @@ import React from 'react';
 import {View, StyleSheet, TouchableOpacity, Modal,Text} from 'react-native';
 import {useTranslation} from "react-i18next";
 
-export const SubmitModal = ({success,hideModalSubmitAndLeave}) => {
+export const VerificationModal = ({success,showModalVerification,hideModalVerificationAndLeave}) => {
     const {t} = useTranslation();
     return (
             <Modal animationType="slide"
                 transparent={true}
-                visible={success}
+                visible={showModalVerification}
             >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Text style={success ? styles.modalTextSuccess : styles.modalTextUnsucces}>
-                            { success ? t("LoginScreen.createdYourAccountSuccessfully") : t("LoginScreen.createdYourAccountUnsuccessfully")}</Text>
+                        <Text style={success ? styles.modalTextSuccess : styles.modalTextUnsuccess}>
+                            { success ? t("LoginScreen.VerifyYourAccountSuccess") : t("LoginScreen.VerifyYourAccountUnseccess")}</Text>
                         <View style={styles.buttons}>
 
                             <TouchableOpacity style={[styles.buttonCancel]}
-                                onPress={() => hideModalSubmitAndLeave()}>
+                                onPress={() => hideModalVerificationAndLeave()}>
                                 <Text style={[styles.textStyle,{color: "#1c3f60"}]}>{success ? t("Commun.Continue") : t("Commun.Back")}</Text>
                             </TouchableOpacity>
 
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         textAlign: "center"
     },
-    modalTextUnsucces: {
+    modalTextUnsuccess: {
         color:"#b40707",
         fontWeight:"bold",
         marginBottom: 15,

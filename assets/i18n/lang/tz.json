@@ -68,7 +68,9 @@
             "Send" : "Send"
         },
         "VerificationScreen": {
-            "Verification": "Your verification code"
+            "Verification": "Your verification code",
+            "VerifyYourAccountSuccess" : "You have successfully verify your account",
+            "VerifyYourAccountUnseccess" : "You have entered an incorrect code"
         }
     }
 }

@@ -2,11 +2,11 @@ import React,{useState} from 'react';
 import {View, StyleSheet, Image, SafeAreaView, TextInput, TouchableOpacity, Platform} from 'react-native';
 import Text from '../../components/Text';
 import {Feather, FontAwesome, MaterialIcons,AntDesign} from '@expo/vector-icons';
-import {LinearGradient} from "expo-linear-gradient";
-import { SocialIcon } from 'react-native-elements'
 import {SupportScreen} from "../Common/SupportScreen";
 import {useTranslation} from "react-i18next";
 import {userVerification} from "../../actions/userVerificationSignUp";
+import {SubmitModal} from "./Modal/SubmitModal";
+import {VerificationModal} from "./Modal/VerificationModal";
 
 export const VerifyAccountScreen = ({route,navigation}) => {
     const [eyeOn, setEyeOn] = useState(false);
@@ -14,6 +14,8 @@ export const VerifyAccountScreen = ({route,navigation}) => {
     const [code,setCode] = useState("");
      const {t} = useTranslation();
     const { email } = route.params;
+    const [codeCorrect,setCodeCorrect] = useState(false);
+    const [showModalVerification,setShowModalVerification] = useState(false);
 
 
     const showAndHideCheckText = (text) => {
@@ -25,7 +27,26 @@ export const VerifyAccountScreen = ({route,navigation}) => {
     }
 
     const submit = () => {
-        userVerification(email,code);
+        console.log("Submit verification code")
+        console.log("email : " +email)
+        console.log("code : " +code)
+        userVerification(email, code).then(response => {
+            console.log(response);
+            if(response?.success){
+                setCodeCorrect(true);
+                setShowModalVerification(true);
+            }
+            else{
+                setCodeCorrect(true);
+            }
+        });
+    }
+
+    const hideModalVerificationAndLeave = () => {
+        if(showModalVerification){
+            navigation.navigate("Bottom");
+        }
+        setShowModalVerification(false);
     }
 
     return (
@@ -57,7 +78,7 @@ export const VerifyAccountScreen = ({route,navigation}) => {
                     </TouchableOpacity>
 
                     <TouchableOpacity style={[styles.signIn,{backgroundColor:"#1c3f60"}]}
-                                      onPress={() => submit }>
+                                      onPress={() => submit()}>
                         <Text style={[styles.textSign,{color:"#fff"}]}>
                             {t("Commun.Submit")}
                         </Text>
@@ -66,6 +87,9 @@ export const VerifyAccountScreen = ({route,navigation}) => {
                 </View>
 
                 <SupportScreen navigation={navigation}/>
+
+                <VerificationModal success={codeCorrect} showModalVerification={showModalVerification}
+                                   hideModalVerificationAndLeave={hideModalVerificationAndLeave}/>
 
             </View>
 

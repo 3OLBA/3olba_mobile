@@ -80,14 +80,21 @@ export const CreateAccountScreen = ({navigation}) => {
         if(isValidEmail && isPhoneNumber){
             addOrModifyUse(userSignUp).then(data => {
                 console.log("result",data?.success)
-                setSuccess(data?.success);
+                if(data?.success){
+                    setSuccess(data?.success);
+                }
+                else{
+                    setSuccess(false)
+                }
             });
         }
     }
 
     const hideModalSubmitAndLeave = () => {
+        if(success){
+            navigation.navigate("VerifyAccount",{email:userSignUp.email})
+        }
         setSuccess(false);
-        navigation.navigate("VerifyAccount",{email:userSignUp.email})
     }
 
     const validPhoneNumber = (phoneNumber) => {
