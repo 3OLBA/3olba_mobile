@@ -6,17 +6,26 @@ import {LinearGradient} from "expo-linear-gradient";
 import { SocialIcon } from 'react-native-elements'
 import {SupportScreen} from "../Common/SupportScreen";
 import {useTranslation} from "react-i18next";
+import {userVerification} from "../../actions/userVerificationSignUp";
 
-export const VerifyAccountScreen = ({navigation}) => {
-    const [login, setLogin] = useState("You email or username");
+export const VerifyAccountScreen = ({route,navigation}) => {
     const [eyeOn, setEyeOn] = useState(false);
     const [isText, setIsText] = useState(false);
-    const {t} = useTranslation();
+    const [code,setCode] = useState("");
+     const {t} = useTranslation();
+    const { email } = route.params;
 
 
     const showAndHideCheckText = (text) => {
-        if(text.length >= 8) setIsText(true);
-        else if(text.length < 8) setIsText(false);
+        if(text.length >= 6) {
+            setIsText(true);
+            setCode(text);
+        }
+        else if(text.length < 6) setIsText(false);
+    }
+
+    const submit = () => {
+        userVerification(email,code);
     }
 
     return (
@@ -29,13 +38,13 @@ export const VerifyAccountScreen = ({navigation}) => {
             </View>
             <View style={styles.footer}>
                 {/*<Text style={[styles.text_footer,{marginBottom:30}]} center title black color="black">Welcome in 3OLBA</Text>*/}
-                <Text style={styles.text_footer} xlarge color="black">{t("Commun.Email")}
+                <Text style={styles.text_footer} xlarge color="black">{t("Commun.VerificationCode")}
                 </Text>
                 <View style={styles.action}>
-                    <FontAwesome name="user-o" color="#05375a" size={25}/>
+                    <MaterialIcons name="verified-user" size={25} color="#05375a" />
                     <TextInput style={styles.textInput}
                                onChangeText={input => showAndHideCheckText(input)}
-                               placeholder="Your email or username"
+                               placeholder={t('VerificationScreen.Verification')}
                                autoCapitalize="none"/>
                     <Feather name="check-circle" color={!isText ? "#4e4c4c" : "#1bc707"} size={22}/>
                 </View>
@@ -47,12 +56,12 @@ export const VerifyAccountScreen = ({navigation}) => {
                         </Text>
                     </TouchableOpacity>
 
-                    <LinearGradient colors={["#1c3f60","#5085b4"]}
-                        style={styles.signIn}>
+                    <TouchableOpacity style={[styles.signIn,{backgroundColor:"#1c3f60"}]}
+                                      onPress={() => submit }>
                         <Text style={[styles.textSign,{color:"#fff"}]}>
                             {t("Commun.Submit")}
                         </Text>
-                    </LinearGradient>
+                    </TouchableOpacity>
 
                 </View>
 

@@ -87,7 +87,7 @@ export const CreateAccountScreen = ({navigation}) => {
 
     const hideModalSubmitAndLeave = () => {
         setSuccess(false);
-        navigation.navigate("VerifyAccount")
+        navigation.navigate("VerifyAccount",{email:userSignUp.email})
     }
 
     const validPhoneNumber = (phoneNumber) => {

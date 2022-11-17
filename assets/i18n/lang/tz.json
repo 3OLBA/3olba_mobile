@@ -13,7 +13,8 @@
             "MAD": "MAD",
             "Cancel": "Cancel",
             "Add" : "Add",
-            "Continue":"Continue"
+            "Continue":"Continue",
+            "VerificationCode":"Verification code"
         },
         "LoginScreen": {
             "CreateNewAccount": "انشاء حساب جديد",
@@ -65,6 +66,9 @@
             "IBAN" : "IBAN",
             "Beneficiary" : "Beneficiary",
             "Send" : "Send"
+        },
+        "VerificationScreen": {
+            "Verification": "Your verification code"
         }
     }
 }
