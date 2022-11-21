@@ -2,22 +2,31 @@ import React from 'react';
 import {View, StyleSheet, TouchableOpacity, Modal,Text} from 'react-native';
 import {useTranslation} from "react-i18next";
 
-export const SubmitModal = ({success,hideModalSubmitAndLeave}) => {
+export const SubmitModal = ({success,failed,hideModalSubmitAndLeave}) => {
     const {t} = useTranslation();
+    console.log("failed : ",failed)
+    console.log("success : ",success)
     return (
             <Modal animationType="slide"
                 transparent={true}
-                visible={success}
+                visible={success || failed}
             >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Text style={success ? styles.modalTextSuccess : styles.modalTextUnsucces}>
-                            { success ? t("LoginScreen.createdYourAccountSuccessfully") : t("LoginScreen.createdYourAccountUnsuccessfully")}</Text>
+                        {success && <Text style={styles.modalTextSuccess}>
+                            {t("LoginScreen.createdYourAccountSuccessfully")}
+                        </Text>}
+
+                        { failed && <Text style={styles.modalTextUnsucces}>
+                            {t("LoginScreen.createdYourAccountUnsuccessfully")}
+                        </Text>}
+
                         <View style={styles.buttons}>
 
                             <TouchableOpacity style={[styles.buttonCancel]}
                                 onPress={() => hideModalSubmitAndLeave()}>
-                                <Text style={[styles.textStyle,{color: "#1c3f60"}]}>{success ? t("Commun.Continue") : t("Commun.Back")}</Text>
+                                { success && <Text style={[styles.textStyle,{color: "#1c3f60"}]}>{t("Commun.Continue")}</Text> }
+                                { failed && <Text style={[styles.textStyle,{color: "#1c3f60"}]}>{t("Commun.Back")}</Text> }
                             </TouchableOpacity>
 
                         </View>

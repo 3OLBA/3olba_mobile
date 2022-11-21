@@ -17,7 +17,7 @@
             "VerificationCode":"Code de vérification"
         },
         "LanguageScreen" : {
-            "ChooseLangauge" : "Choisissez votre langue",
+            "ChooseLanguage" : "Choisissez votre langue",
             "Choose" : "Choisir"
         },
         "StartScreen": {

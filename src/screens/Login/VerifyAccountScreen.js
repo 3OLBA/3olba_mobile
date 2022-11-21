@@ -7,11 +7,13 @@ import {useTranslation} from "react-i18next";
 import {userVerification} from "../../actions/userVerificationSignUp";
 import {SubmitModal} from "./Modal/SubmitModal";
 import {VerificationModal} from "./Modal/VerificationModal";
+import {Loading} from "./Modal/Loading";
 
 export const VerifyAccountScreen = ({route,navigation}) => {
     const [eyeOn, setEyeOn] = useState(false);
     const [isText, setIsText] = useState(false);
     const [code,setCode] = useState("");
+    const [loading,setLoading] = useState(false);
      const {t} = useTranslation();
     const { email } = route.params;
     const [codeCorrect,setCodeCorrect] = useState(false);
@@ -31,13 +33,16 @@ export const VerifyAccountScreen = ({route,navigation}) => {
         console.log("email : " +email)
         console.log("code : " +code)
         userVerification(email, code).then(response => {
+            setLoading(true);
             console.log(response);
             setShowModalVerification(true);
             if(response?.success){
                 setCodeCorrect(true);
+                setLoading(false);
             }
             else{
                 setCodeCorrect(false);
+                setLoading(false);
             }
         });
     }
@@ -91,6 +96,8 @@ export const VerifyAccountScreen = ({route,navigation}) => {
 
                 <VerificationModal success={codeCorrect} showModalVerification={showModalVerification}
                                    hideModalVerificationAndLeave={hideModalVerificationAndLeave}/>
+
+                <Loading loading={loading} />
 
             </View>
 

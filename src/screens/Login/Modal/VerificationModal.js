@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity, Modal,Text} from 'react-native';
 import {useTranslation} from "react-i18next";
+import {Loading} from "./Loading";
 
 export const VerificationModal = ({success,showModalVerification,hideModalVerificationAndLeave}) => {
     const {t} = useTranslation();
@@ -19,7 +20,6 @@ export const VerificationModal = ({success,showModalVerification,hideModalVerifi
                                 onPress={() => hideModalVerificationAndLeave()}>
                                 <Text style={[styles.textStyle,{color: "#1c3f60"}]}>{success ? t("Commun.Continue") : t("Commun.Back")}</Text>
                             </TouchableOpacity>
-
                         </View>
                     </View>
                 </View>

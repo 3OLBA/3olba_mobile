@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import {View, StyleSheet, Image, SafeAreaView, TextInput, TouchableOpacity, Platform, KeyboardType} from 'react-native';
+import {View, StyleSheet, Image, SafeAreaView, TextInput, TouchableOpacity, Platform, ActivityIndicator,Alert} from 'react-native';
 import Text from '../../components/Text';
 import {Feather, FontAwesome, MaterialIcons,AntDesign} from '@expo/vector-icons';
 import {LinearGradient} from "expo-linear-gradient";
@@ -9,6 +9,7 @@ import {errorSignUp, USERDETAILS} from '../Common/commonValue';
 import {useTranslation} from "react-i18next";
 import {addOrModifyUse} from "../../actions/userSignUpAction";
 import {SubmitModal} from "./Modal/SubmitModal";
+import {Loading} from "./Modal/Loading";
 
 
 export const CreateAccountScreen = ({navigation}) => {
@@ -25,6 +26,8 @@ export const CreateAccountScreen = ({navigation}) => {
     const [isText, setIsText] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
     const [success, setSuccess] = useState(false);
+    const [failed, setFailed] = useState(false);
+    const [loading, setLoading] = useState(false);
     const {t} = useTranslation();
     const [showModalSubmit,setShowModalSubmit] = useState(false);
 
@@ -78,13 +81,18 @@ export const CreateAccountScreen = ({navigation}) => {
         console.log("isValidEmail =>",isValidEmail);
         console.log("isValidPhoneNumber =>",isPhoneNumber);
         if(isValidEmail && isPhoneNumber){
+            setLoading(true);
             addOrModifyUse(userSignUp).then(data => {
                 console.log("result",data?.success)
                 if(data?.success){
                     setSuccess(data?.success);
+                    setLoading(false);
+                    setFailed(false);
                 }
-                else{
-                    setSuccess(false)
+                if(!data?.success){
+                    setFailed(true);
+                    console.log("faileeeed")
+                    setLoading(false);
                 }
             });
         }
@@ -185,9 +193,10 @@ export const CreateAccountScreen = ({navigation}) => {
                                  hideModalAndStay={hideModalAndStay}
                                  showModalAndLeave={showModalAndLeave}/>
 
-                <SubmitModal success = {success}
-                              hideModalSubmitAndLeave = {hideModalSubmitAndLeave}
-                />
+                <SubmitModal success={success} failed={failed}
+                              hideModalSubmitAndLeave = {hideModalSubmitAndLeave}/>
+
+                <Loading loading = {loading}/>
             </View>
 
         </SafeAreaView>
