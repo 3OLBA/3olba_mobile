@@ -5,6 +5,7 @@
             "Back":"Retour",
             "Email":"Boîte e-mail",
             "Password":"Mot de passe",
+            "RepeatPassword":"Répéter le mot de passe",
             "phoneNumber": "Numéro de téléphone",
             "Submit" : "Soumettre",
             "Support" : "Aider",

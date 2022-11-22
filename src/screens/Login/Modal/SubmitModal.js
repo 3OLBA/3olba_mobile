@@ -1,23 +1,23 @@
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity, Modal,Text} from 'react-native';
 import {useTranslation} from "react-i18next";
+import {ModalStatus} from "../../Common/commonValue";
 
-export const SubmitModal = ({success,failed,hideModalSubmitAndLeave}) => {
+export const SubmitModal = ({status,hideModalSubmitAndLeave}) => {
     const {t} = useTranslation();
-    console.log("failed : ",failed)
-    console.log("success : ",success)
+    console.log("status",status);
     return (
             <Modal animationType="slide"
                 transparent={true}
-                visible={success || failed}
+                visible={status === ModalStatus.SUCCESS || status === ModalStatus.FAILED}
             >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        {success && <Text style={styles.modalTextSuccess}>
+                        {status === ModalStatus.SUCCESS && <Text style={styles.modalTextSuccess}>
                             {t("LoginScreen.createdYourAccountSuccessfully")}
                         </Text>}
 
-                        { failed && <Text style={styles.modalTextUnsucces}>
+                        { status === ModalStatus.FAILED && <Text style={styles.modalTextUnsucces}>
                             {t("LoginScreen.createdYourAccountUnsuccessfully")}
                         </Text>}
 
@@ -25,8 +25,8 @@ export const SubmitModal = ({success,failed,hideModalSubmitAndLeave}) => {
 
                             <TouchableOpacity style={[styles.buttonCancel]}
                                 onPress={() => hideModalSubmitAndLeave()}>
-                                { success && <Text style={[styles.textStyle,{color: "#1c3f60"}]}>{t("Commun.Continue")}</Text> }
-                                { failed && <Text style={[styles.textStyle,{color: "#1c3f60"}]}>{t("Commun.Back")}</Text> }
+                                { status === ModalStatus.SUCCESS && <Text style={[styles.textStyle,{color: "#1c3f60"}]}>{t("Commun.Continue")}</Text> }
+                                { status === ModalStatus.FAILED && <Text style={[styles.textStyle,{color: "#1c3f60"}]}>{t("Commun.Back")}</Text> }
                             </TouchableOpacity>
 
                         </View>

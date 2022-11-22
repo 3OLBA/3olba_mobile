@@ -49,7 +49,7 @@ export const VerifyAccountScreen = ({route,navigation}) => {
 
     const hideModalVerificationAndLeave = () => {
         if(codeCorrect){
-            navigation.navigate("Bottom");
+            navigation.navigate("Login");
         }
         setCodeCorrect(false);
         setShowModalVerification(false);
@@ -64,14 +64,13 @@ export const VerifyAccountScreen = ({route,navigation}) => {
                 />
             </View>
             <View style={styles.footer}>
-                {/*<Text style={[styles.text_footer,{marginBottom:30}]} center title black color="black">Welcome in 3OLBA</Text>*/}
-                <Text style={styles.text_footer} xlarge color="black">{t("Commun.VerificationCode")}
-                </Text>
+                <Text style={styles.text_footer} xlarge color="black">{t("Commun.VerificationCode")}</Text>
                 <View style={styles.action}>
                     <MaterialIcons name="verified-user" size={25} color="#05375a" />
                     <TextInput style={styles.textInput}
                                onChangeText={input => showAndHideCheckText(input)}
                                placeholder={t('VerificationScreen.Verification')}
+                               keyboardType="phone-pad"
                                autoCapitalize="none"/>
                     <Feather name="check-circle" color={!isText ? "#4e4c4c" : "#1bc707"} size={22}/>
                 </View>

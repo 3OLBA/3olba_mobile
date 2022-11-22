@@ -39,22 +39,33 @@ export const LoginScreen = ({navigation}) => {
             </View>
             <View style={styles.footer}>
 
+                {/*############################### EMAIL ################################################*/}
+
                 <Text style={styles.text_footer} xlarge color="black">{t('Commun.Email')}</Text>
                 <View style={styles.action}>
                     <FontAwesome name="user-o" color="#05375a" size={25}/>
                     <TextInput style={styles.textInput}
                                onChangeText={input => showAndHideCheckText(input)}
-                               placeholder="Your email or username"
+                               placeholder={t('Commun.Email')}
                                autoCapitalize="none"/>
                     <Feather name="check-circle" color={!isText ? "#4e4c4c" : "#1bc707"} size={22}/>
                 </View>
 
+                {/*######################################################################################*/}
+                {/*################################# PASSWORD ###########################################*/}
+
                 <Text style={[styles.text_footer,{marginTop:30}]} xlarge color="black">{t('Commun.Password')}</Text>
                 <View style={styles.action}>
                     <FontAwesome name="lock" color="#05375a" size={20}/>
-                    <TextInput style={styles.textInput} secureTextEntry={!eyeOn} placeholder="Your password" autoCapitalize="none"/>
+                    <TextInput style={styles.textInput}
+                               secureTextEntry={!eyeOn}
+                               placeholder={t('Commun.Password')}
+                               autoCapitalize="none"/>
                     <Feather name={!eyeOn ? "eye-off" : "eye"} color="grey" size={22} onPress={() => showAndHidePassword()}/>
                 </View>
+
+                {/*######################################################################################*/}
+
                 <View style={styles.createAccount}>
                     <TouchableOpacity onPress={() => navigation.navigate("CreateAccount")}>
                         <Text center medium black  color="#1c3f60">

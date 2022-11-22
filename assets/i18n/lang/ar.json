@@ -3,8 +3,9 @@
         "Commun":{
             "title": "الحل الجديد لتحويل أموالك",
             "Back": "عودة",
-            "Email": "صندوق بريد",
+            "Email": "صندوق البريد",
             "Password": "كلمة السر",
+            "RepeatPassword": "أعد كلمة المرور",
             "phoneNumber": "رقم الهاتف",
             "Submit" : "نفذ",
             "Support" : "مساعد",

@@ -16,3 +16,8 @@ export const BANKSDETAILS = {
     RIB: "Rib",
     TYPE: "Type",
 }
+export const ModalStatus = {
+    INIT: "init",
+    SUCCESS: "success",
+    FAILED: "failed",
+}

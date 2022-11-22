@@ -5,6 +5,7 @@
             "Back":"Back",
             "Email":"Email",
             "Password":"Password",
+            "RepeatPassword":"Repeat Password",
             "phoneNumber": "Phone number",
             "Submit" : "Submit",
             "Support" : "Support",
