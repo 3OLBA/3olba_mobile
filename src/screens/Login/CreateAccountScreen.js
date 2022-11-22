@@ -87,6 +87,9 @@ export const CreateAccountScreen = ({navigation}) => {
                     setStatus(ModalStatus.SUCCESS);
                 }
                 else{
+                    setTimeout(() => {
+                        console.log("Delayed for 1 second.");
+                    }, "1000");
                     setStatus(ModalStatus.FAILED);
                 }
             });

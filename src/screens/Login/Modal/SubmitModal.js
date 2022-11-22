@@ -5,7 +5,6 @@ import {ModalStatus} from "../../Common/commonValue";
 
 export const SubmitModal = ({status,hideModalSubmitAndLeave}) => {
     const {t} = useTranslation();
-    console.log("status",status);
     return (
             <Modal animationType="slide"
                 transparent={true}
