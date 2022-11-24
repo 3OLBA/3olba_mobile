@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Image, SafeAreaView, TextInput, TouchableOpacity, Platform, ActivityIndicator,Alert} from 'react-native';
 import Text from '../../components/Text';
 import {Feather, FontAwesome, MaterialIcons,AntDesign} from '@expo/vector-icons';
@@ -25,10 +25,22 @@ export const CreateAccountScreen = ({navigation}) => {
     const [isText, setIsText] = useState(false);
     const [modalVisible, setModalVisible] = useState(false);
     const [status, setStatus] = useState(ModalStatus.INIT);
-    const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(null);
     const {t} = useTranslation();
     const [showModalSubmit,setShowModalSubmit] = useState(false);
 
+    // useEffect(() => {
+    //     console.log("success",success);
+    //     if(success === true){
+    //         setStatus(ModalStatus.SUCCESS)
+    //     }
+    //     if(success === false){
+    //         setStatus(ModalStatus.FAILED)
+    //     }
+    //     if(success === null){
+    //         setStatus(ModalStatus.INIT)
+    //     }
+    // },[success])
 
     const showAndHidePassword = () => {
         if(!eyeOn) setEyeOn(true);
@@ -74,22 +86,18 @@ export const CreateAccountScreen = ({navigation}) => {
     const submit = () => {
         let isPhoneNumber = validPhoneNumber(userSignUp.phoneNumber);
         let isValidEmail = validEmail(userSignUp.email);
-        setPhoneNumberError(validPhoneNumber);
-        setEmailError(validEmail);
+        setPhoneNumberError(isPhoneNumber);
+        setEmailError(isValidEmail);
         console.log("isValidEmail =>",isValidEmail);
         console.log("isValidPhoneNumber =>",isPhoneNumber);
         if(isValidEmail && isPhoneNumber){
-            setLoading(true);
+            setStatus(ModalStatus.START);
             addOrModifyUse(userSignUp).then(data => {
                 console.log("result",data?.success);
-                setLoading(false);
                 if(data?.success){
                     setStatus(ModalStatus.SUCCESS);
                 }
-                else{
-                    setTimeout(() => {
-                        console.log("Delayed for 1 second.");
-                    }, "1000");
+                if(!data?.success){
                     setStatus(ModalStatus.FAILED);
                 }
             });
@@ -202,7 +210,7 @@ export const CreateAccountScreen = ({navigation}) => {
 
                 {/*###################################### SUPPORT VIEW ##############################################*/}
 
-                <SupportScreen navigation={navigation}/>
+                {/*<SupportScreen navigation={navigation}/>*/}
 
                 {/*##################################### SHOW MODAL NOTIF IN CASE CANCEL ############################*/}
 
@@ -215,7 +223,7 @@ export const CreateAccountScreen = ({navigation}) => {
 
                 {/*######################################## LOADING MODAL ###########################################*/}
 
-                <Loading loading={loading}/>
+                {/*<Loading status={status}/>*/}
 
                 {/*###################################################################################################*/}
 

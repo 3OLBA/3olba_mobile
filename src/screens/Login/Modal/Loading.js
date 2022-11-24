@@ -17,10 +17,6 @@ export const Loading = ({loading}) => {
 }
 
 const styles = StyleSheet.create({
-    container : {
-        flex : 1,
-        backgroundColor : '#1c3f60',
-    },
     centeredView: {
         flex: 1,
         justifyContent: "center",

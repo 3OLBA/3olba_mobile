@@ -18,6 +18,7 @@ export const BANKSDETAILS = {
 }
 export const ModalStatus = {
     INIT: "init",
+    START: "start",
     SUCCESS: "success",
     FAILED: "failed",
 }
