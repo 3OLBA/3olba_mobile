@@ -5,28 +5,69 @@ import {Feather, FontAwesome} from '@expo/vector-icons';
 import { SocialIcon } from 'react-native-elements';
 import {useTranslation} from 'react-i18next';
 require("../../../assets/i18n/Settings/i18n");
-import {RetrieveData} from "../../components/StoreData";
+import {ModalStatus, USERDETAILS} from "../Common/commonValue";
+import {getUserUnlockToken, login, SignIn} from "../../actions/LoginAction";
+import {SubmitModal} from "./Modal/SubmitModal";
 
 export const LoginScreen = ({navigation}) => {
     const {t} = useTranslation();
-    const [login, setLogin] = useState("You email or username");
+    // const [login, setLogin] = useState("You email or username");
     const [password, setPassword] = useState(null);
+    const [emailError,setEmailError] = useState(false);
     const [eyeOn, setEyeOn] = useState(false);
     const [isText, setIsText] = useState(false);
+    const [status, setStatus] = useState(ModalStatus.INIT);
     const [loginUser,setLoginUser] = useState({
         email : "",
         password : "",
     })
 
+    const handleSignIn = (fieldName,text) => {
+        console.log(text);
+        switch (fieldName){
+            case USERDETAILS.EMAIL :
+                setLoginUser({...loginUser,email: text});
+                break;
+            case USERDETAILS.PASSWORD :
+                setLoginUser({...loginUser,password: text});
+                break;
+        }
+    }
 
     const showAndHidePassword = () => {
         if(!eyeOn) setEyeOn(true);
         else if(eyeOn) setEyeOn(false);
     }
 
-    const showAndHideCheckText = (text) => {
-        if(text.length >= 8) setIsText(true);
-        else if(text.length < 8) setIsText(false);
+    const hideModalSubmitAndLeave = () => {
+        if(status === ModalStatus.SUCCESS){
+            navigation.navigate("Bottom",{email:loginUser.email})
+        }
+        setStatus(ModalStatus.INIT);
+    }
+
+    const validEmail = (email) => {
+        return email?.toString().includes("@");
+    }
+
+    const submitLogin = () => {
+        console.log("User",loginUser);
+        let isValidEmail = validEmail(loginUser.email);
+        setEmailError(!isValidEmail);
+        setIsText(isValidEmail)
+        console.log("isValidEmail =>",isValidEmail);
+        if(isValidEmail){
+            setStatus(ModalStatus.START);
+            console.log("User",loginUser);
+            login(loginUser).then(data => {
+                console.log("result",data);
+                if(data?.access_token){
+                    setStatus(ModalStatus.SUCCESS);
+                }else{
+                    setStatus(ModalStatus.FAILED);
+                }
+            });
+        }
     }
 
     return (
@@ -45,7 +86,7 @@ export const LoginScreen = ({navigation}) => {
                 <View style={styles.action}>
                     <FontAwesome name="user-o" color="#05375a" size={25}/>
                     <TextInput style={styles.textInput}
-                               onChangeText={input => showAndHideCheckText(input)}
+                               onChangeText={input => handleSignIn(USERDETAILS.EMAIL,input)}
                                placeholder={t('Commun.Email')}
                                autoCapitalize="none"/>
                     <Feather name="check-circle" color={!isText ? "#4e4c4c" : "#1bc707"} size={22}/>
@@ -58,13 +99,14 @@ export const LoginScreen = ({navigation}) => {
                 <View style={styles.action}>
                     <FontAwesome name="lock" color="#05375a" size={20}/>
                     <TextInput style={styles.textInput}
+                               onChangeText={input => handleSignIn(USERDETAILS.PASSWORD,input)}
                                secureTextEntry={!eyeOn}
                                placeholder={t('Commun.Password')}
                                autoCapitalize="none"/>
                     <Feather name={!eyeOn ? "eye-off" : "eye"} color="grey" size={22} onPress={() => showAndHidePassword()}/>
                 </View>
 
-                {/*######################################################################################*/}
+                {/*######################################################################################################*/}
 
                 <View style={styles.createAccount}>
                     <TouchableOpacity onPress={() => navigation.navigate("CreateAccount")}>
@@ -73,6 +115,7 @@ export const LoginScreen = ({navigation}) => {
                         </Text>
                     </TouchableOpacity>
                 </View>
+                {/*######################################## Button Back-SignIn ###########################################*/}
 
                 <View style={styles.buttons}>
                     <TouchableOpacity style={[styles.signIn,{borderWidth: 1,
@@ -83,12 +126,13 @@ export const LoginScreen = ({navigation}) => {
                     </TouchableOpacity>
 
                     <TouchableOpacity colors={["#1c3f60","#5085b4"]}
-                        style={[styles.signIn,{backgroundColor:"#1c3f60"}]} onPress={() => navigation.navigate("Bottom")}>
+                        style={[styles.signIn,{backgroundColor:"#1c3f60"}]} onPress={() => submitLogin()}>
                         <Text style={[styles.textSign,{color:"#fff"}]}>
                             {t('LoginScreen.SignIn')}
                         </Text>
                     </TouchableOpacity>
                 </View>
+                {/*########################################################################################################*/}
 
                 <Text center medium black margin="20px 0 0 0" color="#1c3f60">
                     {t('LoginScreen.ConnectWith')}
@@ -109,6 +153,12 @@ export const LoginScreen = ({navigation}) => {
                         {t('LoginScreen.ForgetPassword')}
                     </Text>
                 </TouchableOpacity>
+
+                {/*#################################### SUBMIT AND FAILED MODAL #####################################*/}
+
+                <SubmitModal status={status} hideModalSubmitAndLeave={hideModalSubmitAndLeave}/>
+
+                {/*######################################## LOADING MODAL ###########################################*/}
 
             </View>
 

@@ -29,19 +29,6 @@ export const CreateAccountScreen = ({navigation}) => {
     const {t} = useTranslation();
     const [showModalSubmit,setShowModalSubmit] = useState(false);
 
-    // useEffect(() => {
-    //     console.log("success",success);
-    //     if(success === true){
-    //         setStatus(ModalStatus.SUCCESS)
-    //     }
-    //     if(success === false){
-    //         setStatus(ModalStatus.FAILED)
-    //     }
-    //     if(success === null){
-    //         setStatus(ModalStatus.INIT)
-    //     }
-    // },[success])
-
     const showAndHidePassword = () => {
         if(!eyeOn) setEyeOn(true);
         else if(eyeOn) setEyeOn(false);
@@ -86,8 +73,8 @@ export const CreateAccountScreen = ({navigation}) => {
     const submit = () => {
         let isPhoneNumber = validPhoneNumber(userSignUp.phoneNumber);
         let isValidEmail = validEmail(userSignUp.email);
-        setPhoneNumberError(isPhoneNumber);
-        setEmailError(isValidEmail);
+        setPhoneNumberError(!isPhoneNumber);
+        setEmailError(!isValidEmail);
         console.log("isValidEmail =>",isValidEmail);
         console.log("isValidPhoneNumber =>",isPhoneNumber);
         if(isValidEmail && isPhoneNumber){
