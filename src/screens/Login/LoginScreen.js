@@ -62,7 +62,8 @@ export const LoginScreen = ({navigation}) => {
             login(loginUser).then(data => {
                 console.log("result",data);
                 if(data?.access_token){
-                    setStatus(ModalStatus.SUCCESS);
+                    setStatus(ModalStatus.INIT);
+                    navigation.navigate("Bottom",{email:loginUser.email})
                 }else{
                     setStatus(ModalStatus.FAILED);
                 }
