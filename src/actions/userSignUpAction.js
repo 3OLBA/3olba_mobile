@@ -10,7 +10,7 @@ export async function addOrModifyUse(user) {
         },
         body: JSON.stringify(user)
     };
-    const response = await fetch(BASEURL+'/user', requestOptions)
+    const response = await fetch(BASEURL+'/user/add', requestOptions)
         .catch((error) => {
             console.error(error);
         });
