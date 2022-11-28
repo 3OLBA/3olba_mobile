@@ -10,6 +10,7 @@ import {ForgetPasswordScreen} from "./src/screens/Login/ForgetPasswordScreen";
 import {CreateAccountScreen} from "./src/screens/Login/CreateAccountScreen";
 import LanguageScreen from "./src/screens/Login/LanguageScreen";
 import {VerifyAccountScreen} from "./src/screens/Login/VerifyAccountScreen";
+import {LoginContext} from "./src/contexts/loginContext";
 
 SplashScreen.preventAutoHideAsync();
 

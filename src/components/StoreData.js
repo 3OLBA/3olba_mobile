@@ -1,43 +1,23 @@
-import {AsyncStorage} from "@react-native-async-storage/async-storage";
+import * as SecureStore from 'expo-secure-store';
 
-export const StoreData = async (key,value) => {
-    try {
-        await AsyncStorage.setItem(key, value);
-    } catch (error) {
-    }
+/**
+ * The purpose of this method is to save in localstore with Secure Store Expo
+ * @param key
+ * @param value
+ * @returns {Promise<void>}
+ */
+export const saveInSecureStore = async (key,value) => {
+    return await SecureStore.setItemAsync(key,value);
 };
 
-export const RetrieveData = async (key) => {
-    let language = 'en';
-    AsyncStorage.getItem(key)
-        .then(r => language = r)
-        .catch(err => console.log("err",err))
-    return language;
+/**
+ * The purpose of this method is to retreive data from localstore with Secure Store Expo
+ * @param key
+ * @returns {Promise<string>}
+ */
+export const retrieveFromSecureStore = async (key) => {
+    return await SecureStore.getItemAsync(key);
 };
 
-export const StoreJsonData = async (key,value) => {
-    AsyncStorage.setItem(key, JSON.stringify(value), (err)=> {
-        if(err){
-            console.log("an error");
-            throw err;
-        }
-        console.log("success");
-    }).catch((err)=> {
-        console.log("error is: " + err);
-    });
-};
 
-export const RetrieveJsonData = async (key) => {
-    try {
-        const value = await AsyncStorage.getItem(key);
-        console.log("value",JSON.parse(value));
-
-        if (value !== null) {
-            console.log("value",JSON.parse(value));
-            return JSON.parse(value);
-        }
-    } catch (error) {
-        // Error retrieving data
-    }
-};
 

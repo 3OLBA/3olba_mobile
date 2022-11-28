@@ -1,4 +1,4 @@
-import {KeycloakUrl} from "../../BaseUrl";
+import {KeycloakLogin} from "../../BaseUrl";
 
 export async function login(user) {
     let userSignIn = new URLSearchParams();
@@ -14,7 +14,7 @@ export async function login(user) {
         },
         body: userSignIn.toString(),
     };
-    const response = await fetch(KeycloakUrl, requestOptions)
+    const response = await fetch(KeycloakLogin, requestOptions)
         .catch((error) => {
             console.error(error);
         });

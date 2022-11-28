@@ -6,8 +6,9 @@ import { SocialIcon } from 'react-native-elements';
 import {useTranslation} from 'react-i18next';
 require("../../../assets/i18n/Settings/i18n");
 import {ModalStatus, USERDETAILS} from "../Common/commonValue";
-import {getUserUnlockToken, login, SignIn} from "../../actions/LoginAction";
+import {login} from "../../actions/LoginAction";
 import {SubmitModal} from "./Modal/SubmitModal";
+import {saveInSecureStore} from "../../components/StoreData";
 
 export const LoginScreen = ({navigation}) => {
     const {t} = useTranslation();
@@ -63,6 +64,7 @@ export const LoginScreen = ({navigation}) => {
                 console.log("result",data);
                 if(data?.access_token){
                     setStatus(ModalStatus.INIT);
+                    saveInSecureStore("token", "Bearer " + data?.access_token).then(r => console.log("store",r));
                     navigation.navigate("Bottom",{email:loginUser.email})
                 }else{
                     setStatus(ModalStatus.FAILED);

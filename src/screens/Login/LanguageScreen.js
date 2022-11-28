@@ -5,7 +5,7 @@ import Text from '../../components/Text';
 import {View, StyleSheet, TouchableOpacity,Image,SafeAreaView} from "react-native";
 import {Picker} from "@react-native-picker/picker";
 import {useTranslation} from "react-i18next";
-import {StoreData,RetrieveData} from "../../components/StoreData";
+import {retrieveFromSecureStore, saveInSecureStore} from "../../components/StoreData";
 import { AsyncStorage } from 'react-native';
 import languageData  from '../../../LanguageData';
 
@@ -30,7 +30,7 @@ export default function LanguageScreen({navigation}){
 
     const chooseLanguage = () =>  {
         setDidChoose(true);
-        StoreData("language", selectedLanguage);
+        saveInSecureStore("language", selectedLanguage).then(r => console.log(r));
         changeLanguage(selectedLanguage);
         navigation.navigate("Start");
     }
