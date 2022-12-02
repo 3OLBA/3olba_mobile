@@ -63,6 +63,9 @@
             "ListOfCards" : "List of cards",
             "AddCard": "Add Card"
         },
+        "Transactions": {
+            "Transactions" : "Transactions"
+        },
         "Wallet": {
             "Wallet" : "Wallet",
             "ListOfCoins" : "List of coins"

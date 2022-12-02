@@ -17,7 +17,7 @@ export default function CardsScreen({navigation}) {
     const showModalAndLeave = () => {
         if(modalVisible){
             setModalVisible(false);
-            navigation.navigate("Cards");
+            navigation.navigate("Transactions");
         }
         else if(!modalVisible){
             setModalVisible(true);

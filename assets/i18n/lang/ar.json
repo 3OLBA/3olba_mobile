@@ -57,6 +57,9 @@
             "ListOfCards" : "قائمة البطاقات",
             "AddCard": "إضافة بطاقة"
         },
+        "Transactions": {
+            "Transactions" : "المعاملات"
+        },
         "Wallet": {
             "Wallet" : "محفظة",
             "ListOfCoins" : "قائمة القطع النقدية"

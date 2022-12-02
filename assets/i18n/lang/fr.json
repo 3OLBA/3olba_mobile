@@ -57,6 +57,9 @@
             "ListOfCards" : "Liste des cartes",
             "AddCard": "Ajouter carte"
         },
+        "Transactions": {
+            "Transactions" : "Transactions"
+        },
         "Wallet": {
             "Wallet" : "Portefeuille",
             "ListOfCoins" : "Liste des pièces"
