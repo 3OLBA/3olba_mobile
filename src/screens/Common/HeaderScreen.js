@@ -4,6 +4,7 @@ import {AntDesign} from "@expo/vector-icons";
 import {useTranslation} from "react-i18next";
 import {retrieveFromSecureStore} from "../../components/StoreData";
 
+
 export default function HeaderScreen({navigation,screenName}) {
     const {t} = useTranslation();
     const logout = () => {

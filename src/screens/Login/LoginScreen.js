@@ -65,6 +65,7 @@ export const LoginScreen = ({navigation}) => {
                 if(data?.access_token){
                     setStatus(ModalStatus.INIT);
                     saveInSecureStore("token", "Bearer " + data?.access_token).then(r => console.log("store",r));
+                    saveInSecureStore("refresh_token",data?.refresh_token);
                     navigation.navigate("Bottom",{email:loginUser.email})
                 }else{
                     setStatus(ModalStatus.FAILED);

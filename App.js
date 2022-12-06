@@ -1,6 +1,7 @@
 import TouchScreen from './src/screens/Login/TouchScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BottomTabsScreen from "./src/screens/BottomTabs/BottomTabsScreen";
 import React, {useCallback, useEffect, useState} from "react";
 import * as SplashScreen from "expo-splash-screen";
@@ -10,13 +11,22 @@ import {ForgetPasswordScreen} from "./src/screens/Login/ForgetPasswordScreen";
 import {CreateAccountScreen} from "./src/screens/Login/CreateAccountScreen";
 import LanguageScreen from "./src/screens/Login/LanguageScreen";
 import {VerifyAccountScreen} from "./src/screens/Login/VerifyAccountScreen";
-import {LoginContext} from "./src/contexts/loginContext";
+import {MyContext} from "./Global/Context";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const AppStack = createStackNavigator();
-    const [appIsReady, setAppIsReady] = useState(false);
+  const Stack = createNativeStackNavigator();
+  const [appIsReady, setAppIsReady] = useState(false);
+  const [transactions,setTransactions] = useState({});
+  const [account,setAccount] = useState({});
+  const [user,setUser] = useState({
+        email : "test@test.com",
+        name : "khalil",
+        phoneNumber : "0617611061"
+    });
+
 
     useEffect(() => {
         async function prepare() {
@@ -28,7 +38,6 @@ export default function App() {
                 setAppIsReady(true);
             }
         }
-
         prepare();
     }, []);
 
@@ -43,8 +52,11 @@ export default function App() {
     }
 
     return (
+        <MyContext.Provider value={{user,setUser,
+            account,setAccount,
+            transactions,setTransactions}}>
             <NavigationContainer onReady={onLayoutRootView}>
-                <AppStack.Navigator>
+                <Stack.Navigator>
                     <AppStack.Screen name="Language" component={LanguageScreen} options={{ headerShown: false }}/>
                     <AppStack.Screen name="Start" component={TouchScreen} options={{ headerShown: false }}/>
                     <AppStack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }}/>
@@ -53,8 +65,9 @@ export default function App() {
                     <AppStack.Screen name="CreateAccount" component={CreateAccountScreen} options={{ headerShown: false }}/>
                     <AppStack.Screen name="OnBoarding" component={OnBoardingScreen} options={{ headerShown: false }}/>
                     <AppStack.Screen name="Bottom" component={BottomTabsScreen} options={{ headerShown: false }}/>
-                </AppStack.Navigator>
+                </Stack.Navigator>
             </NavigationContainer>
+        </MyContext.Provider>
   );
 }
 
