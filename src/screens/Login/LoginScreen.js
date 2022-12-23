@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {View, StyleSheet, Image, SafeAreaView, TextInput, TouchableOpacity, Platform, I18nManager,Picker} from 'react-native';
 import Text from '../../components/Text';
 import {Feather, FontAwesome} from '@expo/vector-icons';
@@ -6,7 +6,7 @@ import { SocialIcon } from 'react-native-elements';
 import {useTranslation} from 'react-i18next';
 require("../../../assets/i18n/Settings/i18n");
 import {ModalStatus, USERDETAILS} from "../Common/commonValue";
-import {login} from "../../actions/LoginAction";
+import {getToken, login} from "../../actions/LoginAction";
 import {SubmitModal} from "./Modal/SubmitModal";
 import {saveInSecureStore} from "../../components/StoreData";
 
@@ -60,12 +60,11 @@ export const LoginScreen = ({navigation}) => {
         if(isValidEmail){
             setStatus(ModalStatus.START);
             console.log("User",loginUser);
-            login(loginUser).then(data => {
-                console.log("result",data);
-                if(data?.access_token){
+            login(loginUser).then(token => {
+                console.log("token",token);
+                if(token){
+                    console.log(token)
                     setStatus(ModalStatus.INIT);
-                    saveInSecureStore("token", "Bearer " + data?.access_token).then(r => console.log("store",r));
-                    saveInSecureStore("refresh_token",data?.refresh_token);
                     navigation.navigate("Bottom",{email:loginUser.email})
                 }else{
                     setStatus(ModalStatus.FAILED);

@@ -23,7 +23,7 @@ export default function App() {
   const [account,setAccount] = useState({});
   const [user,setUser] = useState({
         email : "test@test.com",
-        name : "khalil",
+        username : "khalil",
         phoneNumber : "0617611061"
     });
 

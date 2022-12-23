@@ -6,14 +6,11 @@ import TransactionData from "../../../TransactionsData";
 import HeaderScreen from "../Common/HeaderScreen";
 import {useTranslation} from "react-i18next";
 import {retrieveFromSecureStore, RetrieveJsonData} from "../../components/StoreData";
-import {useContext} from "react";
 import {MyContext} from "../../../Global/Context";
 
 export default function HomeScreen({navigation}) {
     const {t} = useTranslation();
     const screenName = t("Home.Home");
-    const {user , setUser} = useContext(MyContext);
-    console.log("User =>>>>>>>>>>",user);
     const renderTransactions = ({item}) => {
         return (
                 <Purshase>

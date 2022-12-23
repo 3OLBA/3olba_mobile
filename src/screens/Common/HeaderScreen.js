@@ -3,13 +3,20 @@ import Text from '../../components/Text';
 import {AntDesign} from "@expo/vector-icons";
 import {useTranslation} from "react-i18next";
 import {retrieveFromSecureStore} from "../../components/StoreData";
+import {useContext} from "react";
+import {MyContext} from "../../../Global/Context";
+import {getAccount} from "../../actions/AccountAction";
 
 
 export default function HeaderScreen({navigation,screenName}) {
     const {t} = useTranslation();
+    const {user , setUser} = useContext(MyContext);
+    console.log("User =>>>>>>>>>>",user);
     const logout = () => {
         navigation.navigate("Login");
-        retrieveFromSecureStore("token").then(r => console.log(r));
+        // retrieveFromSecureStore("token").then(r => console.log(r));
+        getAccount().then(r => console.log(r));
+
     }
     return (
         <Container>
@@ -17,7 +24,7 @@ export default function HeaderScreen({navigation,screenName}) {
             <Header>
                 <ProfilePhoto source={require("../../../assets/personLogo.png")}/>
                 <Welcome>
-                    <Text heavy medium>{t("Commun.Welcome")} Khalil</Text>
+                    <Text heavy medium>{t("Commun.Welcome")} {user?.username?.toUpperCase()}</Text>
                     <Text>{screenName}</Text>
                 </Welcome>
                 <AntDesign name="logout" size={24} color="#565656" onPress={logout}/>
