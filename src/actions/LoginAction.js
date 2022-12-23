@@ -1,6 +1,7 @@
 import {BASEURL, KeycloakLogin} from "../../BaseUrl";
 import {retrieveFromSecureStore, saveInSecureStore} from "../components/StoreData";
 import axios from "axios";
+import {getPersonFromToken} from "./UserAction";
 
 export async function login(user) {
     let userSignIn = new URLSearchParams();
@@ -18,10 +19,11 @@ export async function login(user) {
         }
     };
     return axios.post(KeycloakLogin, userSignIn.toString(), requestOptions)
-        .then(response => {
-            console.log("response",JSON.stringify(response));
-            // saveInSecureStore("token", "Bearer "+ JSON.stringify(response?.data?.access_token)).then(r => console.log("store",r));
-            // saveInSecureStore("refresh_token",JSON.stringify(response?.data?.refresh_token));
+        .then(async response => {
+            console.log("response", JSON.stringify(response));
+            await saveInSecureStore("token", JSON.stringify(response?.data?.access_token)).then(r => console.log("store", r));
+            await saveInSecureStore("refresh_token", JSON.stringify(response?.data?.refresh_token));
+            await getPersonFromToken(JSON.stringify(response?.data?.access_token));
             return JSON.stringify(response?.data?.access_token);
         })
         .catch(err => {

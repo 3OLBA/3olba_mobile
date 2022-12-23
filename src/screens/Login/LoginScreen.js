@@ -8,10 +8,12 @@ require("../../../assets/i18n/Settings/i18n");
 import {ModalStatus, USERDETAILS} from "../Common/commonValue";
 import {getToken, login} from "../../actions/LoginAction";
 import {SubmitModal} from "./Modal/SubmitModal";
-import {saveInSecureStore} from "../../components/StoreData";
+import {retrieveFromSecureStore, saveInSecureStore} from "../../components/StoreData";
+import {MyContext} from "../../../Global/Context";
 
 export const LoginScreen = ({navigation}) => {
     const {t} = useTranslation();
+    const {user , setUser} = useContext(MyContext);
     // const [login, setLogin] = useState("You email or username");
     const [password, setPassword] = useState(null);
     const [emailError,setEmailError] = useState(false);
@@ -22,6 +24,7 @@ export const LoginScreen = ({navigation}) => {
         email : "",
         password : "",
     })
+
 
     const handleSignIn = (fieldName,text) => {
         console.log(text);
@@ -60,13 +63,13 @@ export const LoginScreen = ({navigation}) => {
         if(isValidEmail){
             setStatus(ModalStatus.START);
             console.log("User",loginUser);
-            login(loginUser).then(token => {
-                console.log("token",token);
-                if(token){
-                    console.log(token)
+            login(loginUser).then(async token => {
+                console.log("token", token);
+                if (token) {
                     setStatus(ModalStatus.INIT);
-                    navigation.navigate("Bottom",{email:loginUser.email})
-                }else{
+                    await retrieveFromSecureStore('person').then(user => setUser(JSON.parse(user)));
+                    navigation.navigate("Bottom", {email: loginUser.email})
+                } else {
                     setStatus(ModalStatus.FAILED);
                 }
             });

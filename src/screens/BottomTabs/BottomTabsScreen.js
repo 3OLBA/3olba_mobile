@@ -5,10 +5,23 @@ import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {MaterialIcons, Entypo, AntDesign} from "@expo/vector-icons";
 import WalletScreen from "../Wallet/WalletScreen";
 import {useTranslation} from "react-i18next";
+import {useContext, useEffect} from "react";
+import {MyContext} from "../../../Global/Context";
+import {getAccount} from "../../actions/AccountAction";
+import {retrieveFromSecureStore} from "../../components/StoreData";
 
 export default function BottomTabsScreen() {
     const TabStack = createBottomTabNavigator();
     const {t} = useTranslation();
+    const {user , setUser} = useContext(MyContext);
+    const {account , setAccount} = useContext(MyContext);
+
+
+    useEffect(  () => {
+        console.log("bottom");
+        getAccount().then(response => setAccount(response));
+        console.log("account", account);
+    },[user])
 
     const screenOptions = ({route}) => ({
         tabBarIcon: ({focused}) => {
@@ -48,10 +61,9 @@ export default function BottomTabsScreen() {
     return (
         <TabStack.Navigator screenOptions = {screenOptions}>
             <TabStack.Screen name="Home" component={Home} options={{ title : t("Home.Home"), headerShown: false }}/>
-            <TabStack.Screen name="Wallet" component={WalletScreen} options={{ title : t("Wallet.Wallet"), headerShown: false }}/>
-            <TabStack.Screen name="Transfer" component={TransferScreen} options={{ title : t("Transfer.Transfer"), headerShown: false }}/>
+            <TabStack.Screen name="Wallet"  component={WalletScreen} options={{ title : t("Wallet.Wallet"), headerShown: false }}/>
+            <TabStack.Screen name="Transfer"  component={TransferScreen} options={{ title : t("Transfer.Transfer"), headerShown: false }}/>
             <TabStack.Screen name="Transactions" component={Cards} options={{ title : t("Transactions.Transactions") , headerShown: false }}/>
-
         </TabStack.Navigator>
     );
 }

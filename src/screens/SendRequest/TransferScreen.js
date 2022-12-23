@@ -1,10 +1,11 @@
 import styled from 'styled-components/native';
 import Text from '../../components/Text';
 import NumberPad from '../../components/NumberPad';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import HeaderScreen from "../Common/HeaderScreen";
 import { AntDesign , FontAwesome,Ionicons } from '@expo/vector-icons';
 import {useTranslation} from "react-i18next";
+import {MyContext} from "../../../Global/Context";
 // import { ALERT_TYPE, Dialog, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
 // import {Button} from "react-native";
 // import View from "react-native-web/dist/vendor/react-native/Animated/components/AnimatedView";
@@ -16,7 +17,7 @@ export default function TransferScreen({navigation}) {
     const [amount,setAmount]   = useState("0");
     const [beneficiary,setBeneficiary]   = useState({});
     const user = {"name":"Khalil","amount":100000,"currency":"MAD","iban":"234 567 123456789 89"};
-
+    const {account , setAccount} = useContext(MyContext);
 
     const pressKey = (item,index) => {
         setAmount((prev) =>{
@@ -34,7 +35,7 @@ export default function TransferScreen({navigation}) {
             <HeaderScreen navigation={navigation} screenName={screenName}/>
 
             <Amount>
-                <Text center title heavy>7,500.00 {t("Commun.MAD")}</Text>
+                <Text center title heavy>{account?.amount} {t("Commun.MAD")}</Text>
                 <Text bold color="#727479">{t("Commun.CurrentBalance")}</Text>
             </Amount>
 

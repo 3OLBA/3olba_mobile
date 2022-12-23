@@ -7,10 +7,12 @@ import HeaderScreen from "../Common/HeaderScreen";
 import {useTranslation} from "react-i18next";
 import {retrieveFromSecureStore, RetrieveJsonData} from "../../components/StoreData";
 import {MyContext} from "../../../Global/Context";
+import {useContext, useEffect} from "react";
 
 export default function HomeScreen({navigation}) {
     const {t} = useTranslation();
     const screenName = t("Home.Home");
+    const {account , setAccount} = useContext(MyContext);
     const renderTransactions = ({item}) => {
         return (
                 <Purshase>
@@ -34,7 +36,7 @@ export default function HomeScreen({navigation}) {
             <HeaderScreen navigation={navigation} screenName={screenName}/>
 
             <Text center title black>
-                7,500.00 {t("Commun.MAD")}
+                {account?.amount} {t("Commun.MAD")}
             </Text>
             <Text center medium color="#727479">
                 {t("Commun.CurrentBalance")}
@@ -46,15 +48,10 @@ export default function HomeScreen({navigation}) {
                 <>
                     <TransactionsHeader>
                         <Text>{t("Home.LastTransactions")}</Text>
-                        {/*<MaterialIcons name="sort" size={24} color="#5196f4" />*/}
                         <Search placeHolder="Search transaction" />
                         <AntDesign name="search1" size={18} color="#5196f4" />
                         <Search placeHolder="Search transaction" />
                     </TransactionsHeader>
-                    {/*<SearchContainer>*/}
-                        {/*<AntDesign name="search1" size={18} color="#5196f4" />*/}
-                        {/*<Search placeHolder="Search transaction" />*/}
-                    {/*</SearchContainer>*/}
                 </>
             }
             />

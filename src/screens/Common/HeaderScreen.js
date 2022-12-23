@@ -15,8 +15,6 @@ export default function HeaderScreen({navigation,screenName}) {
     const logout = () => {
         navigation.navigate("Login");
         // retrieveFromSecureStore("token").then(r => console.log(r));
-        getAccount().then(r => console.log(r));
-
     }
     return (
         <Container>
@@ -24,7 +22,7 @@ export default function HeaderScreen({navigation,screenName}) {
             <Header>
                 <ProfilePhoto source={require("../../../assets/personLogo.png")}/>
                 <Welcome>
-                    <Text heavy medium>{t("Commun.Welcome")} {user?.username?.toUpperCase()}</Text>
+                    <Text heavy medium>{t("Commun.Welcome")} {user?.username?.split('.')[0]?.toUpperCase()}</Text>
                     <Text>{screenName}</Text>
                 </Welcome>
                 <AntDesign name="logout" size={24} color="#565656" onPress={logout}/>
