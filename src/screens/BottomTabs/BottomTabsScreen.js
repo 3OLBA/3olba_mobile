@@ -9,18 +9,22 @@ import {useContext, useEffect} from "react";
 import {MyContext} from "../../../Global/Context";
 import {getAccount} from "../../actions/AccountAction";
 import {retrieveFromSecureStore} from "../../components/StoreData";
+import {getTransactions} from "../../actions/TransactionAction";
 
 export default function BottomTabsScreen() {
     const TabStack = createBottomTabNavigator();
     const {t} = useTranslation();
     const {user , setUser} = useContext(MyContext);
     const {account , setAccount} = useContext(MyContext);
+    const {transactions , setTransactions} = useContext(MyContext);
 
 
     useEffect(  () => {
         console.log("bottom");
         getAccount().then(response => setAccount(response));
+        getTransactions().then(response => setTransactions(response));
         console.log("account", account);
+        console.log("transactions", transactions);
     },[user])
 
     const screenOptions = ({route}) => ({

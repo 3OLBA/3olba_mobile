@@ -13,16 +13,17 @@ export default function HomeScreen({navigation}) {
     const {t} = useTranslation();
     const screenName = t("Home.Home");
     const {account , setAccount} = useContext(MyContext);
+    const {transactions , setTransactions} = useContext(MyContext);
     const renderTransactions = ({item}) => {
         return (
                 <Purshase>
                     <PurshaseInfo>
-                        <Text heavy >{item.beneficiary}</Text>
-                        <Text color="#727479">{item.bank}</Text>
+                        <Text heavy >{item?.benificiaryName}</Text>
+                        <Text color="#727479">{item?.bankType}</Text>
                     </PurshaseInfo>
                     <PurshaseInfo>
-                        <Text medium black large color="#228B22">{item.amount} {item.currency}</Text>
-                        <Text heavy color="#727479">{item.date}</Text>
+                        <Text medium black large color="#228B22">{item?.amount} {item.currency}</Text>
+                        <Text heavy color="#727479">{item?.executionDate}</Text>
                     </PurshaseInfo>
                 </Purshase>
             )
@@ -55,7 +56,7 @@ export default function HomeScreen({navigation}) {
                 </>
             }
             />
-            <Purshases data={TransactionData}
+            <Purshases data={transactions}
                        renderItem={renderTransactions}
                        showVerticalScrollIndicator={false}
             />
