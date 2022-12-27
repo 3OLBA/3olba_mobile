@@ -7,7 +7,7 @@ import {useTranslation} from 'react-i18next';
 require("../../../assets/i18n/Settings/i18n");
 import {ModalStatus, USERDETAILS} from "../Common/commonValue";
 import {getToken, login} from "../../actions/LoginAction";
-import {SubmitModal} from "./Modal/SubmitModal";
+import {SubmitModal} from "../Modal/SubmitModal";
 import {retrieveFromSecureStore, saveInSecureStore} from "../../components/StoreData";
 import {MyContext} from "../../../Global/Context";
 
@@ -196,11 +196,11 @@ const styles = StyleSheet.create({
     },
     text_header : {
         color : "#fff",
-        fontSize : 30,
+        fontSize : '30',
     },
     text_footer : {
         color : "#05375a",
-        fontSize : 18,
+        fontSize : '18',
     },
     image:{
         height : 170,
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
         borderRadius : 10,
     },
     textSign : {
-        fontSize : 18,
+        fontSize : '18',
         fontWeight : 'bold',
     },
     logo : {

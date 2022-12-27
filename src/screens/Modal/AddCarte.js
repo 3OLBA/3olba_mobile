@@ -1,15 +1,14 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, TouchableOpacity, Modal, TextInput,Keyboard,TouchableWithoutFeedback} from 'react-native';
 import {useTranslation} from "react-i18next";
-import Text from "../../../components/Text";
+import Text from "../../components/Text";
 import {Feather, FontAwesome} from "@expo/vector-icons";
-import {BANKSDETAILS, USERDETAILS} from "../../Common/commonValue";
+import {BANKSDETAILS, USERDETAILS} from "../Common/commonValue";
 import {Picker} from "@react-native-picker/picker";
-import banksType  from '../../../../BankTypeData';
+import banksType  from '../../../BankTypeData';
 
 import SelectDropdown from 'react-native-select-dropdown'
-import {RetrieveData, RetrieveJsonData, StoreData, StoreJsonData} from "../../../components/StoreData";
-import {addCard, addOrModifyCard, deleteCard, getMoviesFromApi} from "../../../actions/CardActions";
+import { addOrModifyCard, deleteCard} from "../../actions/CardActions";
 
 
 
@@ -175,7 +174,7 @@ const styles = StyleSheet.create({
     },
     text_footer : {
         color : "#05375a",
-        fontSize : 17,
+        fontSize : '17',
     },
 
 })

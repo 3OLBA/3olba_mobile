@@ -5,9 +5,9 @@ import {Feather, FontAwesome, MaterialIcons,AntDesign} from '@expo/vector-icons'
 import {SupportScreen} from "../Common/SupportScreen";
 import {useTranslation} from "react-i18next";
 import {userVerification} from "../../actions/userVerificationSignUp";
-import {SubmitModal} from "./Modal/SubmitModal";
-import {VerificationModal} from "./Modal/VerificationModal";
-import {Loading} from "./Modal/Loading";
+import {SubmitModal} from "../Modal/SubmitModal";
+import {VerificationModal} from "../Modal/VerificationModal";
+import {Loading} from "../Modal/Loading";
 
 export const VerifyAccountScreen = ({route,navigation}) => {
     const [eyeOn, setEyeOn] = useState(false);
@@ -128,11 +128,11 @@ const styles = StyleSheet.create({
     },
     text_header : {
         color : "#fff",
-        fontSize : 30,
+        fontSize : '30',
     },
     text_footer : {
         color : "#05375a",
-        fontSize : 18,
+        fontSize : '18',
     },
     image:{
         height : 170,
@@ -182,7 +182,7 @@ const styles = StyleSheet.create({
         borderColor : "#1c3f60",
     },
     textSign : {
-        fontSize : 18,
+        fontSize : '18',
         fontWeight : 'bold',
     },
     logo : {

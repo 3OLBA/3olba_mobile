@@ -56,7 +56,7 @@ export default function HomeScreen({navigation}) {
                 </>
             }
             />
-            <Purshases data={transactions}
+            <PurshasesList data={transactions}
                        renderItem={renderTransactions}
                        showVerticalScrollIndicator={false}
             />
@@ -91,6 +91,12 @@ const Welcome = styled.View`
 
 const Purshases = styled.FlatList`
     background-color : #2c2c2c;
+    padding : 10px 0 0 16px;
+    height : 70px;
+`;
+
+const PurshasesList = styled.FlatList`
+    background-color : #2c2c2c;
     padding : 16px;
 `;
 
@@ -99,7 +105,7 @@ const Purshase = styled.View`
     justify-content : space-between;
     border-bottom-width : 1px;
     border-color : #393939
-    padding-bottom : 12px;
+    padding-bottom : 10px;
     margin : 12px;
 `;
 

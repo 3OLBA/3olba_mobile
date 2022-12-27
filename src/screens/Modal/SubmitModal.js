@@ -1,28 +1,50 @@
 import React from 'react';
-import {View, StyleSheet, TouchableOpacity, Modal,Text} from 'react-native';
+import {View, StyleSheet, TouchableOpacity, Modal, Text, ActivityIndicator} from 'react-native';
 import {useTranslation} from "react-i18next";
-import {Loading} from "./Loading";
+import {ModalStatus} from "../Common/commonValue";
 
-export const VerificationModal = ({success,showModalVerification,hideModalVerificationAndLeave}) => {
+export const SubmitModal = ({status,hideModalSubmitAndLeave}) => {
     const {t} = useTranslation();
     return (
             <Modal animationType="slide"
                 transparent={true}
-                visible={showModalVerification}
+                visible={status === ModalStatus.SUCCESS ||
+                    status === ModalStatus.FAILED ||
+                    status === ModalStatus.START}
             >
+                { status === ModalStatus.START &&
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Text style={success ? styles.modalTextSuccess : styles.modalTextUnsuccess}>
-                            { success ? t("VerificationScreen.VerifyYourAccountSuccess") : t("VerificationScreen.VerifyYourAccountUnsuccess")}</Text>
-                        <View style={styles.buttons}>
-
-                            <TouchableOpacity style={[styles.buttonCancel]}
-                                onPress={() => hideModalVerificationAndLeave()}>
-                                <Text style={[styles.textStyle,{color: "#1c3f60"}]}>{success ? t("Commun.Continue") : t("Commun.Back")}</Text>
-                            </TouchableOpacity>
-                        </View>
+                        <ActivityIndicator size="large" animating={true} color="#1c3f60"/>
                     </View>
                 </View>
+                }
+
+                {(status === ModalStatus.SUCCESS || status === ModalStatus.FAILED) &&
+                    <View style={styles.centeredView}>
+                        <View style={styles.modalView}>
+                            {status === ModalStatus.SUCCESS && <Text style={styles.modalTextSuccess}>
+                                {t("LoginScreen.createdYourAccountSuccessfully")}
+                            </Text>}
+
+                            {status === ModalStatus.FAILED && <Text style={styles.modalTextUnsucces}>
+                                {t("LoginScreen.createdYourAccountUnsuccessfully")}
+                            </Text>}
+
+                            <View style={styles.buttons}>
+
+                                <TouchableOpacity style={[styles.buttonCancel]}
+                                                  onPress={() => hideModalSubmitAndLeave()}>
+                                    {status === ModalStatus.SUCCESS && <Text
+                                        style={[styles.textStyle, {color: "#1c3f60"}]}>{t("Commun.Continue")}</Text>}
+                                    {status === ModalStatus.FAILED &&
+                                        <Text style={[styles.textStyle, {color: "#1c3f60"}]}>{t("Commun.Back")}</Text>}
+                                </TouchableOpacity>
+
+                            </View>
+                        </View>
+                    </View>
+                }
             </Modal>
     )
 }
@@ -92,7 +114,7 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         textAlign: "center"
     },
-    modalTextUnsuccess: {
+    modalTextUnsucces: {
         color:"#b40707",
         fontWeight:"bold",
         marginBottom: 15,

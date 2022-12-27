@@ -69,8 +69,11 @@
             "Name" : "اسم",
             "Amount" : "مبلغ",
             "IBAN" : "رقم الحساب",
+            "RIB" : "رقم الحساب",
             "Beneficiary" : "المستفيد",
-            "Send" : "إرسال"
+            "Send" : "إرسال",
+            "AddTransfer": "أضف تحويل"
+
         },
         "VerificationScreen": {
             "Verification": "رمز التحقق",

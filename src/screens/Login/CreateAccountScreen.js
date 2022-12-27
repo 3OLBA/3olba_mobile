@@ -2,13 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {View, StyleSheet, Image, SafeAreaView, TextInput, TouchableOpacity, Platform, ActivityIndicator,Alert} from 'react-native';
 import Text from '../../components/Text';
 import {Feather, FontAwesome, MaterialIcons,AntDesign} from '@expo/vector-icons';
-import {BackModalScreen} from './Modal/BackModalScreen';
+import {BackModalScreen} from '../Modal/BackModalScreen';
 import {SupportScreen} from "../Common/SupportScreen";
 import {errorSignUp, ModalStatus, USERDETAILS} from '../Common/commonValue';
 import {useTranslation} from "react-i18next";
 import {addOrModifyUse} from "../../actions/userSignUpAction";
-import {SubmitModal} from "./Modal/SubmitModal";
-import {Loading} from "./Modal/Loading";
+import {SubmitModal} from "../Modal/SubmitModal";
+import {Loading} from "../Modal/Loading";
 
 
 export const CreateAccountScreen = ({navigation}) => {
@@ -244,7 +244,7 @@ const styles = StyleSheet.create({
     },
     text_footer : {
         color : "#05375a",
-        fontSize : 17,
+        fontSize : '17',
     },
     image:{
         height : 170,
@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
         borderColor : "#1c3f60",
     },
     textSign : {
-        fontSize : 18,
+        fontSize : '18',
         fontWeight : 'bold',
     },
     logo : {

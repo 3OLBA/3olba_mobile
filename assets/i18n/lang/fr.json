@@ -69,8 +69,10 @@
             "Name" : "Nom",
             "Amount" : "Montant",
             "IBAN" : "IBAN",
+            "RIB" : "RIB",
             "Beneficiary" : "Bénéficiaire",
-            "Send" : "Envoyer"
+            "Send" : "Envoyer",
+            "AddTransfer": "Ajouter un transfert"
         },
         "VerificationScreen": {
             "Verification": "Votre code de vérification",

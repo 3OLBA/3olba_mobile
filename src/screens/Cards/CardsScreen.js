@@ -7,8 +7,8 @@ import Text from "../../components/Text";
 import {TouchableOpacity,View,StyleSheet} from 'react-native';
 import {Ionicons} from "@expo/vector-icons";
 import React,{useState} from 'react';
-import {BackModalScreen} from "../Login/Modal/BackModalScreen";
-import {AddCarte} from "../Login/Modal/AddCarte";
+import {BackModalScreen} from "../Modal/BackModalScreen";
+import {AddCarte} from "../Modal/AddCarte";
 
 export default function CardsScreen({navigation}) {
     const {t} = useTranslation();

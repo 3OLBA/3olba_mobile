@@ -6,28 +6,52 @@ import HeaderScreen from "../Common/HeaderScreen";
 import { AntDesign , FontAwesome,Ionicons } from '@expo/vector-icons';
 import {useTranslation} from "react-i18next";
 import {MyContext} from "../../../Global/Context";
-// import { ALERT_TYPE, Dialog, AlertNotificationRoot, Toast } from 'react-native-alert-notification';
-// import {Button} from "react-native";
-// import View from "react-native-web/dist/vendor/react-native/Animated/components/AnimatedView";
+import {AddCarte} from "../Modal/AddCarte";
+import {AddTransfer} from "../Modal/AddTransfer";
 
 export default function TransferScreen({navigation}) {
     const {t} = useTranslation();
     const screenName = t("Transfer.Transfer");
     const currentAmount = 750000;
     const [amount,setAmount]   = useState("0");
-    const [beneficiary,setBeneficiary]   = useState({});
+    const [modalVisible,setModalVisible]   = useState(false);
     const user = {"name":"Khalil","amount":100000,"currency":"MAD","iban":"234 567 123456789 89"};
     const {account , setAccount} = useContext(MyContext);
+    const [beneficiary,setBeneficiary] = useState({
+        name : "",
+        amount : "",
+        rib : "",
+    })
 
     const pressKey = (item,index) => {
         setAmount((prev) =>{
             return index !== 10 ? prev + item : prev.slice(0,prev.length - 1);
         });
     }
+    const addBeneficiary = (beneficiary) => {
+        console.log("beneficiary",beneficiary)
+        setBeneficiary(beneficiary);
+    }
 
     const convertToMAD = (currentAmount) => {
-        const newAmount = currentAmount / 100;
-        return newAmount.toLocaleString("en-US", {style : "currency",currency : "MAD"});
+        if(currentAmount){
+            const newAmount = (currentAmount / 100) * 100;
+            return newAmount.toLocaleString("en-US", {style : "currency",currency : "MAD"});
+        }else{
+            return "";
+        }
+    }
+    const showModalAndLeave = () => {
+        if(modalVisible){
+            setModalVisible(false);
+            navigation.navigate("Transfer");
+        }
+        else if(!modalVisible){
+            setModalVisible(true);
+        }
+    }
+    const hideModalAndStay = () => {
+        setModalVisible(false);
     }
     return (
         <Container>
@@ -44,17 +68,17 @@ export default function TransferScreen({navigation}) {
                     <AntDesign name="user" size={35} color="white" />
                 </ProfileLogo>
                 <UserDetails>
-                    <Text bold heavy>{t("Transfer.Name")} : {user.name} </Text>
-                    <Text bold heavy>{t("Transfer.Amount")} : {convertToMAD(user.amount)}</Text>
-                    <Text bold heavy color="#727479">{t("Transfer.IBAN")} : {user.iban} </Text>
+                    <Text bold heavy style={{paddingBottom:8}}>{t("Transfer.Name")} : {beneficiary?.name} </Text>
+                    <Text bold heavy style={{paddingBottom:8}}>{t("Transfer.Amount")} : {convertToMAD(beneficiary?.amount)}</Text>
+                    <Text bold heavy color="#727479" style={{paddingBottom:8}}>{t("Transfer.RIB")} : {beneficiary?.rib} </Text>
                 </UserDetails>
             </User>
 
             <ButtonsTransfer>
-                <BeneficiaryButton>
+                <BeneficiaryButton onPress={() => setModalVisible(true)}>
                     <Ionicons name="add-circle-outline" size={20} color="white" />
                     <SendButtonText>
-                        <Text bold heavy>{t("Transfer.Beneficiary")}</Text>
+                        <Text bold heavy>{t("Transfer.Transfer")}</Text>
                     </SendButtonText>
                 </BeneficiaryButton>
                 <SendButton>
@@ -64,6 +88,12 @@ export default function TransferScreen({navigation}) {
                     </SendButtonText>
                 </SendButton>
             </ButtonsTransfer>
+
+            <AddTransfer navigation={navigation}
+                         modalVisible={modalVisible}
+                         addBeneficiary={addBeneficiary}
+                         hideModalAndStay={hideModalAndStay}
+                         showModalAndLeave={showModalAndLeave}/>
 
             {/*<NumberPad onPress={pressKey}/>*/}
             <StatusBar barStyle="light-content"/>

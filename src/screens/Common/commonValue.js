@@ -22,3 +22,9 @@ export const ModalStatus = {
     SUCCESS: "success",
     FAILED: "failed",
 }
+
+export const BENEFICIARYDETAILS = {
+    RIB: "Rib",
+    NAME: "Name",
+    AMOUNT: "Amount",
+}

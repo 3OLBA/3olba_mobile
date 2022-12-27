@@ -7,7 +7,7 @@ export async function login(user) {
     let userSignIn = new URLSearchParams();
     userSignIn.append('email',user.email);
     // userSignIn.append('username',user.email.split("@")[0]);
-    userSignIn.append('username','');
+    userSignIn.append('username',user.email);
     userSignIn.append('password',user.password);
     userSignIn.append('type_profile',"client");
     userSignIn.append('grant_type','password');
