@@ -32,11 +32,11 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,showModalAndLeave,add
         if(!value.isEmpty){
             if(field === BENEFICIARYDETAILS.RIB){
                 setRibCheck(true);
-                setBeneficiary({...beneficiary,rib: value});
+                setBeneficiary({...beneficiary,ribBeneficiary: value});
             }
             if(field === BENEFICIARYDETAILS.NAME){
                 setNameCheck(true);
-                setBeneficiary({...beneficiary,name: value});
+                setBeneficiary({...beneficiary,nameBeneficiary: value});
             }
             if(field === BENEFICIARYDETAILS.AMOUNT){
                 setAmountCheck(true);

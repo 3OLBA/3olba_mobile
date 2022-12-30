@@ -8,6 +8,8 @@ import {useTranslation} from "react-i18next";
 import {MyContext} from "../../../Global/Context";
 import {AddCarte} from "../Modal/AddCarte";
 import {AddTransfer} from "../Modal/AddTransfer";
+import {SendTransfer} from "../Modal/SendTransfer";
+import {createTransfer, sendTransfer} from "../../actions/TransactionAction";
 
 export default function TransferScreen({navigation}) {
     const {t} = useTranslation();
@@ -15,12 +17,13 @@ export default function TransferScreen({navigation}) {
     const currentAmount = 750000;
     const [amount,setAmount]   = useState("0");
     const [modalVisible,setModalVisible]   = useState(false);
+    const [modalSendVisible,setModalSendVisible]   = useState(false);
     const user = {"name":"Khalil","amount":100000,"currency":"MAD","iban":"234 567 123456789 89"};
     const {account , setAccount} = useContext(MyContext);
     const [beneficiary,setBeneficiary] = useState({
-        name : "",
+        ribBeneficiary : "",
+        nameBeneficiary: "",
         amount : "",
-        rib : "",
     })
 
     const pressKey = (item,index) => {
@@ -44,6 +47,7 @@ export default function TransferScreen({navigation}) {
     const showModalAndLeave = () => {
         if(modalVisible){
             setModalVisible(false);
+            setModalSendVisible(false);
             navigation.navigate("Transfer");
         }
         else if(!modalVisible){
@@ -52,7 +56,21 @@ export default function TransferScreen({navigation}) {
     }
     const hideModalAndStay = () => {
         setModalVisible(false);
+        setModalSendVisible(false);
     }
+
+    // Send transfer
+    const sendTransfer = () => {
+        if(modalSendVisible && beneficiary){
+            setModalSendVisible(false);
+            navigation.navigate("Transfer");
+            createTransfer(beneficiary).then(r => console.log("result create transfer",r))
+        }
+        else if(!modalVisible){
+            setModalSendVisible(true);
+        }
+    }
+
     return (
         <Container>
 
@@ -68,9 +86,9 @@ export default function TransferScreen({navigation}) {
                     <AntDesign name="user" size={35} color="white" />
                 </ProfileLogo>
                 <UserDetails>
-                    <Text bold heavy style={{paddingBottom:8}}>{t("Transfer.Name")} : {beneficiary?.name} </Text>
+                    <Text bold heavy style={{paddingBottom:8}}>{t("Transfer.Name")} : {beneficiary?.nameBeneficiary} </Text>
                     <Text bold heavy style={{paddingBottom:8}}>{t("Transfer.Amount")} : {convertToMAD(beneficiary?.amount)}</Text>
-                    <Text bold heavy color="#727479" style={{paddingBottom:8}}>{t("Transfer.RIB")} : {beneficiary?.rib} </Text>
+                    <Text bold heavy color="#727479" style={{paddingBottom:8}}>{t("Transfer.RIB")} : {beneficiary?.ribBeneficiary} </Text>
                 </UserDetails>
             </User>
 
@@ -81,7 +99,7 @@ export default function TransferScreen({navigation}) {
                         <Text bold heavy>{t("Transfer.Transfer")}</Text>
                     </SendButtonText>
                 </BeneficiaryButton>
-                <SendButton>
+                <SendButton onPress={() => setModalSendVisible(true)}>
                     <FontAwesome name="send-o" size={20} color="white" />
                     <SendButtonText>
                         <Text bold heavy>{t("Transfer.Send")} </Text>
@@ -94,6 +112,14 @@ export default function TransferScreen({navigation}) {
                          addBeneficiary={addBeneficiary}
                          hideModalAndStay={hideModalAndStay}
                          showModalAndLeave={showModalAndLeave}/>
+
+            {beneficiary.ribBeneficiary &&
+                <SendTransfer navigation={navigation}
+                              modalVisible={modalSendVisible}
+                              hideModalAndStay={hideModalAndStay}
+                              sendTransfer={sendTransfer}
+                />
+            }
 
             {/*<NumberPad onPress={pressKey}/>*/}
             <StatusBar barStyle="light-content"/>

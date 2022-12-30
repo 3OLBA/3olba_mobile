@@ -18,7 +18,7 @@ export default function HomeScreen({navigation}) {
         return (
                 <Purshase>
                     <PurshaseInfo>
-                        <Text heavy >{item?.benificiaryName}</Text>
+                        <Text heavy >{item?.beneficiaryName}</Text>
                         <Text color="#727479">{item?.bankType}</Text>
                     </PurshaseInfo>
                     <PurshaseInfo>
