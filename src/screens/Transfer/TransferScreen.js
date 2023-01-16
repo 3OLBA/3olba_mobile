@@ -9,7 +9,9 @@ import {MyContext} from "../../../Global/Context";
 import {AddCarte} from "../Modal/AddCarte";
 import {AddTransfer} from "../Modal/AddTransfer";
 import {SendTransfer} from "../Modal/SendTransfer";
-import {createTransfer, sendTransfer} from "../../actions/TransactionAction";
+import {createTransfer} from "../../actions/TransactionAction";
+import {FlatList,View} from "react-native";
+import {ChooseBeneficiary} from "../Modal/ChooseBeneficiary";
 
 export default function TransferScreen({navigation}) {
     const {t} = useTranslation();
@@ -17,14 +19,16 @@ export default function TransferScreen({navigation}) {
     const currentAmount = 750000;
     const [amount,setAmount]   = useState("0");
     const [modalVisible,setModalVisible]   = useState(false);
+    const [modalChooseBenVisible,setModalChooseBenVisible]   = useState(false);
     const [modalSendVisible,setModalSendVisible]   = useState(false);
     const user = {"name":"Khalil","amount":100000,"currency":"MAD","iban":"234 567 123456789 89"};
     const {account , setAccount} = useContext(MyContext);
+    const {transactions , setTransactions} = useContext(MyContext);
     const [beneficiary,setBeneficiary] = useState({
         ribBeneficiary : "",
         nameBeneficiary: "",
         amount : "",
-    })
+    });
 
     const pressKey = (item,index) => {
         setAmount((prev) =>{
@@ -57,6 +61,7 @@ export default function TransferScreen({navigation}) {
     const hideModalAndStay = () => {
         setModalVisible(false);
         setModalSendVisible(false);
+        setModalChooseBenVisible(false);
     }
 
     // Send transfer
@@ -69,6 +74,16 @@ export default function TransferScreen({navigation}) {
         else if(!modalVisible){
             setModalSendVisible(true);
         }
+    }
+
+    // Check if the beneficiary is exist
+    const beneficiaryIsExist = () => {
+        return beneficiary?.name && beneficiary?.rib && beneficiary?.name;
+    }
+
+    const handleAddNewBeneficiary = () => {
+        setModalVisible(true);
+        setModalChooseBenVisible(false);
     }
 
     return (
@@ -93,10 +108,10 @@ export default function TransferScreen({navigation}) {
             </User>
 
             <ButtonsTransfer>
-                <BeneficiaryButton onPress={() => setModalVisible(true)}>
+                <BeneficiaryButton onPress={() => setModalChooseBenVisible(true)}>
                     <Ionicons name="add-circle-outline" size={20} color="white" />
                     <SendButtonText>
-                        <Text bold heavy>{t("Transfer.Transfer")}</Text>
+                        <Text bold heavy>{t("Transfer.AddBeneficiary")}</Text>
                     </SendButtonText>
                 </BeneficiaryButton>
                 <SendButton onPress={() => setModalSendVisible(true)}>
@@ -110,10 +125,19 @@ export default function TransferScreen({navigation}) {
             <AddTransfer navigation={navigation}
                          modalVisible={modalVisible}
                          addBeneficiary={addBeneficiary}
+                         beneficiaryOld={beneficiary}
                          hideModalAndStay={hideModalAndStay}
                          showModalAndLeave={showModalAndLeave}/>
 
-            {beneficiary.ribBeneficiary &&
+            <ChooseBeneficiary navigation={navigation}
+                         modalVisible={modalChooseBenVisible}
+                         handleAddNewBeneficiary={handleAddNewBeneficiary}
+                         addBeneficiary={addBeneficiary}
+                         beneficiaryOld={beneficiary}
+                         hideModalAndStay={hideModalAndStay}
+                         showModalAndLeave={showModalAndLeave}/>
+
+            {beneficiaryIsExist &&
                 <SendTransfer navigation={navigation}
                               modalVisible={modalSendVisible}
                               hideModalAndStay={hideModalAndStay}
@@ -123,33 +147,6 @@ export default function TransferScreen({navigation}) {
 
             {/*<NumberPad onPress={pressKey}/>*/}
             <StatusBar barStyle="light-content"/>
-            {/*<AlertNotificationRoot>*/}
-            {/*    <View>*/}
-            {/*        // dialog box*/}
-            {/*        <Button*/}
-            {/*            title={'dialog box'}*/}
-            {/*            onPress={() =>*/}
-            {/*                Dialog.show({*/}
-            {/*                    type: ALERT_TYPE.SUCCESS,*/}
-            {/*                    title: 'Success',*/}
-            {/*                    textBody: 'Congrats! this is dialog box success',*/}
-            {/*                    button: 'close',*/}
-            {/*                })*/}
-            {/*            }*/}
-            {/*        />*/}
-            {/*        // toast notification*/}
-            {/*        <Button*/}
-            {/*            title={'toast notification'}*/}
-            {/*            onPress={() =>*/}
-            {/*                Toast.show({*/}
-            {/*                    type: ALERT_TYPE.SUCCESS,*/}
-            {/*                    title: 'Success',*/}
-            {/*                    textBody: 'Congrats! this is toast notification success',*/}
-            {/*                })*/}
-            {/*            }*/}
-            {/*        />*/}
-            {/*    </View>*/}
-            {/*</AlertNotificationRoot>;*/}
         </Container>
     );
 }

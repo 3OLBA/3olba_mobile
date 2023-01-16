@@ -1,5 +1,5 @@
 import Home from "../Home/HomeScreen";
-import TransferScreen from "../SendRequest/TransferScreen";
+import TransferScreen from "../Transfer/TransferScreen";
 import Cards from "../Cards/CardsScreen";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {MaterialIcons, Entypo, AntDesign} from "@expo/vector-icons";

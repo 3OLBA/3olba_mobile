@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {
     View,
     StyleSheet,
@@ -7,28 +7,45 @@ import {
     TextInput,
     Keyboard,
     TouchableWithoutFeedback,
-    Platform
+    Platform, FlatList
 } from 'react-native';
 import {useTranslation} from "react-i18next";
 import Text from "../../components/Text";
-import {AntDesign, Feather, FontAwesome} from "@expo/vector-icons";
+import {AntDesign, Feather, FontAwesome, Ionicons} from "@expo/vector-icons";
 import {BANKSDETAILS, BENEFICIARYDETAILS, USERDETAILS} from "../Common/commonValue";
 import {getAccount} from "../../actions/AccountAction";
 import {getTransactions} from "../../actions/TransactionAction";
+import {MyContext} from "../../../Global/Context";
+import styled from "styled-components/native";
 
 
-export const AddTransfer = ({modalVisible,hideModalAndStay,showModalAndLeave,addBeneficiary,beneficiaryOld}) => {
+export const ChooseBeneficiary = ({modalVisible,hideModalAndStay,showModalAndLeave,addBeneficiary,beneficiaryOld,handleAddNewBeneficiary}) => {
     const {t} = useTranslation();
     const [selectedBank,setSelectedBank] = useState("SG");
     const [card,setCard] = useState([])
     const [nameCheck,setNameCheck] = useState(false)
     const [amountCheck,setAmountCheck] = useState(false)
     const [ribCheck,setRibCheck] = useState(false);
+    const {transactions , setTransactions} = useContext(MyContext);
     const [beneficiary,setBeneficiary] = useState({
         name : "",
         amount : "",
         rib : "",
     })
+    const renderTransactions = ({item}) => {
+        return (
+            <View style={styles.beneficiaryList}>
+                <View>
+                    <Text style={{color: "#0b0f17",fontWeight:"bold"}}>{item?.beneficiaryName}</Text>
+                </View>
+                <View>
+                    <TouchableOpacity onPress={() => chooseBeneficiary(item)}>
+                        <Ionicons name="add-circle-outline" size={20} color="white" />
+                    </TouchableOpacity>
+                </View>
+            </View>
+        )
+    }
 
     const handleAddInfo = (field,value) => {
         if(!value.isEmpty){
@@ -51,11 +68,15 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,showModalAndLeave,add
         showModalAndLeave(false);
     }
     const handleCancel = () => {
-        hideModalAndStay();
-        setRibCheck(false);
-        setNameCheck(false);
-        setAmountCheck(false);
+        showModalAndLeave(false);
     }
+
+
+    // Choose the selected beneficiary
+    const chooseBeneficiary = (item) => {
+        console.log("beneficiary",item)
+    }
+
 
     useEffect(() => {
         console.log("beneficiaryOld",beneficiaryOld);
@@ -66,64 +87,32 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,showModalAndLeave,add
 
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Text center large bold color="black" margin="0 0 10px 0">{t("Transfer.AddTransfer")}</Text>
+                        <Text center large bold color="black" margin="0 0 10px 0">{t("Transfer.AddBeneficiary")}</Text>
 
+                        <FlatList data={transactions}
+                                  renderItem={renderTransactions}
+                                  showVerticalScrollIndicator={false}
+                                  style={{padding:16}}
+                        />
 
-                        <TouchableWithoutFeedback accessible={false}>
-                            <View style={styles.action}>
-                                <AntDesign name="user" size={20} color="#05375a" />
-                                <TextInput style={[styles.textInput,{width:"80%",paddingLeft:2}]}
-                                           onChangeText={value => handleAddInfo(BENEFICIARYDETAILS.NAME,value)}
-                                           placeholder={t("Transfer.BeneficiaryName")}
-                                           autoCapitalize="none"
-                                           keyboardType="text"
-                                           maxLength={14}
-                                />
-                                <Feather name="check-circle" color={ribCheck ? "#75d219" : "#4e4c4c"} size={22}/>
-                            </View>
-                        </TouchableWithoutFeedback>
+                        <View style={styles.buttons}>
 
-                        <TouchableWithoutFeedback accessible={false}>
-                            <View style={styles.action}>
-                                <FontAwesome name="credit-card" size={20} color="#05375a" />
-                                <TextInput style={[styles.textInput,{width:"80%",paddingLeft:2}]}
-                                           onChangeText={value => handleAddInfo(BENEFICIARYDETAILS.RIB,value)}
-                                           placeholder={t("Transfer.RIB")}
-                                           autoCapitalize="none"
-                                           keyboardType="text"
-                                           maxLength={14}
-                                />
-                                <Feather name="check-circle" color={ribCheck ? "#75d219" : "#4e4c4c"} size={22}/>
-                            </View>
-                        </TouchableWithoutFeedback>
+                            <TouchableOpacity style={styles.buttonAddNewBenef}
+                                              onPress={() => handleAddNewBeneficiary()}>
+                                <Text style={[styles.textStyle,{color: "#0c0405"}]}>{t("Transfer.AddNewBeneficiary")}</Text>
+                            </TouchableOpacity>
 
-                        <TouchableWithoutFeedback accessible={false}>
-                            <View style={styles.action}>
-                                <FontAwesome name="money" size={20} color="#05375a" />
-                                <TextInput style={[styles.textInput,{width:"80%",paddingLeft:2}]}
-                                           onChangeText={value => handleAddInfo(BENEFICIARYDETAILS.AMOUNT,value)}
-                                           placeholder={t("Transfer.Amount")}
-                                           autoCapitalize="none"
-                                           keyboardType="text"
-                                           maxLength={14}
-                                />
-                                <Feather name="check-circle" color={amountCheck ? "#75d219" : "#4e4c4c"} size={22}/>
-                            </View>
-                        </TouchableWithoutFeedback>
+                        </View>
 
                         <View style={styles.buttons}>
 
                             <TouchableOpacity style={[styles.buttonCancel]}
-                                onPress={() => handleCancel()}>
-                                <Text style={[styles.textStyle,{color: "#890821"}]}>{t("Commun.Cancel")}</Text>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity style={[styles.buttonAdd]}
-                                onPress={() => showAndLeaveAddTransfer()}>
-                                <Text style={[styles.textStyle,{color: "#1f7406"}]}>{t("Commun.Add")}</Text>
+                                              onPress={() => hideModalAndStay()}>
+                                <Text style={[styles.textStyle,{color: "#890821"}]}>{t("Commun.Back")}</Text>
                             </TouchableOpacity>
 
                         </View>
+
                     </View>
                 </View>
             </Modal>
@@ -134,6 +123,14 @@ const styles = StyleSheet.create({
     container : {
         flex : 1,
         backgroundColor : '#1c3f60',
+    },
+    beneficiaryList : {
+        flexDirection : "row",
+        justifyContent :"space-between",
+        borderBottomWidth : 1,
+        borderColor : "#393939",
+        paddingBottom : 10,
+        margin : 12,
     },
     selectBank : {
         marginBottom : 200,
@@ -147,19 +144,13 @@ const styles = StyleSheet.create({
         marginTop: 22
     },
     modalView: {
-        margin: 20,
+        margin: 40,
         backgroundColor: "white",
         borderRadius: 20,
         padding: 35,
         alignItems: "center",
         shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
-        elevation: 5
+        flex : 1,
     },
     buttonAdd: {
         borderRadius: 20,
@@ -182,10 +173,18 @@ const styles = StyleSheet.create({
         paddingRight : 10,
         paddingTop : 10,
         paddingBottom : 10,
-        marginRight : 20,
         borderColor : "#890821",
         width :80,
-        height:50,
+        justifyContent:"center"
+    },
+    buttonAddNewBenef: {
+        borderRadius: 20,
+        borderWidth : 2,
+        paddingLeft : 10,
+        paddingRight : 10,
+        paddingTop : 10,
+        paddingBottom : 10,
+        borderColor : "#091808",
         justifyContent:"center"
     },
     buttons: {

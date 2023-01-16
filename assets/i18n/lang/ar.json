@@ -72,7 +72,11 @@
             "RIB" : "رقم الحساب",
             "Beneficiary" : "المستفيد",
             "Send" : "إرسال",
-            "AddTransfer": "أضف تحويل"
+            "AddTransfer": "أضف تحويل",
+            "BeneficiaryName": "اسم المستفيد",
+            "AddBeneficiary": "إضافة مستفيد",
+            "ChooseBeneficiary": "اختر مستفيدًا",
+            "AddNewBeneficiary": "إضافة مستفيد جديد"
 
         },
         "VerificationScreen": {

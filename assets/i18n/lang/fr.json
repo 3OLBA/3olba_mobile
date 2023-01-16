@@ -72,7 +72,12 @@
             "RIB" : "RIB",
             "Beneficiary" : "Bénéficiaire",
             "Send" : "Envoyer",
-            "AddTransfer": "Ajouter un transfert"
+            "AddTransfer": "Ajouter un transfert",
+            "BeneficiaryName": "Nom du bénéficiaire",
+            "AddBeneficiary": "Ajouter un bénéficiaire",
+            "ChooseBeneficiary": "choisir un Bénéficiaire",
+            "AddNewBeneficiary": "Ajouter un nouveau bénéficiaire"
+
         },
         "VerificationScreen": {
             "Verification": "Votre code de vérification",
