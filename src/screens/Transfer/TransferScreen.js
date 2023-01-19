@@ -111,7 +111,7 @@ export default function TransferScreen({navigation}) {
                 <BeneficiaryButton onPress={() => setModalChooseBenVisible(true)}>
                     <Ionicons name="add-circle-outline" size={20} color="white" />
                     <SendButtonText>
-                        <Text bold heavy>{t("Transfer.AddBeneficiary")}</Text>
+                        <Text bold heavy>{t("Transfer.Beneficiary")}</Text>
                     </SendButtonText>
                 </BeneficiaryButton>
                 <SendButton onPress={() => setModalSendVisible(true)}>
