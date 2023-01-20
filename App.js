@@ -21,6 +21,7 @@ export default function App() {
   const [appIsReady, setAppIsReady] = useState(false);
   const [transactions,setTransactions] = useState({});
   const [account,setAccount] = useState({});
+  const [beneficiaries,setBeneficiaries] = useState({});
   const [user,setUser] = useState({
         email : "test@test.com",
         username : "khalil",
@@ -54,6 +55,7 @@ export default function App() {
     return (
         <MyContext.Provider value={{user,setUser,
             account,setAccount,
+            beneficiaries,setBeneficiaries,
             transactions,setTransactions}}>
             <NavigationContainer onReady={onLayoutRootView}>
                 <Stack.Navigator>

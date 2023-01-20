@@ -17,6 +17,7 @@ import {getAccount} from "../../actions/AccountAction";
 import {getTransactions} from "../../actions/TransactionAction";
 import {MyContext} from "../../../Global/Context";
 import styled from "styled-components/native";
+import {getAllBeneficiaries} from "../../actions/BeneficiaryAction";
 
 
 export const ChooseBeneficiary = ({modalVisible,hideModalAndStay,showModalAndLeave,addBeneficiary,beneficiaryOld,handleAddNewBeneficiary}) => {
@@ -27,6 +28,7 @@ export const ChooseBeneficiary = ({modalVisible,hideModalAndStay,showModalAndLea
     const [amountCheck,setAmountCheck] = useState(false)
     const [ribCheck,setRibCheck] = useState(false);
     const {transactions , setTransactions} = useContext(MyContext);
+    const {beneficiaries , setBeneficiaries} = useContext(MyContext);
     const [beneficiary,setBeneficiary] = useState({
         name : "",
         amount : "",
@@ -34,16 +36,12 @@ export const ChooseBeneficiary = ({modalVisible,hideModalAndStay,showModalAndLea
     })
     const renderTransactions = ({item}) => {
         return (
-            <View style={styles.beneficiaryList}>
+            <TouchableOpacity style={styles.beneficiaryList} onPress={() => chooseBeneficiary(item)}>
                 <View>
-                    <Text style={{color: "#0b0f17",fontWeight:"bold"}}>{item?.beneficiaryName}</Text>
+                    <Text style={{color: "#0b0f17",fontWeight:"bold"}}>{item?.fullName}</Text>
+                    <Text style={{color: "#0b0f17",fontWeight:"bold"}}>{item?.rib}</Text>
                 </View>
-                <View>
-                    <TouchableOpacity onPress={() => chooseBeneficiary(item)}>
-                        <Ionicons name="add-circle-outline" size={20} color="white" />
-                    </TouchableOpacity>
-                </View>
-            </View>
+            </TouchableOpacity>
         )
     }
 
@@ -73,14 +71,18 @@ export const ChooseBeneficiary = ({modalVisible,hideModalAndStay,showModalAndLea
 
 
     // Choose the selected beneficiary
-    const chooseBeneficiary = (item) => {
-        console.log("beneficiary",item)
+    const chooseBeneficiary = (beneficiary) => {
+        console.log("beneficiary",beneficiary);
+        addBeneficiary(beneficiary);
+        handleAddNewBeneficiary();
     }
 
 
     useEffect(() => {
         console.log("beneficiaryOld",beneficiaryOld);
-    }, [beneficiary])
+        getAllBeneficiaries().then(ben => setBeneficiaries(ben));
+        console.log("beneficiaries",beneficiaries)
+    }, [])
 
     return (
             <Modal animationType="slide" transparent={true} visible={modalVisible}>
@@ -89,7 +91,7 @@ export const ChooseBeneficiary = ({modalVisible,hideModalAndStay,showModalAndLea
                     <View style={styles.modalView}>
                         <Text center large bold color="black" margin="0 0 10px 0">{t("Transfer.AddBeneficiary")}</Text>
 
-                        <FlatList data={transactions}
+                        <FlatList data={beneficiaries}
                                   renderItem={renderTransactions}
                                   showVerticalScrollIndicator={false}
                                   style={{padding:16}}

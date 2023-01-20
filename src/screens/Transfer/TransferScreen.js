@@ -25,8 +25,8 @@ export default function TransferScreen({navigation}) {
     const {account , setAccount} = useContext(MyContext);
     const {transactions , setTransactions} = useContext(MyContext);
     const [beneficiary,setBeneficiary] = useState({
-        ribBeneficiary : "",
-        nameBeneficiary: "",
+        rib : "",
+        fullName: "",
         amount : "",
     });
 
@@ -36,7 +36,7 @@ export default function TransferScreen({navigation}) {
         });
     }
     const addBeneficiary = (beneficiary) => {
-        console.log("beneficiary",beneficiary)
+        console.log("Choosen beneficiary",beneficiary)
         setBeneficiary(beneficiary);
     }
 
@@ -101,9 +101,9 @@ export default function TransferScreen({navigation}) {
                     <AntDesign name="user" size={35} color="white" />
                 </ProfileLogo>
                 <UserDetails>
-                    <Text bold heavy style={{paddingBottom:8}}>{t("Transfer.Name")} : {beneficiary?.nameBeneficiary} </Text>
+                    <Text bold heavy style={{paddingBottom:8}}>{t("Transfer.Name")} : {beneficiary?.fullName} </Text>
                     <Text bold heavy style={{paddingBottom:8}}>{t("Transfer.Amount")} : {convertToMAD(beneficiary?.amount)}</Text>
-                    <Text bold heavy color="#727479" style={{paddingBottom:8}}>{t("Transfer.RIB")} : {beneficiary?.ribBeneficiary} </Text>
+                    <Text bold heavy color="#727479" style={{paddingBottom:8}}>{t("Transfer.RIB")} : {beneficiary?.rib} </Text>
                 </UserDetails>
             </User>
 

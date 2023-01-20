@@ -32,21 +32,30 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,showModalAndLeave,add
 
     const handleAddInfo = (field,value) => {
         if(!value.isEmpty){
+            console.log("emptyyy",beneficiaryOld?.rib)
             if(field === BENEFICIARYDETAILS.RIB){
+                console.log("value",value)
                 setRibCheck(true);
-                setBeneficiary({...beneficiary,ribBeneficiary: value});
+                setBeneficiary({...beneficiary,rib: value});
             }
             if(field === BENEFICIARYDETAILS.NAME){
                 setNameCheck(true);
-                setBeneficiary({...beneficiary,nameBeneficiary: value});
+                setBeneficiary({...beneficiary,fullName: value});
             }
             if(field === BENEFICIARYDETAILS.AMOUNT){
                 setAmountCheck(true);
                 setBeneficiary({...beneficiary,amount: value});
             }
         }
+        console.log("new Benef",beneficiary)
+
     }
     const showAndLeaveAddTransfer = () => {
+        if(!beneficiaryOld?.rib?.isEmpty){
+            setBeneficiary({...beneficiary,fullName: beneficiaryOld?.fullName});
+            setBeneficiary({...beneficiary,rib: beneficiaryOld?.rib});
+        }
+        console.log("BENEF",beneficiary)
         addBeneficiary(beneficiary);
         showModalAndLeave(false);
     }
@@ -56,10 +65,14 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,showModalAndLeave,add
         setNameCheck(false);
         setAmountCheck(false);
     }
+    const setCheckAfterChoosenBen = () => {
+        setRibCheck(true);
+        setNameCheck(true);
+    }
 
     useEffect(() => {
         console.log("beneficiaryOld",beneficiaryOld);
-    }, [beneficiary])
+    })
 
     return (
             <Modal animationType="slide" transparent={true} visible={modalVisible}>
@@ -72,11 +85,12 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,showModalAndLeave,add
                         <TouchableWithoutFeedback accessible={false}>
                             <View style={styles.action}>
                                 <AntDesign name="user" size={20} color="#05375a" />
-                                <TextInput style={[styles.textInput,{width:"80%",paddingLeft:2}]}
+                                <TextInput style={[styles.textInput,{width:"80%",paddingLeft:10}]}
                                            onChangeText={value => handleAddInfo(BENEFICIARYDETAILS.NAME,value)}
                                            placeholder={t("Transfer.BeneficiaryName")}
                                            autoCapitalize="none"
                                            keyboardType="text"
+                                           value={beneficiaryOld?.fullName}
                                            maxLength={14}
                                 />
                                 <Feather name="check-circle" color={ribCheck ? "#75d219" : "#4e4c4c"} size={22}/>
@@ -86,10 +100,11 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,showModalAndLeave,add
                         <TouchableWithoutFeedback accessible={false}>
                             <View style={styles.action}>
                                 <FontAwesome name="credit-card" size={20} color="#05375a" />
-                                <TextInput style={[styles.textInput,{width:"80%",paddingLeft:2}]}
+                                <TextInput style={[styles.textInput,{width:"80%",paddingLeft:10}]}
                                            onChangeText={value => handleAddInfo(BENEFICIARYDETAILS.RIB,value)}
                                            placeholder={t("Transfer.RIB")}
                                            autoCapitalize="none"
+                                           value={beneficiaryOld?.rib}
                                            keyboardType="text"
                                            maxLength={14}
                                 />
@@ -100,7 +115,7 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,showModalAndLeave,add
                         <TouchableWithoutFeedback accessible={false}>
                             <View style={styles.action}>
                                 <FontAwesome name="money" size={20} color="#05375a" />
-                                <TextInput style={[styles.textInput,{width:"80%",paddingLeft:2}]}
+                                <TextInput style={[styles.textInput,{width:"80%",paddingLeft:10}]}
                                            onChangeText={value => handleAddInfo(BENEFICIARYDETAILS.AMOUNT,value)}
                                            placeholder={t("Transfer.Amount")}
                                            autoCapitalize="none"
@@ -207,6 +222,7 @@ const styles = StyleSheet.create({
         marginTop : Platform.OS === 'ios' ? 0 : -12,
         paddingLeft : 10,
         color : "#05375a",
+        fontSize:16
     },
     modalText: {
         marginBottom: 15,
