@@ -25,9 +25,10 @@ export default function TransferScreen({navigation}) {
     const {account , setAccount} = useContext(MyContext);
     const {transactions , setTransactions} = useContext(MyContext);
     const [beneficiary,setBeneficiary] = useState({
-        rib : "",
         fullName: "",
+        rib : "",
         amount : "",
+        chosoen:false,
     });
 
     const pressKey = (item,index) => {
@@ -35,9 +36,9 @@ export default function TransferScreen({navigation}) {
             return index !== 10 ? prev + item : prev.slice(0,prev.length - 1);
         });
     }
-    const addBeneficiary = (beneficiary) => {
-        console.log("Choosen beneficiary",beneficiary)
-        setBeneficiary(beneficiary);
+    const addBeneficiary = (benef) => {
+        console.log("Choosen beneficiary",benef);
+        setBeneficiary({...beneficiary,fullName: benef?.fullName,rib: benef?.rib,amount: benef?.amount});
     }
 
     const convertToMAD = (currentAmount) => {
@@ -86,6 +87,11 @@ export default function TransferScreen({navigation}) {
         setModalChooseBenVisible(false);
     }
 
+    const addNewBeneficiary = () => {
+        setBeneficiary({});
+        setModalChooseBenVisible(true);
+    }
+
     return (
         <Container>
 
@@ -108,7 +114,7 @@ export default function TransferScreen({navigation}) {
             </User>
 
             <ButtonsTransfer>
-                <BeneficiaryButton onPress={() => setModalChooseBenVisible(true)}>
+                <BeneficiaryButton onPress={() => addNewBeneficiary()}>
                     <Ionicons name="add-circle-outline" size={20} color="white" />
                     <SendButtonText>
                         <Text bold heavy>{t("Transfer.Beneficiary")}</Text>

@@ -25,20 +25,21 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,showModalAndLeave,add
     const [amountCheck,setAmountCheck] = useState(false)
     const [ribCheck,setRibCheck] = useState(false);
     const [beneficiary,setBeneficiary] = useState({
-        name : "",
-        amount : "",
+        fullName : "",
         rib : "",
+        amount : "",
+        chosen : false,
     })
 
     const handleAddInfo = (field,value) => {
-        if(!value.isEmpty){
-            console.log("emptyyy",beneficiaryOld?.rib)
-            if(field === BENEFICIARYDETAILS.RIB){
+         if(!value.isEmpty){
+            if(field === BENEFICIARYDETAILS.RIB && isChosenBeneficiaryNotExist){
                 console.log("value",value)
                 setRibCheck(true);
                 setBeneficiary({...beneficiary,rib: value});
             }
-            if(field === BENEFICIARYDETAILS.NAME){
+            if(field === BENEFICIARYDETAILS.NAME && isChosenBeneficiaryNotExist){
+                console.log("NAMEEEE",value)
                 setNameCheck(true);
                 setBeneficiary({...beneficiary,fullName: value});
             }
@@ -47,32 +48,46 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,showModalAndLeave,add
                 setBeneficiary({...beneficiary,amount: value});
             }
         }
+
         console.log("new Benef",beneficiary)
 
     }
+
     const showAndLeaveAddTransfer = () => {
-        if(!beneficiaryOld?.rib?.isEmpty){
-            setBeneficiary({...beneficiary,fullName: beneficiaryOld?.fullName});
-            setBeneficiary({...beneficiary,rib: beneficiaryOld?.rib});
-        }
         console.log("BENEF",beneficiary)
         addBeneficiary(beneficiary);
+        removeBeneficiaryFromStore();
         showModalAndLeave(false);
     }
+
     const handleCancel = () => {
         hideModalAndStay();
         setRibCheck(false);
         setNameCheck(false);
         setAmountCheck(false);
     }
-    const setCheckAfterChoosenBen = () => {
-        setRibCheck(true);
-        setNameCheck(true);
+
+    const removeBeneficiaryFromStore = () => {
+        setBeneficiary({fullName: ""});
+        setBeneficiary({rib: ""});
+        setBeneficiary({amount: ""});
+    }
+
+    const isChosenBeneficiaryExist = () => {
+        return !beneficiaryOld?.rib?.isEmpty && !beneficiaryOld?.rib?.isEmpty;
+    }
+
+    const isChosenBeneficiaryNotExist = () => {
+        return beneficiaryOld === null || beneficiaryOld === undefined
+            || beneficiaryOld?.rib === null || beneficiaryOld?.rib === "" || beneficiaryOld?.rib === undefined;
     }
 
     useEffect(() => {
-        console.log("beneficiaryOld",beneficiaryOld);
-    })
+        if(isChosenBeneficiaryExist){
+            setBeneficiary({...beneficiary, fullName: beneficiaryOld?.fullName,
+                rib: beneficiaryOld?.rib,chosen:true});
+        }
+    },[beneficiaryOld])
 
     return (
             <Modal animationType="slide" transparent={true} visible={modalVisible}>
@@ -91,6 +106,7 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,showModalAndLeave,add
                                            autoCapitalize="none"
                                            keyboardType="text"
                                            value={beneficiaryOld?.fullName}
+                                           editable={!beneficiary.chosen}
                                            maxLength={14}
                                 />
                                 <Feather name="check-circle" color={ribCheck ? "#75d219" : "#4e4c4c"} size={22}/>
@@ -105,6 +121,7 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,showModalAndLeave,add
                                            placeholder={t("Transfer.RIB")}
                                            autoCapitalize="none"
                                            value={beneficiaryOld?.rib}
+                                           editable={!beneficiary.chosen}
                                            keyboardType="text"
                                            maxLength={14}
                                 />

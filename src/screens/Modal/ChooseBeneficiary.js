@@ -22,18 +22,8 @@ import {getAllBeneficiaries} from "../../actions/BeneficiaryAction";
 
 export const ChooseBeneficiary = ({modalVisible,hideModalAndStay,showModalAndLeave,addBeneficiary,beneficiaryOld,handleAddNewBeneficiary}) => {
     const {t} = useTranslation();
-    const [selectedBank,setSelectedBank] = useState("SG");
-    const [card,setCard] = useState([])
-    const [nameCheck,setNameCheck] = useState(false)
-    const [amountCheck,setAmountCheck] = useState(false)
-    const [ribCheck,setRibCheck] = useState(false);
-    const {transactions , setTransactions} = useContext(MyContext);
     const {beneficiaries , setBeneficiaries} = useContext(MyContext);
-    const [beneficiary,setBeneficiary] = useState({
-        name : "",
-        amount : "",
-        rib : "",
-    })
+
     const renderTransactions = ({item}) => {
         return (
             <TouchableOpacity style={styles.beneficiaryList} onPress={() => chooseBeneficiary(item)}>
@@ -45,38 +35,11 @@ export const ChooseBeneficiary = ({modalVisible,hideModalAndStay,showModalAndLea
         )
     }
 
-    const handleAddInfo = (field,value) => {
-        if(!value.isEmpty){
-            if(field === BENEFICIARYDETAILS.RIB){
-                setRibCheck(true);
-                setBeneficiary({...beneficiary,ribBeneficiary: value});
-            }
-            if(field === BENEFICIARYDETAILS.NAME){
-                setNameCheck(true);
-                setBeneficiary({...beneficiary,nameBeneficiary: value});
-            }
-            if(field === BENEFICIARYDETAILS.AMOUNT){
-                setAmountCheck(true);
-                setBeneficiary({...beneficiary,amount: value});
-            }
-        }
-    }
-    const showAndLeaveAddTransfer = () => {
-        addBeneficiary(beneficiary);
-        showModalAndLeave(false);
-    }
-    const handleCancel = () => {
-        showModalAndLeave(false);
-    }
-
-
     // Choose the selected beneficiary
     const chooseBeneficiary = (beneficiary) => {
-        console.log("beneficiary",beneficiary);
         addBeneficiary(beneficiary);
         handleAddNewBeneficiary();
     }
-
 
     useEffect(() => {
         console.log("beneficiaryOld",beneficiaryOld);
