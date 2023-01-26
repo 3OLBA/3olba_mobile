@@ -12,44 +12,35 @@ import {
 import {useTranslation} from "react-i18next";
 import Text from "../../components/Text";
 import {AntDesign, Feather, FontAwesome} from "@expo/vector-icons";
-import {BANKSDETAILS, BENEFICIARYDETAILS, USERDETAILS} from "../Common/commonValue";
-import {getAccount} from "../../actions/AccountAction";
-import {getTransactions} from "../../actions/TransactionAction";
+import {BANKSDETAILS, BENEFICIARYDETAILS, ModalStatus, USERDETAILS} from "../Common/commonValue";
+import {addBeneficiary} from "../../actions/BeneficiaryAction";
+import {SubmitModal} from "./SubmitModal";
 
 
-export const AddTransfer = ({modalVisible,hideModalAndStay,
-                                showModalAndLeave,addBeneficiary,
-                                beneficiaryOld,isChosenBeneficiary,
-                                handleIfNotChooseBeneficiary}) => {
+
+export const AddBeneficiary = ({modalVisible,hideModalAndStay,
+                                showModalAndLeave,
+                                beneficiaryOld,
+                                navigation}) => {
     const {t} = useTranslation();
-    const [selectedBank,setSelectedBank] = useState("SG");
-    const [card,setCard] = useState([])
     const [nameCheck,setNameCheck] = useState(false)
-    const [amountCheck,setAmountCheck] = useState(false)
     const [ribCheck,setRibCheck] = useState(false);
+    const [statusAddBeneficiary , setStatusAddBeneficiary] = useState(ModalStatus.INIT);
+    const [message , setMessage] = useState("");
     const [beneficiary,setBeneficiary] = useState({
         fullName : "",
         rib : "",
-        amount : "",
-        chosen : false,
-        id : "",
     })
 
     const handleAddInfo = (field,value) => {
          if(!value.isEmpty){
-            if(field === BENEFICIARYDETAILS.RIB && isChosenBeneficiaryNotExist){
-                console.log("value",value)
+            if(field === BENEFICIARYDETAILS.RIB){
                 setRibCheck(true);
                 setBeneficiary({...beneficiary,rib: value});
             }
-            if(field === BENEFICIARYDETAILS.NAME && isChosenBeneficiaryNotExist){
-                console.log("NAMEEEE",value)
+            if(field === BENEFICIARYDETAILS.NAME){
                 setNameCheck(true);
                 setBeneficiary({...beneficiary,fullName: value});
-            }
-            if(field === BENEFICIARYDETAILS.AMOUNT){
-                setAmountCheck(true);
-                setBeneficiary({...beneficiary,amount: value});
             }
         }
 
@@ -58,36 +49,38 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,
     }
 
     const showAndLeaveAddTransfer = () => {
-        console.log("BENEF",beneficiary);
-        handleIfNotChooseBeneficiary();
-        addBeneficiary(beneficiary);
-        setBeneficiary({})
         showModalAndLeave(false);
     }
+
+    const handleBeneficiary = () => {
+        setStatusAddBeneficiary(ModalStatus.START);
+        addBeneficiary(beneficiary).then(r => {
+            if(r?.success){
+                setStatusAddBeneficiary(ModalStatus.SUCCESS);
+                setMessage(t("Beneficiary.AddBeneficiarySuccess"))
+            }else{
+                setStatusAddBeneficiary(ModalStatus.FAILED)
+                setMessage(t("Beneficiary.AddBeneficiaryFailed"))
+            }
+        });
+    }
+
 
     const handleCancel = () => {
         hideModalAndStay();
         setRibCheck(false);
         setNameCheck(false);
-        setAmountCheck(false);
     }
 
-    const isChosenBeneficiaryExist = () => {
-        return !beneficiaryOld?.rib?.isEmpty && !beneficiaryOld?.rib?.isEmpty;
-    }
-
-    const isChosenBeneficiaryNotExist = () => {
-        return beneficiaryOld === null || beneficiaryOld === undefined
-            || beneficiaryOld?.rib === null || beneficiaryOld?.rib === "" || beneficiaryOld?.rib === undefined;
+    const hideModalSubmitAndLeave = () => {
+        if(statusAddBeneficiary === ModalStatus.SUCCESS){
+            hideModalAndStay();
+        }
+        setStatusAddBeneficiary(ModalStatus.INIT);
     }
 
     useEffect(() => {
         console.log("beneficiaryOld",beneficiaryOld)
-        if(isChosenBeneficiaryExist){
-            setBeneficiary({...beneficiary, fullName: beneficiaryOld?.fullName,
-                rib: beneficiaryOld?.rib,chosen:true,
-                id: beneficiaryOld?.id});
-        }
     },[beneficiaryOld])
 
     return (
@@ -95,7 +88,7 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,
 
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Text center large bold color="black" margin="0 0 10px 0">{t("Transfer.AddTransfer")}</Text>
+                        <Text center large bold color="black" margin="0 0 10px 0">{t("Transfer.AddBeneficiary")}</Text>
 
 
                         <TouchableWithoutFeedback accessible={false}>
@@ -104,10 +97,10 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,
                                 <TextInput style={[styles.textInput,{width:"80%",paddingLeft:10}]}
                                            onChangeText={value => handleAddInfo(BENEFICIARYDETAILS.NAME,value)}
                                            placeholder={t("Transfer.BeneficiaryName")}
+                                           placeholderTextColor="#747171"
                                            autoCapitalize="none"
                                            keyboardType="text"
                                            value={beneficiaryOld?.fullName}
-                                           editable={!isChosenBeneficiary}
                                            maxLength={14}
                                 />
                                 <Feather name="check-circle" color={ribCheck ? "#75d219" : "#4e4c4c"} size={22}/>
@@ -120,9 +113,9 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,
                                 <TextInput style={[styles.textInput,{width:"80%",paddingLeft:10}]}
                                            onChangeText={value => handleAddInfo(BENEFICIARYDETAILS.RIB,value)}
                                            placeholder={t("Transfer.RIB")}
+                                           placeholderTextColor="#747171"
                                            autoCapitalize="none"
                                            value={beneficiaryOld?.rib}
-                                           editable={!isChosenBeneficiary}
                                            keyboardType="text"
                                            maxLength={14}
                                 />
@@ -130,19 +123,6 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,
                             </View>
                         </TouchableWithoutFeedback>
 
-                        <TouchableWithoutFeedback accessible={false}>
-                            <View style={styles.action}>
-                                <FontAwesome name="money" size={20} color="#05375a" />
-                                <TextInput style={[styles.textInput,{width:"80%",paddingLeft:10}]}
-                                           onChangeText={value => handleAddInfo(BENEFICIARYDETAILS.AMOUNT,value)}
-                                           placeholder={t("Transfer.Amount")}
-                                           autoCapitalize="none"
-                                           keyboardType="text"
-                                           maxLength={14}
-                                />
-                                <Feather name="check-circle" color={amountCheck ? "#75d219" : "#4e4c4c"} size={22}/>
-                            </View>
-                        </TouchableWithoutFeedback>
 
                         <View style={styles.buttons}>
 
@@ -152,11 +132,14 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,
                             </TouchableOpacity>
 
                             <TouchableOpacity style={[styles.buttonAdd]}
-                                onPress={() => showAndLeaveAddTransfer()}>
+                                onPress={() => handleBeneficiary()}>
                                 <Text style={[styles.textStyle,{color: "#1f7406"}]}>{t("Commun.Add")}</Text>
                             </TouchableOpacity>
 
                         </View>
+
+                        <SubmitModal status={statusAddBeneficiary} hideModalSubmitAndLeave={hideModalSubmitAndLeave} message={message}/>
+
                     </View>
                 </View>
             </Modal>

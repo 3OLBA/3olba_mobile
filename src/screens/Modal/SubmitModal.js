@@ -3,7 +3,7 @@ import {View, StyleSheet, TouchableOpacity, Modal, Text, ActivityIndicator} from
 import {useTranslation} from "react-i18next";
 import {ModalStatus} from "../Common/commonValue";
 
-export const SubmitModal = ({status,hideModalSubmitAndLeave}) => {
+export const SubmitModal = ({status,hideModalSubmitAndLeave,message}) => {
     const {t} = useTranslation();
     return (
             <Modal animationType="slide"
@@ -24,11 +24,11 @@ export const SubmitModal = ({status,hideModalSubmitAndLeave}) => {
                     <View style={styles.centeredView}>
                         <View style={styles.modalView}>
                             {status === ModalStatus.SUCCESS && <Text style={styles.modalTextSuccess}>
-                                {t("LoginScreen.createdYourAccountSuccessfully")}
+                                {message}
                             </Text>}
 
                             {status === ModalStatus.FAILED && <Text style={styles.modalTextUnsucces}>
-                                {t("LoginScreen.createdYourAccountUnsuccessfully")}
+                                {message}
                             </Text>}
 
                             <View style={styles.buttons}>

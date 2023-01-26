@@ -20,6 +20,7 @@ export const LoginScreen = ({navigation}) => {
     const [eyeOn, setEyeOn] = useState(false);
     const [isText, setIsText] = useState(false);
     const [status, setStatus] = useState(ModalStatus.INIT);
+    const [message, setMessage] = useState("");
     const [loginUser,setLoginUser] = useState({
         email : "",
         password : "",
@@ -68,9 +69,11 @@ export const LoginScreen = ({navigation}) => {
                 if (token) {
                     setStatus(ModalStatus.INIT);
                     await retrieveFromSecureStore('person').then(user => setUser(JSON.parse(user)));
-                    navigation.navigate("Bottom", {email: loginUser.email})
+                    navigation.navigate("Bottom", {email: loginUser.email});
+                    setMessage(t("LoginScreen.createdYourAccountSuccessfully"))
                 } else {
                     setStatus(ModalStatus.FAILED);
+                    setMessage(t("LoginScreen.createdYourAccountUnsuccessfully"))
                 }
             });
         }
@@ -162,7 +165,7 @@ export const LoginScreen = ({navigation}) => {
 
                 {/*#################################### SUBMIT AND FAILED MODAL #####################################*/}
 
-                <SubmitModal status={status} hideModalSubmitAndLeave={hideModalSubmitAndLeave}/>
+                <SubmitModal status={status} hideModalSubmitAndLeave={hideModalSubmitAndLeave} message={message}/>
 
                 {/*######################################## LOADING MODAL ###########################################*/}
 

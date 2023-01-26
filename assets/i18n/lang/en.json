@@ -88,6 +88,10 @@
             "Verification": "Your verification code",
             "VerifyYourAccountSuccess" : "You have successfully verify your account",
             "VerifyYourAccountUnsuccess" : "You have entered an incorrect code"
+        },
+        "Beneficiary": {
+            "AddBeneficiarySuccess" : "You have successfully create your beneficiary",
+            "AddBeneficiaryFailed" : "You have entered an incorrect beneficiary info"
         }
     }
 }

@@ -37,7 +37,7 @@ export async function createTransfer(transfer) {
                     },
                 }
             ).then(res => {
-                    console.log("res", res?.data?.object);
+                    console.log("res", res?.data);
                 response = res?.data?.object;
                 }
             ).catch((err) => {

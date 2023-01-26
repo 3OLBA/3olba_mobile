@@ -28,6 +28,7 @@ export const CreateAccountScreen = ({navigation}) => {
     const [success, setSuccess] = useState(null);
     const {t} = useTranslation();
     const [showModalSubmit,setShowModalSubmit] = useState(false);
+    const [message,setMessage] = useState("");
 
     const showAndHidePassword = () => {
         if(!eyeOn) setEyeOn(true);
@@ -83,9 +84,11 @@ export const CreateAccountScreen = ({navigation}) => {
                 console.log("result",data?.success);
                 if(data?.success){
                     setStatus(ModalStatus.SUCCESS);
+                    setMessage(t("LoginScreen.createdYourAccountSuccessfully"))
                 }
                 if(!data?.success){
                     setStatus(ModalStatus.FAILED);
+                    setMessage(t("LoginScreen.createdYourAccountUnsuccessfully"))
                 }
             });
         }
@@ -206,7 +209,7 @@ export const CreateAccountScreen = ({navigation}) => {
 
                 {/*#################################### SUBMIT AND FAILED MODAL #####################################*/}
 
-                <SubmitModal status={status} hideModalSubmitAndLeave={hideModalSubmitAndLeave}/>
+                <SubmitModal status={status} hideModalSubmitAndLeave={hideModalSubmitAndLeave} message={message}/>
 
                 {/*######################################## LOADING MODAL ###########################################*/}
 

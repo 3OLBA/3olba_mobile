@@ -83,6 +83,10 @@
             "Verification": "رمز التحقق",
             "VerifyYourAccountSuccess" : "التحقق من حسابك تم بنجاح",
             "VerifyYourAccountUnsuccess" : "لقد أدخلت رمز غير صحيح"
+        },
+        "Beneficiary": {
+            "AddBeneficiarySuccess" : "لقد نجحت في إنشاء المستفيد الخاص بك",
+            "AddBeneficiaryFailed" : "لقد أدخلت معلومات مستفيد غير صحيحة"
         }
     }
 }

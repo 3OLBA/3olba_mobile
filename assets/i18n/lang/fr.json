@@ -83,6 +83,10 @@
             "Verification": "Votre code de vérification",
             "VerifyYourAccount" : "Vous avez bien vérifié votre compte",
             "VerifyYourAccountUnseccess" : "Vous avez entré un code incorrect"
+        },
+        "Beneficiary": {
+            "AddBeneficiarySuccess" : "Vous avez réussi à créer votre bénéficiaire",
+            "AddBeneficiaryFailed" : "Vous avez entré une information de bénéficiaire incorrecte"
         }
     }
 }

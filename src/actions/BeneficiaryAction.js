@@ -25,20 +25,20 @@ export async function getAllBeneficiaries() {
     return beneficiaries;
 }
 
-// the purpose of this method is to create transfer from client to beneficiary
-export async function createTransfer(transfer) {
+// the purpose of this method is to add beneficiary
+export async function addBeneficiary(beneficiary) {
     let response = [] ;
-    console.log("New Transfer",transfer)
+    console.log("New Benficiary",beneficiary)
     await retrieveFromSecureStore('token').then(token => {
-        if (token && transfer) {
-            return axios.post(BASEURL + '/transaction/send-balance',transfer,{
+        if (token && beneficiary) {
+            return axios.post(BASEURL + '/beneficiary',beneficiary,{
                     headers: {
                         authorization: "Bearer " + JSON.parse(token)
                     },
                 }
             ).then(res => {
-                    console.log("res", res?.data?.object);
-                response = res?.data?.object;
+                    console.log("res", res?.data);
+                    response = res?.data;
                 }
             ).catch((err) => {
                 console.log(err)
@@ -47,7 +47,6 @@ export async function createTransfer(transfer) {
     });
     return response;
 }
-
 
 
 

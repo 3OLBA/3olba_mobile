@@ -12,6 +12,7 @@ import {SendTransfer} from "../Modal/SendTransfer";
 import {createTransfer} from "../../actions/TransactionAction";
 import {FlatList,View} from "react-native";
 import {ChooseBeneficiary} from "../Modal/ChooseBeneficiary";
+import {AddBeneficiary} from "../Modal/AddBeneficiary";
 
 export default function TransferScreen({navigation}) {
     const {t} = useTranslation();
@@ -19,16 +20,19 @@ export default function TransferScreen({navigation}) {
     const currentAmount = 750000;
     const [amount,setAmount]   = useState("0");
     const [modalVisible,setModalVisible]   = useState(false);
+    const [showAddTransfer,setShowAddTransfer]   = useState(false);
     const [modalChooseBenVisible,setModalChooseBenVisible]   = useState(false);
     const [modalSendVisible,setModalSendVisible]   = useState(false);
     const user = {"name":"Khalil","amount":100000,"currency":"MAD","iban":"234 567 123456789 89"};
     const {account , setAccount} = useContext(MyContext);
     const {transactions , setTransactions} = useContext(MyContext);
+    const [isChosenBeneficiary , setIsChosenBeneficiary] = useState(false);
     const [beneficiary,setBeneficiary] = useState({
         fullName: "",
         rib : "",
         amount : "",
-        chosoen:false,
+        chosen:false,
+        id:"",
     });
 
     const pressKey = (item,index) => {
@@ -38,7 +42,10 @@ export default function TransferScreen({navigation}) {
     }
     const addBeneficiary = (benef) => {
         console.log("Choosen beneficiary",benef);
-        setBeneficiary({...beneficiary,fullName: benef?.fullName,rib: benef?.rib,amount: benef?.amount});
+        setBeneficiary({...beneficiary,fullName: benef?.fullName,
+            rib: benef?.rib,amount: benef?.amount,
+            id: benef?.id
+        });
     }
 
     const convertToMAD = (currentAmount) => {
@@ -53,16 +60,28 @@ export default function TransferScreen({navigation}) {
         if(modalVisible){
             setModalVisible(false);
             setModalSendVisible(false);
+            setShowAddTransfer(false);
             navigation.navigate("Transfer");
         }
         else if(!modalVisible){
             setModalVisible(true);
         }
     }
+    const showModalAddTransfer = () => {
+        if(showAddTransfer){
+            setShowAddTransfer(false);
+            navigation.navigate("Transfer");
+        }
+        else if(!showAddTransfer){
+            setShowAddTransfer(true);
+        }
+    }
     const hideModalAndStay = () => {
+        setBeneficiary({});
         setModalVisible(false);
         setModalSendVisible(false);
         setModalChooseBenVisible(false);
+        setShowAddTransfer(false);
     }
 
     // Send transfer
@@ -85,6 +104,15 @@ export default function TransferScreen({navigation}) {
     const handleAddNewBeneficiary = () => {
         setModalVisible(true);
         setModalChooseBenVisible(false);
+    }
+
+    const handleIfChooseBeneficiary = () => {
+        setModalVisible(false);
+        setShowAddTransfer(true);
+        setIsChosenBeneficiary(true);
+    }
+    const handleIfNotChooseBeneficiary = () => {
+        setIsChosenBeneficiary(false);
     }
 
     const addNewBeneficiary = () => {
@@ -129,19 +157,32 @@ export default function TransferScreen({navigation}) {
             </ButtonsTransfer>
 
             <AddTransfer navigation={navigation}
+                         modalVisible={showAddTransfer}
+                         addBeneficiary={addBeneficiary}
+                         beneficiaryOld={beneficiary}
+                         isChosenBeneficiary={isChosenBeneficiary}
+                         handleIfNotChooseBeneficiary={handleIfNotChooseBeneficiary}
+                         hideModalAndStay={hideModalAndStay}
+                         showModalAndLeave={showModalAndLeave}/>
+
+            <AddBeneficiary navigation={navigation}
                          modalVisible={modalVisible}
                          addBeneficiary={addBeneficiary}
                          beneficiaryOld={beneficiary}
+                         isChosenBeneficiary={isChosenBeneficiary}
+                         handleIfNotChooseBeneficiary={handleIfNotChooseBeneficiary}
                          hideModalAndStay={hideModalAndStay}
                          showModalAndLeave={showModalAndLeave}/>
 
             <ChooseBeneficiary navigation={navigation}
-                         modalVisible={modalChooseBenVisible}
-                         handleAddNewBeneficiary={handleAddNewBeneficiary}
-                         addBeneficiary={addBeneficiary}
-                         beneficiaryOld={beneficiary}
-                         hideModalAndStay={hideModalAndStay}
-                         showModalAndLeave={showModalAndLeave}/>
+                               showModalAddTransfer={showModalAddTransfer}
+                               modalVisible={modalChooseBenVisible}
+                               handleIfChooseBeneficiary={handleIfChooseBeneficiary}
+                               handleAddNewBeneficiary={handleAddNewBeneficiary}
+                               addBeneficiary={addBeneficiary}
+                               beneficiaryOld={beneficiary}
+                               hideModalAndStay={hideModalAndStay}
+                               showModalAndLeave={showModalAndLeave}/>
 
             {beneficiaryIsExist &&
                 <SendTransfer navigation={navigation}
