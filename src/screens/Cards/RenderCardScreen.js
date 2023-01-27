@@ -15,6 +15,8 @@ export default function RenderCardScreen({item}) {
                return require("../../../assets/banksLogo/BMCE.png");
            case "ATTIJARIWAFA":
                return require("../../../assets/banksLogo/ATTIJARIWAFA.png");
+           default:
+               return require("../../../assets/banksLogo/default.png");
        }
     }
 
