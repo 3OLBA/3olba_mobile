@@ -76,7 +76,9 @@
             "BeneficiaryName": "Beneficiary name",
             "AddBeneficiary": "Add Beneficiary",
             "ChooseBeneficiary": "Choose a Beneficiary",
-            "AddNewBeneficiary": "Ajouter un nouveau bénéficiaire"
+            "AddNewBeneficiary": "Ajouter un nouveau bénéficiaire",
+            "SendTransferSuccess": "Your transfer has been successfully sent",
+            "SendTransferFailed": "Transfer failed, check your information !"
         },
         "VerificationScreen": {
             "Verification": "Your verification code",

@@ -1,29 +1,43 @@
 import Text from "../../components/Text";
 import {Entypo, FontAwesome5} from "@expo/vector-icons";
 import styled from "styled-components/native";
+import {useEffect} from "react";
 
 export default function RenderCardScreen({item}) {
+
+    const bankType = (item) => {
+       switch (item?.bankType){
+           case "CIH":
+               return require("../../../assets/banksLogo/CIH.png");
+           case "SG":
+               return require("../../../assets/banksLogo/SG.png");
+           case "BMCE" :
+               return require("../../../assets/banksLogo/BMCE.png");
+           case "ATTIJARIWAFA":
+               return require("../../../assets/banksLogo/ATTIJARIWAFA.png");
+       }
+    }
 
     return (
         <CardContainer>
             <CardInfo>
                 <CardLogoContainer>
-                    <CardLogo source={item.logo} resizeMode="contain"/>
+                    <CardLogo source={bankType(item)} resizeMode="contain"/>
                 </CardLogoContainer>
                 <CardDetails>
-                    <Text medium black large>{item.iban}</Text>
-                    <Text heavy color="#727479">{item.bank}</Text>
-                    <Text heavy color="#727479">{item.date}</Text>
+                    <Text medium black large>{item.beneficiaryName}</Text>
+                    <Text black color="#237d19">{item?.amount} {item?.currency}</Text>
+                    <Text heavy color="#727479">{item?.createdDate}</Text>
                 </CardDetails>
             </CardInfo>
-            <CardActions>
-                <CardUpdate>
-                    <Entypo name="pencil" size={15} color="white" />
-                </CardUpdate>
-                <CardRemove>
-                    <FontAwesome5 name="trash" size={15} color="white" />
-                </CardRemove>
-            </CardActions>
+            {/*<CardActions>*/}
+            {/*    <CardUpdate>*/}
+            {/*        <Entypo name="pencil" size={15} color="white" />*/}
+            {/*    </CardUpdate>*/}
+            {/*    <CardRemove>*/}
+            {/*        <FontAwesome5 name="trash" size={15} color="white" />*/}
+            {/*    </CardRemove>*/}
+            {/*</CardActions>*/}
         </CardContainer>
     )
 }

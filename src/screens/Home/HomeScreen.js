@@ -8,6 +8,7 @@ import {useTranslation} from "react-i18next";
 import {retrieveFromSecureStore, RetrieveJsonData} from "../../components/StoreData";
 import {MyContext} from "../../../Global/Context";
 import {useContext, useEffect} from "react";
+import {StyleSheet,View} from "react-native";
 
 export default function HomeScreen({navigation}) {
     const {t} = useTranslation();
@@ -23,7 +24,7 @@ export default function HomeScreen({navigation}) {
                     </PurshaseInfo>
                     <PurshaseInfo>
                         <Text medium black large color="#228B22">{item?.amount} {item.currency}</Text>
-                        <Text heavy color="#727479">{item?.executionDate}</Text>
+                        <Text heavy color="#727479">{item?.createdDate?.split(" ")[0]}</Text>
                     </PurshaseInfo>
                 </Purshase>
             )
@@ -50,7 +51,7 @@ export default function HomeScreen({navigation}) {
                     <TransactionsHeader>
                         <Text>{t("Home.LastTransactions")}</Text>
                         <Search placeHolder="Search transaction" />
-                        <AntDesign name="search1" size={18} color="#5196f4" />
+                        {/*<AntDesign name="search1" size={18} color="#5196f4" />*/}
                         <Search placeHolder="Search transaction" />
                     </TransactionsHeader>
                 </>
@@ -92,7 +93,7 @@ const Welcome = styled.View`
 const Purshases = styled.FlatList`
     background-color : #2c2c2c;
     padding : 10px 0 0 16px;
-    height : 70px;
+    height : 200px;
 `;
 
 const PurshasesList = styled.FlatList`

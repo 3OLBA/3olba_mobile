@@ -25,7 +25,7 @@ export default function BottomTabsScreen() {
         getTransactions().then(response => setTransactions(response));
         console.log("account", account);
         console.log("transactions", transactions);
-    },[user])
+    },[])
 
     const screenOptions = ({route}) => ({
         tabBarIcon: ({focused}) => {

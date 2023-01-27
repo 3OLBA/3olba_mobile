@@ -6,13 +6,15 @@ import {useTranslation} from "react-i18next";
 import Text from "../../components/Text";
 import {TouchableOpacity,View,StyleSheet} from 'react-native';
 import {Ionicons} from "@expo/vector-icons";
-import React,{useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {BackModalScreen} from "../Modal/BackModalScreen";
 import {AddCarte} from "../Modal/AddCarte";
+import {MyContext} from "../../../Global/Context";
 
 export default function CardsScreen({navigation}) {
     const {t} = useTranslation();
     const [modalVisible, setModalVisible] = useState(false);
+    const {transactions , setTransactions} = useContext(MyContext);
 
     const showModalAndLeave = () => {
         if(modalVisible){
@@ -35,13 +37,13 @@ export default function CardsScreen({navigation}) {
     return (
         <Container>
             <HeaderScreen screenName={t("Cards.MyCards")} navigation={navigation}/>
-            <View style={styles.HeaderList}>
-                <Text center xlarge heavy>{t("Cards.ListOfCards")}</Text>
-                <TouchableOpacity style={styles.ButtonAdd} onPress={() => setModalVisible(true)}>
-                    <Ionicons name="ios-add-circle" size={24} color="white" />
-                </TouchableOpacity>
-            </View>
-            <Cards data={myCards} renderItem={renderCards}/>
+            {/*<View style={styles.HeaderList}>*/}
+            {/*    <Text center xlarge heavy>{t("Cards.ListOfCards")}</Text>*/}
+            {/*    <TouchableOpacity style={styles.ButtonAdd} onPress={() => setModalVisible(true)}>*/}
+            {/*        <Ionicons name="ios-add-circle" size={24} color="white" />*/}
+            {/*    </TouchableOpacity>*/}
+            {/*</View>*/}
+            <Cards data={transactions} renderItem={renderCards}/>
 
             <AddCarte navigation={navigation}
                              modalVisible={modalVisible}
@@ -63,7 +65,7 @@ const styles = StyleSheet.create({
         marginBottom : 15,
     },
     ButtonAdd:{
-        backgroundColor : "#3d3d3d",
+        backgroundColor : "#237d19",
         borderRadius : 6,
         padding : 10,
     }

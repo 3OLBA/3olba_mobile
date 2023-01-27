@@ -76,8 +76,9 @@
             "BeneficiaryName": "اسم المستفيد",
             "AddBeneficiary": "إضافة مستفيد",
             "ChooseBeneficiary": "اختر مستفيدًا",
-            "AddNewBeneficiary": "إضافة مستفيد جديد"
-
+            "AddNewBeneficiary": "إضافة مستفيد جديد",
+            "SendTransferSuccess": "تم إرسال التحويل الخاص بك بنجاح",
+            "SendTransferFailed": "فشل التحويل، تحقق من معلوماتك!"
         },
         "VerificationScreen": {
             "Verification": "رمز التحقق",

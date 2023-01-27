@@ -13,6 +13,8 @@ import {createTransfer} from "../../actions/TransactionAction";
 import {FlatList,View} from "react-native";
 import {ChooseBeneficiary} from "../Modal/ChooseBeneficiary";
 import {AddBeneficiary} from "../Modal/AddBeneficiary";
+import {SubmitModal} from "../Modal/SubmitModal";
+import {ModalStatus} from "../Common/commonValue";
 
 export default function TransferScreen({navigation}) {
     const {t} = useTranslation();
@@ -26,6 +28,8 @@ export default function TransferScreen({navigation}) {
     const user = {"name":"Khalil","amount":100000,"currency":"MAD","iban":"234 567 123456789 89"};
     const {account , setAccount} = useContext(MyContext);
     const {transactions , setTransactions} = useContext(MyContext);
+    const [statusSendTransfer , setStatusSendTransfer] = useState(ModalStatus.INIT);
+    const [message , setMessage] = useState("");
     const [isChosenBeneficiary , setIsChosenBeneficiary] = useState(false);
     const [beneficiary,setBeneficiary] = useState({
         fullName: "",
@@ -89,7 +93,15 @@ export default function TransferScreen({navigation}) {
         if(modalSendVisible && beneficiary){
             setModalSendVisible(false);
             navigation.navigate("Transfer");
-            createTransfer(beneficiary).then(r => console.log("result create transfer",r))
+            createTransfer(beneficiary).then(r => {
+                if(r?.success){
+                    setStatusSendTransfer(ModalStatus.SUCCESS);
+                    setMessage(t("Transfer.SendTransferSuccess"))
+                }else{
+                    setStatusSendTransfer(ModalStatus.FAILED);
+                    setMessage(t("Transfer.SendTransferFailed"))
+                }
+            })
         }
         else if(!modalVisible){
             setModalSendVisible(true);
@@ -118,6 +130,13 @@ export default function TransferScreen({navigation}) {
     const addNewBeneficiary = () => {
         setBeneficiary({});
         setModalChooseBenVisible(true);
+    }
+    const hideModalSubmitAndLeave = () => {
+        if(statusSendTransfer === ModalStatus.SUCCESS){
+            hideModalAndStay();
+            navigation.navigate("Home");
+        }
+        setStatusSendTransfer(ModalStatus.INIT);
     }
 
     return (
@@ -191,6 +210,7 @@ export default function TransferScreen({navigation}) {
                               sendTransfer={sendTransfer}
                 />
             }
+            <SubmitModal status={statusSendTransfer} hideModalSubmitAndLeave={hideModalSubmitAndLeave} message={message}/>
 
             {/*<NumberPad onPress={pressKey}/>*/}
             <StatusBar barStyle="light-content"/>

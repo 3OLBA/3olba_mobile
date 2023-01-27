@@ -76,8 +76,9 @@
             "BeneficiaryName": "Nom du bénéficiaire",
             "AddBeneficiary": "Ajouter un bénéficiaire",
             "ChooseBeneficiary": "choisir un Bénéficiaire",
-            "AddNewBeneficiary": "Ajouter un nouveau bénéficiaire"
-
+            "AddNewBeneficiary": "Ajouter un nouveau bénéficiaire",
+            "SendTransferSuccess": "Votre virement a été envoyé avec succès",
+            "SendTransferFailed": "Le transfert a échoué, vérifiez vos données !"
         },
         "VerificationScreen": {
             "Verification": "Votre code de vérification",

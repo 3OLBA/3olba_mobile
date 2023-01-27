@@ -4,14 +4,14 @@ export default [
         title : "CIH",
         code : "CIH",
         description : "CIH Bank",
-        image : require("./assets/banksLogo/cih.png"),
+        image : require("./assets/banksLogo/CIH.png"),
     },
     {
         id : "2",
         title : "Ettijari",
         code : "Ettijari",
         description : "Ettijari Bank",
-        image : require("./assets/banksLogo/ettijari.png"),
+        image : require("./assets/banksLogo/ATTIJARIWAFA.png"),
     },
     {
         id : "3",
@@ -25,7 +25,7 @@ export default [
         title : "Bank of Africa",
         code : "BankOfAfrica",
         description : "Bank of Africa",
-        image : require("./assets/banksLogo/bankOfAfrica.png"),
+        image : require("./assets/banksLogo/BMCE.png"),
     },
     {
         id : "5",
