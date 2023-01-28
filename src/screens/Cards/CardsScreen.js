@@ -43,6 +43,9 @@ export default function CardsScreen({navigation}) {
             {/*        <Ionicons name="ios-add-circle" size={24} color="white" />*/}
             {/*    </TouchableOpacity>*/}
             {/*</View>*/}
+            <Title>
+                <Text center xlarge heavy>{t("Home.LastTransactions")} </Text>
+            </Title>
             <Cards data={transactions} renderItem={renderCards}/>
 
             <AddCarte navigation={navigation}
@@ -79,5 +82,9 @@ const Container = styled.SafeAreaView`
 const Cards = styled.FlatList`
     padding : 0 8px;
 `;
-
+const Title = styled.View`
+    flex-direction : row;
+    align-items : center;
+    padding : 0 15px;
+`;
 const StatusBar = styled.StatusBar``;

@@ -9,12 +9,14 @@ import {MyContext} from "../../../Global/Context";
 import {AddCarte} from "../Modal/AddCarte";
 import {AddTransfer} from "../Modal/AddTransfer";
 import {SendTransfer} from "../Modal/SendTransfer";
-import {createTransfer} from "../../actions/TransactionAction";
+import {createTransfer, getTransactions} from "../../actions/TransactionAction";
 import {FlatList,View} from "react-native";
 import {ChooseBeneficiary} from "../Modal/ChooseBeneficiary";
 import {AddBeneficiary} from "../Modal/AddBeneficiary";
 import {SubmitModal} from "../Modal/SubmitModal";
 import {ModalStatus} from "../Common/commonValue";
+import {getAllBeneficiaries} from "../../actions/BeneficiaryAction";
+import {getAccount} from "../../actions/AccountAction";
 
 export default function TransferScreen({navigation}) {
     const {t} = useTranslation();
@@ -31,6 +33,7 @@ export default function TransferScreen({navigation}) {
     const [statusSendTransfer , setStatusSendTransfer] = useState(ModalStatus.INIT);
     const [message , setMessage] = useState("");
     const [isChosenBeneficiary , setIsChosenBeneficiary] = useState(false);
+    const {beneficiaries , setBeneficiaries} = useContext(MyContext);
     const [beneficiary,setBeneficiary] = useState({
         fullName: "",
         rib : "",
@@ -90,13 +93,15 @@ export default function TransferScreen({navigation}) {
 
     // Send transfer
     const sendTransfer = () => {
+        console.log("BENEFECIAY =====> ", (beneficiary?.name && beneficiary?.rib && beneficiary?.name) === true)
         if(modalSendVisible && beneficiary){
             setModalSendVisible(false);
             navigation.navigate("Transfer");
             createTransfer(beneficiary).then(r => {
                 if(r?.success){
                     setStatusSendTransfer(ModalStatus.SUCCESS);
-                    setMessage(t("Transfer.SendTransferSuccess"))
+                    setMessage(t("Transfer.SendTransferSuccess"));
+                    loadInstances();
                 }else{
                     setStatusSendTransfer(ModalStatus.FAILED);
                     setMessage(t("Transfer.SendTransferFailed"))
@@ -106,11 +111,6 @@ export default function TransferScreen({navigation}) {
         else if(!modalVisible){
             setModalSendVisible(true);
         }
-    }
-
-    // Check if the beneficiary is exist
-    const beneficiaryIsExist = () => {
-        return beneficiary?.name && beneficiary?.rib && beneficiary?.name;
     }
 
     const handleAddNewBeneficiary = () => {
@@ -139,6 +139,27 @@ export default function TransferScreen({navigation}) {
         setStatusSendTransfer(ModalStatus.INIT);
     }
 
+    // In case send button clicked without adding beneficiary
+    const handleSendTransfer = () => {
+        if(beneficiary?.amount && beneficiary?.amount !== ""){
+            setModalSendVisible(true);
+        }else{
+            setStatusSendTransfer(ModalStatus.FAILED);
+            setMessage(t("Transfer.AddBeneficiraryMessage"));
+        }
+    }
+
+    const loadInstances = () => {
+        const newBeneficiares = beneficiaries.concat({ beneficiary });
+        console.log("beneficiaries,",beneficiaries)
+        console.log("beneficiay,",beneficiary)
+        setBeneficiaries(newBeneficiares);
+        // getAllBeneficiaries().then(ben => setBeneficiaries(ben));
+        // getAccount().then(response => setAccount(response));
+        // getTransactions().then(response => setTransactions(response));
+
+    }
+
     return (
         <Container>
 
@@ -149,16 +170,21 @@ export default function TransferScreen({navigation}) {
                 <Text bold color="#727479">{t("Commun.CurrentBalance")}</Text>
             </Amount>
 
-            <User>
-                <ProfileLogo>
-                    <AntDesign name="user" size={35} color="white" />
-                </ProfileLogo>
-                <UserDetails>
-                    <Text bold heavy style={{paddingBottom:8}}>{t("Transfer.Name")} : {beneficiary?.fullName} </Text>
-                    <Text bold heavy style={{paddingBottom:8}}>{t("Transfer.Amount")} : {convertToMAD(beneficiary?.amount)}</Text>
-                    <Text bold heavy color="#727479" style={{paddingBottom:8}}>{t("Transfer.RIB")} : {beneficiary?.rib} </Text>
-                </UserDetails>
-            </User>
+            {(beneficiary?.amount && beneficiary?.amount !== "") &&
+                <User>
+                    <ProfileLogo>
+                        <AntDesign name="user" size={35} color="white"/>
+                    </ProfileLogo>
+                    <UserDetails>
+                        <Text bold heavy
+                              style={{paddingBottom: 8}}>{t("Transfer.Name")} : {beneficiary?.fullName} </Text>
+                        <Text bold heavy
+                              style={{paddingBottom: 8}}>{t("Transfer.Amount")} : {convertToMAD(beneficiary?.amount)}</Text>
+                        <Text bold heavy color="#727479"
+                              style={{paddingBottom: 8}}>{t("Transfer.RIB")} : {beneficiary?.rib} </Text>
+                    </UserDetails>
+                </User>
+            }
 
             <ButtonsTransfer>
                 <BeneficiaryButton onPress={() => addNewBeneficiary()}>
@@ -167,7 +193,7 @@ export default function TransferScreen({navigation}) {
                         <Text bold heavy>{t("Transfer.Beneficiary")}</Text>
                     </SendButtonText>
                 </BeneficiaryButton>
-                <SendButton onPress={() => setModalSendVisible(true)}>
+                <SendButton onPress={() => handleSendTransfer()} >
                     <FontAwesome name="send-o" size={20} color="white" />
                     <SendButtonText>
                         <Text bold heavy>{t("Transfer.Send")} </Text>
@@ -191,6 +217,7 @@ export default function TransferScreen({navigation}) {
                          isChosenBeneficiary={isChosenBeneficiary}
                          handleIfNotChooseBeneficiary={handleIfNotChooseBeneficiary}
                          hideModalAndStay={hideModalAndStay}
+                            loadInstances={loadInstances}
                          showModalAndLeave={showModalAndLeave}/>
 
             <ChooseBeneficiary navigation={navigation}
@@ -203,13 +230,12 @@ export default function TransferScreen({navigation}) {
                                hideModalAndStay={hideModalAndStay}
                                showModalAndLeave={showModalAndLeave}/>
 
-            {beneficiaryIsExist &&
                 <SendTransfer navigation={navigation}
                               modalVisible={modalSendVisible}
                               hideModalAndStay={hideModalAndStay}
                               sendTransfer={sendTransfer}
                 />
-            }
+
             <SubmitModal status={statusSendTransfer} hideModalSubmitAndLeave={hideModalSubmitAndLeave} message={message}/>
 
             {/*<NumberPad onPress={pressKey}/>*/}

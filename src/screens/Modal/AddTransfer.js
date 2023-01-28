@@ -104,6 +104,7 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,
                                 <TextInput style={[styles.textInput,{width:"80%",paddingLeft:10}]}
                                            onChangeText={value => handleAddInfo(BENEFICIARYDETAILS.NAME,value)}
                                            placeholder={t("Transfer.BeneficiaryName")}
+                                           placeholderTextColor="#747171"
                                            autoCapitalize="none"
                                            keyboardType="text"
                                            value={beneficiaryOld?.fullName}
@@ -120,6 +121,7 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,
                                 <TextInput style={[styles.textInput,{width:"80%",paddingLeft:10}]}
                                            onChangeText={value => handleAddInfo(BENEFICIARYDETAILS.RIB,value)}
                                            placeholder={t("Transfer.RIB")}
+                                           placeholderTextColor="#747171"
                                            autoCapitalize="none"
                                            value={beneficiaryOld?.rib}
                                            editable={!isChosenBeneficiary}
@@ -136,6 +138,7 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,
                                 <TextInput style={[styles.textInput,{width:"80%",paddingLeft:10}]}
                                            onChangeText={value => handleAddInfo(BENEFICIARYDETAILS.AMOUNT,value)}
                                            placeholder={t("Transfer.Amount")}
+                                           placeholderTextColor="#747171"
                                            autoCapitalize="none"
                                            keyboardType="text"
                                            maxLength={14}

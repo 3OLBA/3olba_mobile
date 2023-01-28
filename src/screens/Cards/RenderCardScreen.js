@@ -2,8 +2,11 @@ import Text from "../../components/Text";
 import {Entypo, FontAwesome5} from "@expo/vector-icons";
 import styled from "styled-components/native";
 import {useEffect} from "react";
+import {useTranslation} from "react-i18next";
+import {ModalStatus, TrasanctionStatus} from "../Common/commonValue";
 
 export default function RenderCardScreen({item}) {
+    const {t} = useTranslation();
 
     const bankType = (item) => {
        switch (item?.bankType){
@@ -20,6 +23,19 @@ export default function RenderCardScreen({item}) {
        }
     }
 
+    const colorStatus = (status) => {
+        switch(status){
+            case TrasanctionStatus.PENDDING:
+                return "#d07309";
+            case TrasanctionStatus.ACCEPTED :
+                return "#0c8e07";
+            case TrasanctionStatus.REJECTED:
+                return "#af100b";
+            default:
+                return "#727479";
+        }
+    }
+
     return (
         <CardContainer>
             <CardInfo>
@@ -27,19 +43,20 @@ export default function RenderCardScreen({item}) {
                     <CardLogo source={bankType(item)} resizeMode="contain"/>
                 </CardLogoContainer>
                 <CardDetails>
-                    <Text medium black large>{item.beneficiaryName}</Text>
+                    <Text medium black large>{item?.beneficiaryName}</Text>
                     <Text black color="#237d19">{item?.amount} {item?.currency}</Text>
                     <Text heavy color="#727479">{item?.createdDate}</Text>
                 </CardDetails>
             </CardInfo>
-            {/*<CardActions>*/}
-            {/*    <CardUpdate>*/}
-            {/*        <Entypo name="pencil" size={15} color="white" />*/}
-            {/*    </CardUpdate>*/}
-            {/*    <CardRemove>*/}
-            {/*        <FontAwesome5 name="trash" size={15} color="white" />*/}
-            {/*    </CardRemove>*/}
-            {/*</CardActions>*/}
+            <CardActions pointerEvents="none">
+                <Text medium black large>Status</Text>
+                <CardUpdate>
+                    <Text heavy style={{color:colorStatus(item?.status)}}>{t("Transactions."+item?.status)}</Text>
+                </CardUpdate>
+                {/*<CardRemove>*/}
+                {/*    <FontAwesome5 name="trash" size={15} color="white" />*/}
+                {/*</CardRemove>*/}
+            </CardActions>
         </CardContainer>
     )
 }
@@ -81,7 +98,7 @@ const CardDetails = styled.View`
 
 const CardActions = styled.View`
     flex-direction : row;
-    justify-content : flex-end;
+    justify-content : space-between;
     align-items : center;
 `;
 

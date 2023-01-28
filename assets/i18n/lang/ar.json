@@ -15,7 +15,8 @@
             "Cancel": "إلغاء",
             "Add" : "إضافة",
             "Continue":"استمر",
-            "VerificationCode":"رقم التحقق"
+            "VerificationCode":"رقم التحقق",
+            "AreYouSure":"هل أنت متأكد ؟"
         },
         "LoginScreen": {
             "CreateNewAccount": "انشاء حساب جديد",
@@ -58,7 +59,11 @@
             "AddCard": "إضافة بطاقة"
         },
         "Transactions": {
-            "Transactions" : "المعاملات"
+            "Transactions" : "المعاملات",
+            "PENDDING": "قيد الانتظار",
+            "ACCEPTED": "منجز",
+            "REJECTED": "مرفوض",
+            "FAILED": "فشل"
         },
         "Wallet": {
             "Wallet" : "محفظة",
@@ -78,7 +83,8 @@
             "ChooseBeneficiary": "اختر مستفيدًا",
             "AddNewBeneficiary": "إضافة مستفيد جديد",
             "SendTransferSuccess": "تم إرسال التحويل الخاص بك بنجاح",
-            "SendTransferFailed": "فشل التحويل، تحقق من معلوماتك!"
+            "SendTransferFailed": "فشل التحويل، تحقق من معلوماتك!",
+            "AddBeneficiraryMessage": "يجب عليك إضافة المستفيد أولا"
         },
         "VerificationScreen": {
             "Verification": "رمز التحقق",

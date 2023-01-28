@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useContext, useEffect, useRef, useState} from 'react';
 import {
     View,
     StyleSheet,
@@ -15,18 +15,20 @@ import {AntDesign, Feather, FontAwesome} from "@expo/vector-icons";
 import {BANKSDETAILS, BENEFICIARYDETAILS, ModalStatus, USERDETAILS} from "../Common/commonValue";
 import {addBeneficiary} from "../../actions/BeneficiaryAction";
 import {SubmitModal} from "./SubmitModal";
+import {MyContext} from "../../../Global/Context";
 
 
 
 export const AddBeneficiary = ({modalVisible,hideModalAndStay,
                                 showModalAndLeave,
                                 beneficiaryOld,
-                                navigation}) => {
+                                   loadInstances}) => {
     const {t} = useTranslation();
     const [nameCheck,setNameCheck] = useState(false)
     const [ribCheck,setRibCheck] = useState(false);
     const [statusAddBeneficiary , setStatusAddBeneficiary] = useState(ModalStatus.INIT);
     const [message , setMessage] = useState("");
+    const {beneficiaries , setBeneficiaries} = useContext(MyContext);
     const [beneficiary,setBeneficiary] = useState({
         fullName : "",
         rib : "",
@@ -57,7 +59,8 @@ export const AddBeneficiary = ({modalVisible,hideModalAndStay,
         addBeneficiary(beneficiary).then(r => {
             if(r?.success){
                 setStatusAddBeneficiary(ModalStatus.SUCCESS);
-                setMessage(t("Beneficiary.AddBeneficiarySuccess"))
+                setMessage(t("Beneficiary.AddBeneficiarySuccess"));
+                loadInstances();
             }else{
                 setStatusAddBeneficiary(ModalStatus.FAILED)
                 setMessage(t("Beneficiary.AddBeneficiaryFailed"))
@@ -81,7 +84,7 @@ export const AddBeneficiary = ({modalVisible,hideModalAndStay,
 
     useEffect(() => {
         console.log("beneficiaryOld",beneficiaryOld)
-    },[beneficiaryOld])
+    },[beneficiaryOld]);
 
     return (
             <Modal animationType="slide" transparent={true} visible={modalVisible}>

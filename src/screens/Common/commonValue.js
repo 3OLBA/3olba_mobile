@@ -28,3 +28,10 @@ export const BENEFICIARYDETAILS = {
     NAME: "Name",
     AMOUNT: "Amount",
 }
+
+export const TrasanctionStatus = {
+    PENDDING: "PENDDING",
+    FAILED: "FAILED",
+    REJECTED: "REJECTED",
+    ACCEPTED: "ACCEPTED",
+}

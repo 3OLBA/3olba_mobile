@@ -1,7 +1,10 @@
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity, Modal,Text} from 'react-native';
+import {useTranslation} from "react-i18next";
 
 export const SendTransfer = ({modalVisible,hideModalAndStay,sendTransfer}) => {
+    const {t} = useTranslation();
+
     return (
             <Modal animationType="slide"
                 transparent={true}
@@ -9,17 +12,17 @@ export const SendTransfer = ({modalVisible,hideModalAndStay,sendTransfer}) => {
             >
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Are you sure ?</Text>
+                        <Text style={styles.modalText}>{t("Commun.AreYouSure")}</Text>
                         <View style={styles.buttons}>
 
                             <TouchableOpacity style={[styles.buttonCancel]}
                                 onPress={() => hideModalAndStay()}>
-                                <Text style={[styles.textStyle,{color: "#1c3f60"}]}>Cancel</Text>
+                                <Text style={[styles.textStyle,{color: "#1c3f60"}]}>{t("Commun.Cancel")}</Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity style={[styles.buttonDiscard]}
                                 onPress={() => sendTransfer()}>
-                                <Text style={[styles.textStyle,{color: "#1c3f60"}]}>Send</Text>
+                                <Text style={[styles.textStyle,{color: "#1c3f60"}]}>{t("Transfer.Send")}</Text>
                             </TouchableOpacity>
 
                         </View>
@@ -64,6 +67,8 @@ const styles = StyleSheet.create({
         paddingBottom : 10,
         borderColor : "#81cb13",
         backgroundColor: "white",
+        width:80,
+        height:40,
 
     },
     buttonCancel: {
@@ -74,7 +79,9 @@ const styles = StyleSheet.create({
         paddingTop : 10,
         paddingBottom : 10,
         marginRight : 20,
-        borderColor : "#a3a6a8"
+        borderColor : "#890821",
+        width:80,
+        height:40,
     },
     buttons: {
         flexDirection :"row",

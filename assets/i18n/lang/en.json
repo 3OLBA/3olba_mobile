@@ -16,7 +16,8 @@
             "Cancel": "Cancel",
             "Add" : "Add",
             "Continue":"Continue",
-            "VerificationCode":"Verification code"
+            "VerificationCode":"Verification code",
+            "AreYouSure":"Are you sure ?"
         },
         "LoginScreen": {
             "CreateNewAccount":"Create new account ?",
@@ -64,7 +65,11 @@
             "AddCard": "Add Card"
         },
         "Transactions": {
-            "Transactions" : "Transactions"
+            "Transactions" : "Transactions",
+            "PENDDING": "In progress",
+            "ACCEPTED": "Accepted",
+            "REJECTED": "Rejected",
+            "FAILED": "Failed"
         },
         "Wallet": {
             "Wallet" : "Wallet",
@@ -84,7 +89,8 @@
             "BeneficiaryName": "Beneficiary name",
             "AddNewBeneficiary": "Add New Beneficiary",
             "SendTransferSuccess": "Your transfer has been successfully sent",
-            "SendTransferFailed": "Transfer failed, check your information !"
+            "SendTransferFailed": "Transfer failed, check your information !",
+            "AddBeneficiraryMessage": "You should add beneficiary first"
         },
         "VerificationScreen": {
             "Verification": "Your verification code",
