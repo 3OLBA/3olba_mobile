@@ -101,7 +101,7 @@ const Welcome = styled.View`
 const Purshases = styled.FlatList`
     background-color : #2c2c2c;
     padding : 10px 0 0 16px;
-    height : 200px;
+    height : 40px;
 `;
 
 const PurshasesList = styled.FlatList`
