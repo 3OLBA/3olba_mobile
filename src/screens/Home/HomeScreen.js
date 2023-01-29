@@ -5,16 +5,24 @@ import {FontAwesome5,MaterialIcons , AntDesign} from "@expo/vector-icons";
 import TransactionData from "../../../TransactionsData";
 import HeaderScreen from "../Common/HeaderScreen";
 import {useTranslation} from "react-i18next";
-import {retrieveFromSecureStore, RetrieveJsonData} from "../../components/StoreData";
 import {MyContext} from "../../../Global/Context";
 import {useContext, useEffect} from "react";
-import {StyleSheet,View} from "react-native";
+import {getAccount} from "../../actions/AccountAction";
+import {getTransactions} from "../../actions/TransactionAction";
 
 export default function HomeScreen({navigation}) {
     const {t} = useTranslation();
     const screenName = t("Home.Home");
     const {account , setAccount} = useContext(MyContext);
     const {transactions , setTransactions} = useContext(MyContext);
+
+
+    useEffect(  () => {
+        console.log("=========================================FROM HOME =========================================")
+        getAccount().then(response => setAccount(response));
+        getTransactions().then(response => setTransactions(response));
+    },[]);
+
     const renderTransactions = ({item}) => {
         return (
                 <Purshase>

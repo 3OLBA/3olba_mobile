@@ -21,8 +21,7 @@ import {MyContext} from "../../../Global/Context";
 
 export const AddBeneficiary = ({modalVisible,hideModalAndStay,
                                 showModalAndLeave,
-                                beneficiaryOld,
-                                   loadInstances}) => {
+                                beneficiaryOld}) => {
     const {t} = useTranslation();
     const [nameCheck,setNameCheck] = useState(false)
     const [ribCheck,setRibCheck] = useState(false);
@@ -50,17 +49,15 @@ export const AddBeneficiary = ({modalVisible,hideModalAndStay,
 
     }
 
-    const showAndLeaveAddTransfer = () => {
-        showModalAndLeave(false);
-    }
-
     const handleBeneficiary = () => {
         setStatusAddBeneficiary(ModalStatus.START);
         addBeneficiary(beneficiary).then(r => {
             if(r?.success){
                 setStatusAddBeneficiary(ModalStatus.SUCCESS);
                 setMessage(t("Beneficiary.AddBeneficiarySuccess"));
-                loadInstances();
+                console.log("Benef from back",r?.object);
+                const newBeneficiaries = beneficiaries.concat(r?.object)
+                setBeneficiaries(newBeneficiaries);
             }else{
                 setStatusAddBeneficiary(ModalStatus.FAILED)
                 setMessage(t("Beneficiary.AddBeneficiaryFailed"))

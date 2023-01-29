@@ -1,39 +1,31 @@
 import styled from 'styled-components/native';
 import Text from '../../components/Text';
-import NumberPad from '../../components/NumberPad';
 import React, {useContext, useState} from 'react';
 import HeaderScreen from "../Common/HeaderScreen";
 import { AntDesign , FontAwesome,Ionicons } from '@expo/vector-icons';
 import {useTranslation} from "react-i18next";
 import {MyContext} from "../../../Global/Context";
-import {AddCarte} from "../Modal/AddCarte";
 import {AddTransfer} from "../Modal/AddTransfer";
 import {SendTransfer} from "../Modal/SendTransfer";
 import {createTransfer, getTransactions} from "../../actions/TransactionAction";
-import {FlatList,View} from "react-native";
 import {ChooseBeneficiary} from "../Modal/ChooseBeneficiary";
 import {AddBeneficiary} from "../Modal/AddBeneficiary";
 import {SubmitModal} from "../Modal/SubmitModal";
 import {ModalStatus} from "../Common/commonValue";
-import {getAllBeneficiaries} from "../../actions/BeneficiaryAction";
 import {getAccount} from "../../actions/AccountAction";
 
 export default function TransferScreen({navigation}) {
     const {t} = useTranslation();
     const screenName = t("Transfer.Transfer");
-    const currentAmount = 750000;
-    const [amount,setAmount]   = useState("0");
     const [modalVisible,setModalVisible]   = useState(false);
     const [showAddTransfer,setShowAddTransfer]   = useState(false);
     const [modalChooseBenVisible,setModalChooseBenVisible]   = useState(false);
     const [modalSendVisible,setModalSendVisible]   = useState(false);
-    const user = {"name":"Khalil","amount":100000,"currency":"MAD","iban":"234 567 123456789 89"};
     const {account , setAccount} = useContext(MyContext);
-    const {transactions , setTransactions} = useContext(MyContext);
     const [statusSendTransfer , setStatusSendTransfer] = useState(ModalStatus.INIT);
     const [message , setMessage] = useState("");
     const [isChosenBeneficiary , setIsChosenBeneficiary] = useState(false);
-    const {beneficiaries , setBeneficiaries} = useContext(MyContext);
+    const {transactions , setTransactions} = useContext(MyContext);
     const [beneficiary,setBeneficiary] = useState({
         fullName: "",
         rib : "",
@@ -42,13 +34,7 @@ export default function TransferScreen({navigation}) {
         id:"",
     });
 
-    const pressKey = (item,index) => {
-        setAmount((prev) =>{
-            return index !== 10 ? prev + item : prev.slice(0,prev.length - 1);
-        });
-    }
     const addBeneficiary = (benef) => {
-        console.log("Choosen beneficiary",benef);
         setBeneficiary({...beneficiary,fullName: benef?.fullName,
             rib: benef?.rib,amount: benef?.amount,
             id: benef?.id
@@ -91,9 +77,13 @@ export default function TransferScreen({navigation}) {
         setShowAddTransfer(false);
     }
 
+    const getInstance = () => {
+        getAccount().then(response => setAccount(response));
+        getTransactions().then(response => setTransactions(response));
+    }
+
     // Send transfer
     const sendTransfer = () => {
-        console.log("BENEFECIAY =====> ", (beneficiary?.name && beneficiary?.rib && beneficiary?.name) === true)
         if(modalSendVisible && beneficiary){
             setModalSendVisible(false);
             navigation.navigate("Transfer");
@@ -101,7 +91,7 @@ export default function TransferScreen({navigation}) {
                 if(r?.success){
                     setStatusSendTransfer(ModalStatus.SUCCESS);
                     setMessage(t("Transfer.SendTransferSuccess"));
-                    loadInstances();
+                    getInstance();
                 }else{
                     setStatusSendTransfer(ModalStatus.FAILED);
                     setMessage(t("Transfer.SendTransferFailed"))
@@ -147,17 +137,6 @@ export default function TransferScreen({navigation}) {
             setStatusSendTransfer(ModalStatus.FAILED);
             setMessage(t("Transfer.AddBeneficiraryMessage"));
         }
-    }
-
-    const loadInstances = () => {
-        const newBeneficiares = beneficiaries.concat({ beneficiary });
-        console.log("beneficiaries,",beneficiaries)
-        console.log("beneficiay,",beneficiary)
-        setBeneficiaries(newBeneficiares);
-        // getAllBeneficiaries().then(ben => setBeneficiaries(ben));
-        // getAccount().then(response => setAccount(response));
-        // getTransactions().then(response => setTransactions(response));
-
     }
 
     return (
@@ -217,7 +196,6 @@ export default function TransferScreen({navigation}) {
                          isChosenBeneficiary={isChosenBeneficiary}
                          handleIfNotChooseBeneficiary={handleIfNotChooseBeneficiary}
                          hideModalAndStay={hideModalAndStay}
-                            loadInstances={loadInstances}
                          showModalAndLeave={showModalAndLeave}/>
 
             <ChooseBeneficiary navigation={navigation}

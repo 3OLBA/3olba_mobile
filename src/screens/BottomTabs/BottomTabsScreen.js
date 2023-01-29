@@ -8,7 +8,6 @@ import {useTranslation} from "react-i18next";
 import {useContext, useEffect} from "react";
 import {MyContext} from "../../../Global/Context";
 import {getAccount} from "../../actions/AccountAction";
-import {retrieveFromSecureStore} from "../../components/StoreData";
 import {getTransactions} from "../../actions/TransactionAction";
 
 export default function BottomTabsScreen() {
@@ -20,12 +19,9 @@ export default function BottomTabsScreen() {
 
 
     useEffect(  () => {
-        console.log("bottom");
         getAccount().then(response => setAccount(response));
         getTransactions().then(response => setTransactions(response));
-        console.log("account", account);
-        console.log("transactions", transactions);
-    },[])
+    },[]);
 
     const screenOptions = ({route}) => ({
         tabBarIcon: ({focused}) => {
