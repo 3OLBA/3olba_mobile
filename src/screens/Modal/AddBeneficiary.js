@@ -56,7 +56,7 @@ export const AddBeneficiary = ({modalVisible,hideModalAndStay,
                 setStatusAddBeneficiary(ModalStatus.SUCCESS);
                 setMessage(t("Beneficiary.AddBeneficiarySuccess"));
                 console.log("Benef from back",r?.object);
-                const newBeneficiaries = beneficiaries.concat(r?.object)
+                const newBeneficiaries = beneficiaries.concat(r?.object);
                 setBeneficiaries(newBeneficiaries);
             }else{
                 setStatusAddBeneficiary(ModalStatus.FAILED)
