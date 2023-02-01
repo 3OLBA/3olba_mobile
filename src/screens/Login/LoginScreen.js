@@ -97,7 +97,9 @@ export const LoginScreen = ({navigation}) => {
                     <TextInput style={styles.textInput}
                                onChangeText={input => handleSignIn(USERDETAILS.EMAIL,input)}
                                placeholder={t('Commun.Email')}
-                               autoCapitalize="none"/>
+                               autoCapitalize="none"
+                               returnKeyType="done"
+                    />
                     <Feather name="check-circle" color={!isText ? "#4e4c4c" : "#1bc707"} size={22}/>
                 </View>
 
@@ -111,7 +113,9 @@ export const LoginScreen = ({navigation}) => {
                                onChangeText={input => handleSignIn(USERDETAILS.PASSWORD,input)}
                                secureTextEntry={!eyeOn}
                                placeholder={t('Commun.Password')}
-                               autoCapitalize="none"/>
+                               autoCapitalize="none"
+                               returnKeyType="done"
+                    />
                     <Feather name={!eyeOn ? "eye-off" : "eye"} color="grey" size={22} onPress={() => showAndHidePassword()}/>
                 </View>
 

@@ -140,7 +140,8 @@ export const AddTransfer = ({modalVisible,hideModalAndStay,
                                            placeholder={t("Transfer.Amount")}
                                            placeholderTextColor="#747171"
                                            autoCapitalize="none"
-                                           keyboardType="text"
+                                           keyboardType="numeric"
+                                           returnKeyType="done"
                                            maxLength={14}
                                 />
                                 <Feather name="check-circle" color={amountCheck ? "#75d219" : "#4e4c4c"} size={22}/>

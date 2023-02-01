@@ -16,7 +16,9 @@
             "Add" : "Add",
             "Continue":"Continue",
             "VerificationCode":"Verification code",
-            "AreYouSure":"Are you sure ?"
+            "AreYouSure":"Are you sure ?",
+            "Welcome" : "Welcome"
+
         },
         "LoginScreen": {
             "CreateNewAccount": "انشاء حساب جديد",

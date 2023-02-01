@@ -70,8 +70,10 @@ export const VerifyAccountScreen = ({route,navigation}) => {
                     <TextInput style={styles.textInput}
                                onChangeText={input => showAndHideCheckText(input)}
                                placeholder={t('VerificationScreen.Verification')}
-                               keyboardType="phone-pad"
-                               autoCapitalize="none"/>
+                               keyboardType="numeric"
+                               autoCapitalize="none"
+                               returnKeyType="done"
+                    />
                     <Feather name="check-circle" color={!isText ? "#4e4c4c" : "#1bc707"} size={22}/>
                 </View>
                 <View style={styles.buttons}>

@@ -36,7 +36,9 @@ export const ForgetPasswordScreen = ({navigation}) => {
                     <TextInput style={styles.textInput}
                                onChangeText={input => showAndHideCheckText(input)}
                                placeholder="Your email or username"
-                               autoCapitalize="none"/>
+                               autoCapitalize="none"
+                               returnKeyType="done"
+                    />
                     <Feather name="check-circle" color={!isText ? "#4e4c4c" : "#1bc707"} size={22}/>
                 </View>
                 <View style={styles.buttons}>
@@ -46,13 +48,13 @@ export const ForgetPasswordScreen = ({navigation}) => {
                             {t("Commun.Back")}
                         </Text>
                     </TouchableOpacity>
-
-                    <LinearGradient colors={["#1c3f60","#5085b4"]}
-                        style={styles.signIn}>
+                    
+                    <TouchableOpacity colors={["#1c3f60","#5085b4"]}
+                                      style={[styles.signIn,{backgroundColor:"#1c3f60"}]} >
                         <Text style={[styles.textSign,{color:"#fff"}]}>
                             {t("Commun.Submit")}
                         </Text>
-                    </LinearGradient>
+                    </TouchableOpacity>
 
                 </View>
 

@@ -16,7 +16,9 @@
             "Add" : "إضافة",
             "Continue":"استمر",
             "VerificationCode":"رقم التحقق",
-            "AreYouSure":"هل أنت متأكد ؟"
+            "AreYouSure":"هل أنت متأكد ؟",
+            "Welcome" : "أهلا بك"
+
         },
         "LoginScreen": {
             "CreateNewAccount": "انشاء حساب جديد",

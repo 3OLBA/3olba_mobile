@@ -130,6 +130,7 @@ export const CreateAccountScreen = ({navigation}) => {
                                placeholder={t("Commun.phoneNumber")}
                                autoCapitalize="none"
                                keyboardType="phone-pad"
+                               returnKeyType="done"
                     />
                     <Feather name="check-circle" color={!isText ? "#4e4c4c" : "#1bc707"} size={22}/>
                 </View>
@@ -144,7 +145,9 @@ export const CreateAccountScreen = ({navigation}) => {
                     <TextInput style={styles.textInput}
                                onChangeText={value => handleSignUp(USERDETAILS.EMAIL,value)}
                                placeholder={t('Commun.Email')}
-                               autoCapitalize="none"/>
+                               autoCapitalize="none"
+                               returnKeyType="done"
+                    />
                     <Feather name="check-circle" color={!isText ? "#4e4c4c" : "#1bc707"} size={22}/>
                 </View>
                 { emailError && <Text color="#A81919FF">{errorSignUp.emailIncorrect}</Text>}
@@ -159,7 +162,9 @@ export const CreateAccountScreen = ({navigation}) => {
                                secureTextEntry={!eyeOn}
                                onChangeText={value => handleSignUp(USERDETAILS.PASSWORD,value)}
                                placeholder={t('Commun.Password')}
-                               autoCapitalize="none"/>
+                               autoCapitalize="none"
+                               returnKeyType="done"
+                    />
                     <Feather name={!eyeOn ? "eye-off" : "eye"} color="grey" size={22} onPress={() => showAndHidePassword()}/>
                 </View>
                 { passwordError && <Text color="#A81919FF">{errorSignUp.phoneNumberIncorrect}</Text>}
@@ -174,7 +179,9 @@ export const CreateAccountScreen = ({navigation}) => {
                                secureTextEntry={!eyeOn}
                                onChangeText={value => handleSignUp(USERDETAILS.REPEAT_PASSWORD,value)}
                                placeholder={t('Commun.RepeatPassword')}
-                               autoCapitalize="none"/>
+                               autoCapitalize="none"
+                               returnKeyType="done"
+                    />
                     <Feather name={!eyeOn ? "eye-off" : "eye"} color="grey" size={22} onPress={() => showAndHidePassword()}/>
                 </View>
                 { passwordError && <Text color="#A81919FF">{errorSignUp.passwordNotMatch}</Text>}

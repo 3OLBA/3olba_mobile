@@ -100,6 +100,7 @@ export const AddBeneficiary = ({modalVisible,hideModalAndStay,
                                            placeholderTextColor="#747171"
                                            autoCapitalize="none"
                                            keyboardType="text"
+                                           returnKeyType="done"
                                            value={beneficiaryOld?.fullName}
                                            maxLength={14}
                                 />
@@ -116,7 +117,8 @@ export const AddBeneficiary = ({modalVisible,hideModalAndStay,
                                            placeholderTextColor="#747171"
                                            autoCapitalize="none"
                                            value={beneficiaryOld?.rib}
-                                           keyboardType="text"
+                                           keyboardType="numeric"
+                                           returnKeyType="done"
                                            maxLength={14}
                                 />
                                 <Feather name="check-circle" color={ribCheck ? "#75d219" : "#4e4c4c"} size={22}/>

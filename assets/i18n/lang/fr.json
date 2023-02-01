@@ -16,7 +16,8 @@
             "Add" : "Ajouter",
             "Continue":"Continuer",
             "VerificationCode":"Code de vérification",
-            "AreYouSure":"Vous êtes sûr ?"
+            "AreYouSure":"Vous êtes sûr ?",
+            "Welcome" : "Bienvenue"
         },
         "LanguageScreen" : {
             "ChooseLanguage" : "Choisissez votre langue",
