@@ -3,9 +3,9 @@ import {View, StyleSheet, TouchableOpacity, Modal, TextInput,Keyboard,TouchableW
 import {useTranslation} from "react-i18next";
 import Text from "../../components/Text";
 import {Feather, FontAwesome} from "@expo/vector-icons";
-import {BANKSDETAILS, USERDETAILS} from "../Common/commonValue";
+import {BANKSDETAILS, BENEFICIARYDETAILS, USERDETAILS} from "../Common/commonValue";
 import {Picker} from "@react-native-picker/picker";
-import banksType  from '../../../BankTypeData';
+import TransactionsTypeData  from '../../../TransactionsTypeData';
 
 import SelectDropdown from 'react-native-select-dropdown'
 import { addOrModifyCard, deleteCard} from "../../actions/CardActions";
@@ -20,9 +20,9 @@ export const AddCarte = ({modalVisible,hideModalAndStay,showModalAndLeave}) => {
     const scrollBanksType = (type) => {
         setSelectedBank(type);
         Keyboard.dismiss();
-        handleAddCard(BANKSDETAILS.TYPE,type);
+        handleSearch(BANKSDETAILS.TYPE,type);
     }
-    const handleAddCard = (field,value) => {
+    const handleSearch = (field,value) => {
         console.log("rib",value)
         if(field === BANKSDETAILS.RIB){
             setCard({...card,rib:value})
@@ -44,27 +44,28 @@ export const AddCarte = ({modalVisible,hideModalAndStay,showModalAndLeave}) => {
 
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Text center large bold color="black" margin="0 0 10px 0">{t("Cards.AddCard")}</Text>
+                        <Text center large bold color="black" margin="0 0 10px 0">{t("Transactions.Search")}</Text>
 
                         <TouchableWithoutFeedback accessible={false}>
                             <View style={styles.action}>
-                                <FontAwesome name="credit-card" size={20} color="#05375a" />
-                                <TextInput style={[styles.textInput,{width:"80%",paddingLeft:2}]}
-                                           onChangeText={value => handleAddCard(BANKSDETAILS.RIB,value)}
-                                           placeholder="Your IBAN"
+                                <FontAwesome name="money" size={20} color="#05375a" />
+                                <TextInput style={[styles.textInput,{width:"80%",paddingLeft:10}]}
+                                           onChangeText={value => handleSearch(BENEFICIARYDETAILS.AMOUNT,value)}
+                                           placeholder={t("Transfer.Amount")}
+                                           placeholderTextColor="#747171"
                                            autoCapitalize="none"
                                            keyboardType="numeric"
+                                           returnKeyType="done"
                                            maxLength={14}
                                 />
-                                <Feather name="check-circle" color={"#4e4c4c"} size={22}/>
                             </View>
                         </TouchableWithoutFeedback>
 
                         <Picker  style={styles.selectBank} selectedValue={selectedBank}
                                 onValueChange={(itemValue, itemIndex) => scrollBanksType(itemValue)}>
-                            {banksType.map((bank,key) => {
+                            {TransactionsTypeData.map((bank,key) => {
                                 return (
-                                        <Picker.Item label={bank.description} value={bank.code} key={bank.id} />
+                                        <Picker.Item label={bank.description} value={bank.code} key={bank.id} color={bank.color}/>
                                 )
                             })}
                         </Picker>
@@ -78,7 +79,7 @@ export const AddCarte = ({modalVisible,hideModalAndStay,showModalAndLeave}) => {
 
                             <TouchableOpacity style={[styles.buttonAdd]}
                                 onPress={() => showModalAndLeave1()}>
-                                <Text style={[styles.textStyle,{color: "#1f7406"}]}>{t("Commun.Add")}</Text>
+                                <Text style={[styles.textStyle,{color: "#1f7406"}]}>{t("Transactions.Search")}</Text>
                             </TouchableOpacity>
 
                         </View>

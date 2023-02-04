@@ -52,7 +52,7 @@
         },
         "Home": {
             "Home" : "الرئيسية",
-            "LastTransactions": "آخر المعاملات"
+            "LastTransactions": "آخر التحويلات"
         },
         "Cards": {
             "Cards" : "البطاقات",
@@ -61,11 +61,12 @@
             "AddCard": "إضافة بطاقة"
         },
         "Transactions": {
-            "Transactions" : "المعاملات",
+            "Transactions" : "التحويلات",
             "PENDDING": "قيد الانتظار",
             "ACCEPTED": "منجز",
             "REJECTED": "مرفوض",
-            "FAILED": "فشل"
+            "FAILED": "فشل",
+            "Search" : "بحث"
         },
         "Wallet": {
             "Wallet" : "محفظة",

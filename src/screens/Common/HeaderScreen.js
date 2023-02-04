@@ -14,7 +14,6 @@ export default function HeaderScreen({navigation,screenName}) {
     console.log("User =>>>>>>>>>>",user);
     const logout = () => {
         navigation.navigate("Login");
-        // retrieveFromSecureStore("token").then(r => console.log(r));
     }
     return (
         <Container>

@@ -6,7 +6,7 @@ import TransactionData from "../../../TransactionsData";
 import HeaderScreen from "../Common/HeaderScreen";
 import {useTranslation} from "react-i18next";
 import {MyContext} from "../../../Global/Context";
-import {useContext, useEffect} from "react";
+import {useContext, useEffect, useState} from "react";
 import {getAccount} from "../../actions/AccountAction";
 import {getTransactions} from "../../actions/TransactionAction";
 
@@ -15,12 +15,14 @@ export default function HomeScreen({navigation}) {
     const screenName = t("Home.Home");
     const {account , setAccount} = useContext(MyContext);
     const {transactions , setTransactions} = useContext(MyContext);
+    const {previousTransactions , setPreviousTransactions} = useContext(MyContext);
+
 
 
     useEffect(  () => {
         console.log("=========================================FROM HOME =========================================")
         getAccount().then(response => setAccount(response));
-        getTransactions().then(response => setTransactions(response));
+        getTransactions(0,3).then(response => setPreviousTransactions(response));
     },[]);
 
     const renderTransactions = ({item}) => {
@@ -65,7 +67,7 @@ export default function HomeScreen({navigation}) {
                 </>
             }
             />
-            <PurshasesList data={transactions}
+            <PurshasesList data={previousTransactions}
                        renderItem={renderTransactions}
                        showVerticalScrollIndicator={false}
             />

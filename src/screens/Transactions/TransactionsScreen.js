@@ -5,13 +5,12 @@ import RenderCardScreen from "./RenderCardScreen";
 import {useTranslation} from "react-i18next";
 import Text from "../../components/Text";
 import {TouchableOpacity,View,StyleSheet} from 'react-native';
-import {Ionicons} from "@expo/vector-icons";
+import {FontAwesome5, Ionicons} from "@expo/vector-icons";
 import React, {useContext, useState} from 'react';
-import {BackModalScreen} from "../Modal/BackModalScreen";
 import {AddCarte} from "../Modal/AddCarte";
 import {MyContext} from "../../../Global/Context";
 
-export default function CardsScreen({navigation}) {
+export default function TransactionsScreen({navigation}) {
     const {t} = useTranslation();
     const [modalVisible, setModalVisible] = useState(false);
     const {transactions , setTransactions} = useContext(MyContext);
@@ -37,15 +36,22 @@ export default function CardsScreen({navigation}) {
     return (
         <Container>
             <HeaderScreen screenName={t("Cards.MyCards")} navigation={navigation}/>
+            <View style={styles.title}>
+                <Text center xlarge heavy>{t("Home.LastTransactions")} </Text>
+
+            </View>
+            <View style={styles.search}>
+                <TouchableOpacity style={styles.ButtonAdd} onPress={() => setModalVisible(true)}>
+                    <FontAwesome5 name="search" size={24} color="white" />
+                </TouchableOpacity>
+            </View>
+
             {/*<View style={styles.HeaderList}>*/}
             {/*    <Text center xlarge heavy>{t("Cards.ListOfCards")}</Text>*/}
             {/*    <TouchableOpacity style={styles.ButtonAdd} onPress={() => setModalVisible(true)}>*/}
             {/*        <Ionicons name="ios-add-circle" size={24} color="white" />*/}
             {/*    </TouchableOpacity>*/}
             {/*</View>*/}
-            <Title>
-                <Text center xlarge heavy>{t("Home.LastTransactions")} </Text>
-            </Title>
             <Cards data={transactions} renderItem={renderCards}/>
 
             <AddCarte navigation={navigation}
@@ -67,6 +73,20 @@ const styles = StyleSheet.create({
         marginRight :20,
         marginBottom : 15,
     },
+    title:{
+        flexDirection:"row",
+        paddingRight: 15,
+        marginBottom : 10,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    search:{
+        flexDirection:"row",
+        paddingRight: 15,
+        marginBottom : 10,
+        alignItems: 'center',
+        justifyContent: 'flex-end'
+    },
     ButtonAdd:{
         backgroundColor : "#237d19",
         borderRadius : 6,
@@ -84,7 +104,6 @@ const Cards = styled.FlatList`
 `;
 const Title = styled.View`
     flex-direction : row;
-    align-items : center;
     padding : 0 15px;
 `;
 const StatusBar = styled.StatusBar``;

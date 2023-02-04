@@ -64,7 +64,8 @@
             "PENDDING": "En cours",
             "ACCEPTED": "Accepté",
             "REJECTED": "Rejeté",
-            "FAILED": "Échoué"
+            "FAILED": "Échoué",
+            "Search" : "Recherche"
         },
         "Wallet": {
             "Wallet" : "Portefeuille",

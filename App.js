@@ -20,6 +20,7 @@ export default function App() {
   const Stack = createNativeStackNavigator();
   const [appIsReady, setAppIsReady] = useState(false);
   const [transactions,setTransactions] = useState({});
+  const [previousTransactions,setPreviousTransactions] = useState({});
   const [account,setAccount] = useState({});
   const [beneficiaries,setBeneficiaries] = useState({});
   const [user,setUser] = useState({
@@ -56,7 +57,8 @@ export default function App() {
         <MyContext.Provider value={{user,setUser,
             account,setAccount,
             beneficiaries,setBeneficiaries,
-            transactions,setTransactions}}>
+            transactions,setTransactions,
+            previousTransactions,setPreviousTransactions}}>
             <NavigationContainer onReady={onLayoutRootView}>
                 <Stack.Navigator>
                     <AppStack.Screen name="Language" component={LanguageScreen} options={{ headerShown: false }}/>

@@ -43,6 +43,7 @@
     "react-native-gesture-handler": "^2.5.0",
     "react-native-localization": "^2.3.1",
     "react-native-localize": "^2.2.4",
+    "react-native-pagination": "^1.5.5",
     "react-native-safe-area-context": "4.3.1",
     "react-native-screens": "^3.18.2",
     "react-native-select-dropdown": "^3.0.3",

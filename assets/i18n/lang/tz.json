@@ -65,7 +65,8 @@
             "PENDDING": "In progress",
             "ACCEPTED": "Accepted",
             "REJECTED": "Rejected",
-            "FAILED": "Failed"
+            "FAILED": "Failed",
+            "Search" : "Search"
         },
         "Wallet": {
             "Wallet" : "Wallet",

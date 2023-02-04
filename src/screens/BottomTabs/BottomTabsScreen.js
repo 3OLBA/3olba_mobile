@@ -1,6 +1,6 @@
 import Home from "../Home/HomeScreen";
 import TransferScreen from "../Transfer/TransferScreen";
-import Cards from "../Cards/CardsScreen";
+import TransactionsScreen from "../Transactions/TransactionsScreen";
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 import {MaterialIcons, Entypo, AntDesign} from "@expo/vector-icons";
 import WalletScreen from "../Wallet/WalletScreen";
@@ -63,7 +63,7 @@ export default function BottomTabsScreen() {
             <TabStack.Screen name="Home" component={Home} options={{ title : t("Home.Home"), headerShown: false }}/>
             <TabStack.Screen name="Wallet"  component={WalletScreen} options={{ title : t("Wallet.Wallet"), headerShown: false }}/>
             <TabStack.Screen name="Transfer"  component={TransferScreen} options={{ title : t("Transfer.Transfer"), headerShown: false }}/>
-            <TabStack.Screen name="Transactions" component={Cards} options={{ title : t("Transactions.Transactions") , headerShown: false }}/>
+            <TabStack.Screen name="Transactions" component={TransactionsScreen} options={{ title : t("Transactions.Transactions") , headerShown: false }}/>
         </TabStack.Navigator>
     );
 }

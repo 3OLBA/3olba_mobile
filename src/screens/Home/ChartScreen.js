@@ -23,7 +23,7 @@ export default function ChartScreen() {
                 }}
                 width = {Dimensions.get("window").width}
                 height = {200}
-                yAxisLabel = "$"
+                yAxisLabel = "DH"
                 yAxisSuffix = "k"
                 chartConfig = {{
                     backgroundGradientFrom : "#1e1e1e",

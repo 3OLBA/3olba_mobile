@@ -76,6 +76,10 @@ export default function TransferScreen({navigation}) {
         setModalChooseBenVisible(false);
         setShowAddTransfer(false);
     }
+    const hideModalAndKeepBenef = () => {
+        console.log("keep benef")
+        setModalSendVisible(false);
+    }
 
     const getInstance = () => {
         getAccount().then(response => setAccount(response));
@@ -210,7 +214,7 @@ export default function TransferScreen({navigation}) {
 
                 <SendTransfer navigation={navigation}
                               modalVisible={modalSendVisible}
-                              hideModalAndStay={hideModalAndStay}
+                              hideModalAndStay={hideModalAndKeepBenef}
                               sendTransfer={sendTransfer}
                 />
 
