@@ -28,6 +28,10 @@ export const BENEFICIARYDETAILS = {
     NAME: "Name",
     AMOUNT: "Amount",
 }
+export const SEARCHDETAILS = {
+    MIN_AMOUNT: "MinAmount",
+    MAX_AMOUNT: "MaxAmount",
+}
 
 export const TrasanctionStatus = {
     PENDDING: "PENDDING",

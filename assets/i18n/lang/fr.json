@@ -75,6 +75,8 @@
             "Transfer"  : "Transfert",
             "Name" : "Nom",
             "Amount" : "Montant",
+            "MinAmount" : "Montant Min",
+            "MaxAmount" : "Montant Max",
             "IBAN" : "IBAN",
             "RIB" : "RIB",
             "Beneficiary" : "Bénéficiaire",

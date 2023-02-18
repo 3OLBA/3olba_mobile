@@ -3,7 +3,7 @@ import {View, StyleSheet, TouchableOpacity, Modal, TextInput,Keyboard,TouchableW
 import {useTranslation} from "react-i18next";
 import Text from "../../components/Text";
 import {Feather, FontAwesome} from "@expo/vector-icons";
-import {BANKSDETAILS, BENEFICIARYDETAILS, USERDETAILS} from "../Common/commonValue";
+import {BANKSDETAILS, BENEFICIARYDETAILS, SEARCHDETAILS, USERDETAILS} from "../Common/commonValue";
 import {Picker} from "@react-native-picker/picker";
 import TransactionsTypeData  from '../../../TransactionsTypeData';
 
@@ -50,8 +50,22 @@ export const AddCarte = ({modalVisible,hideModalAndStay,showModalAndLeave}) => {
                             <View style={styles.action}>
                                 <FontAwesome name="money" size={20} color="#05375a" />
                                 <TextInput style={[styles.textInput,{width:"80%",paddingLeft:10}]}
-                                           onChangeText={value => handleSearch(BENEFICIARYDETAILS.AMOUNT,value)}
-                                           placeholder={t("Transfer.Amount")}
+                                           onChangeText={value => handleSearch(SEARCHDETAILS.MIN_AMOUNT,value)}
+                                           placeholder={t("Transfer.MinAmount")}
+                                           placeholderTextColor="#747171"
+                                           autoCapitalize="none"
+                                           keyboardType="numeric"
+                                           returnKeyType="done"
+                                           maxLength={14}
+                                />
+                            </View>
+                        </TouchableWithoutFeedback>
+                        <TouchableWithoutFeedback accessible={false} >
+                            <View style={styles.action}>
+                                <FontAwesome name="money" size={20} color="#05375a" />
+                                <TextInput style={[styles.textInput,{width:"80%",paddingLeft:10}]}
+                                           onChangeText={value => handleSearch(SEARCHDETAILS.MAX_AMOUNT,value)}
+                                           placeholder={t("Transfer.MaxAmount")}
                                            placeholderTextColor="#747171"
                                            autoCapitalize="none"
                                            keyboardType="numeric"
@@ -169,6 +183,7 @@ const styles = StyleSheet.create({
         width : "100%",
         justifyContent : "space-around",
         marginTop : 10,
+        paddingTop:20,
         borderBottomWidth : 1,
         borderBottomColor : "#f2f2f2",
         paddingBottom : 5,
